@@ -16,7 +16,3 @@ class User {
         self.avatar = avatar
     }
 }
-
-//Função para converter a Imagem recebida para PNG
-
-
