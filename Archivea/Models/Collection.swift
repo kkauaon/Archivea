@@ -1,6 +1,7 @@
 import SwiftData
 import SwiftUI
 
+@Model
 class Collection {
     var name: String
     
