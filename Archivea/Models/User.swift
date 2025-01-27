@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+
 @Model
 class User {
     var name: String

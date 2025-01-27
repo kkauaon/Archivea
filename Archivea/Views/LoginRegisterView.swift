@@ -36,7 +36,7 @@ struct LoginRegisterView: View {
             Button {
                 
             } label: {
-                Text("Senha")
+                Text("Entrar")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)

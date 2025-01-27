@@ -10,14 +10,18 @@ import SwiftUI
 struct SplashView: View {
     @State var isActive : Bool = true
     
-    let splashTime = 2.5; // tempo em segundos do splash
+    let splashTime = 2.5;
+    // tempo em segundos do splash
     
     var body: some View {
         ZStack {
             if isActive {
                 Text("Archivea")
+                    .font(.largeTitle)
+                    .foregroundColor(.mint)
+                    .shadow(radius: 1)
             } else {
-                LoginRegisterView()
+                MainView()
             }
         }
         .onAppear {
