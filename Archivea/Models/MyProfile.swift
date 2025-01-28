@@ -2,14 +2,14 @@ import SwiftData
 import SwiftUI
 
 @Model
-class User {
+class MyProfile {
     var name: String
     var bio: String
     var isWhatsappPublic: Bool
     var createdAt: Date
-    var avatar: String
+    @Attribute(.externalStorage) var avatar: Data
     
-    init(name: String, bio: String, isWhatsappPublic: Bool, createdAt: Date, avatar: String) {
+    init(name: String, bio: String, isWhatsappPublic: Bool, createdAt: Date, avatar: Data) {
         self.name = name
         self.bio = bio
         self.isWhatsappPublic = isWhatsappPublic

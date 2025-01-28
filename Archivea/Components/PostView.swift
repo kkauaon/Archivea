@@ -20,5 +20,5 @@ struct PostView: View {
 }
 
 #Preview {
-    PostView(post: .init(name: "camera cybershot dsc-w620", desc: "eu ganhei essa câmera de aniversário de 17 anos, da minha tia Claudia. amei!", photo: "cybershot", fields: [.init(fieldName: "ano", fieldValue: "2019")]))
+    PostView(post: .init(author: User(name: "jotagezim", bio: "meu nome  joao grabiel tenho 17 anos e amo Jesus", isWhatsappPublic: false, createdAt: .now, avatar: "manga"), name: "camera cybershot dsc-w620", desc: "eu ganhei essa câmera de aniversário de 17 anos, da minha tia Claudia. amei!", photo: "cybershot", fields: [.init(fieldName: "ano", fieldValue: "2019")]))
 }
