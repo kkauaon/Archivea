@@ -12,15 +12,16 @@ struct MainView: View {
         TabView{
             NotificationsView()
                 .tabItem{
-                    Image(systemName: "bell")
+                    Label("Notificações", systemImage: "bell")
                 }
+                
             FeedView()
                 .tabItem{
-                    Image(systemName: "house")
+                    Label("Feed", systemImage: "house")
                 }
             ProfileView()
                 .tabItem{
-                    Image(systemName: "person.crop.circle")
+                    Label("Perfil", systemImage: "person.crop.circle")
                 }
         }
     }

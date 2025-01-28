@@ -8,10 +8,10 @@ class Post{
     var name: String
     var desc: String
     var photo: String
-    var preservation: String
+    var preservation: Int
     var fields: [CustomField]
     
-    init(author: User, name: String, desc: String, photo: String, preservation: String, fields: [CustomField]) {
+    init(author: User, name: String, desc: String, photo: String, preservation: Int, fields: [CustomField]) {
         self.author = author
         self.name = name
         self.desc = desc
