@@ -12,7 +12,9 @@ import SwiftData
 struct ArchiveaApp: App {
     var modelContainer: ModelContainer = {
         let schema = Schema([
-            //Item.self,
+            ItemCollection.self,
+            Collection.self,
+            MyProfile.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
