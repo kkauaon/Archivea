@@ -27,6 +27,9 @@ struct AddNewCollectionView: View {
                     let collection = Collection(name: name)
                     
                     modelContext.insert(collection)
+                    
+                    name = ""
+                    
                     dismiss()
                 }label:{
                     Text("Salvar")

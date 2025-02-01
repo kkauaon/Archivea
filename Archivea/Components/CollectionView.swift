@@ -21,11 +21,11 @@ struct CollectionView: View {
                 Image(uiImage: image)
                     .resizable()
                     .cornerRadius(5)
-                    .frame(width: 64, height: 64)
+                    .frame(height: 150)
             } else {
                 RoundedRectangle(cornerRadius: 5)
                 .fill(.gray)
-                .frame(width: 64, height: 64)
+                .frame(height: 150)
                 .overlay {
                     Image(systemName: "person.circle")
                         .resizable()
