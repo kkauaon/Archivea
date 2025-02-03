@@ -81,17 +81,19 @@ struct MyProfileView: View {
                 Divider()
                 HStack(alignment: .top, spacing: 25) {
                     VStack {
-                        ForEach (collections.indices, id: \.self) { position in
-                            if position % 2 == 0 {
-                                CollectionView(collection: collections[position])
+                        ForEach (collections, id: \.self.id) { col in
+                            
+                            if let i = collections.firstIndex(where: { $0.id == col.id }), i == 0 {
+                                CollectionView(collection: collections[i])
                             }
                         }
                     }
                     if collections.count > 1 {
                         VStack {
-                            ForEach (collections.indices, id: \.self) { position in
-                                if position % 2 != 0 {
-                                    CollectionView(collection: collections[position])
+                            ForEach (collections, id: \.self.id) { col in
+                                
+                                if let i = collections.firstIndex(where: { $0.id == col.id }) != 0 {
+                                    CollectionView(collection: collections[i])
                                 }
                             }
                         }
