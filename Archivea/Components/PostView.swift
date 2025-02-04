@@ -27,9 +27,8 @@ struct PostView: View {
                         .frame(width: 32, height: 32)
                         .clipShape(Circle())
                         .padding(8)
-                    
-                    
                 }
+            
             VStack(alignment: .leading) {
                 Text(post.name)
                     .bold()
@@ -45,8 +44,8 @@ struct PostView: View {
                         .foregroundColor(.yellow)
                         .font(.system(size: 12))
                 }
-//                Text("@" + post.author.handle)
-//                    .font(.system(size: 12))
+                //                Text("@" + post.author.handle)
+                //                    .font(.system(size: 12))
             }
         }
         .padding(.bottom, 25)

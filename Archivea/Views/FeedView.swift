@@ -29,14 +29,18 @@ struct FeedView: View {
                     VStack {
                         ForEach (fakePost.indices, id: \.self) { position in
                             if position % 2 == 0 {
-                                PostView(post: fakePost[position])
+                                NavigationLink(destination: PostExtendedView(post: fakePost[position])){
+                                    PostView(post: fakePost[position])
+                                }
                             }
                         }
                     }
                     VStack {
                         ForEach (fakePost.indices, id: \.self) { position in
                             if position % 2 != 0 {
-                                PostView(post: fakePost[position])
+                                NavigationLink(destination: PostExtendedView(post: fakePost[position])){
+                                    PostView(post: fakePost[position])
+                                }
                             }
                         }
                     }
