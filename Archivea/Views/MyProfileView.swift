@@ -11,7 +11,7 @@ import SwiftData
 struct MyProfileView: View {
     var profile : MyProfile
     
-    @Query var collections : [Collection]
+    @Query(sort: \Collection.name, order: .forward) var collections : [Collection]
     
     @State var addNewCollectionViewIsPresented = false
     
@@ -66,7 +66,8 @@ struct MyProfileView: View {
                         Text("Editar perfil")
                             .foregroundColor(.black)
                             .padding(.horizontal, 28)
-                    }.buttonStyle(.bordered)
+                    }
+                    .buttonStyle(.bordered)
                     
                     Spacer()
                     //Botao de adicionar uma nova colecao
@@ -76,24 +77,25 @@ struct MyProfileView: View {
                         Label("Nova coleção", systemImage: "plus")
                             .foregroundColor(.black)
                             .padding(.horizontal, 8)
-                    }.buttonStyle(.bordered)
+                    }
+                    .buttonStyle(.bordered)
                 }
                 Divider()
                 HStack(alignment: .top, spacing: 25) {
                     VStack {
-                        ForEach (collections, id: \.self.id) { col in
+                        ForEach (collections, id: \.self.id) { collection in
                             
-                            if let i = collections.firstIndex(where: { $0.id == col.id }), i == 0 {
-                                CollectionView(collection: collections[i])
+                            if let index = collections.firstIndex(where: { $0.id == collection.id }), index % 2 == 0 {
+                                CollectionView(collection: collections[index])
                             }
                         }
                     }
                     if collections.count > 1 {
                         VStack {
-                            ForEach (collections, id: \.self.id) { col in
+                            ForEach (collections, id: \.self.id) { collection in
                                 
-                                if let i = collections.firstIndex(where: { $0.id == col.id }) != 0 {
-                                    CollectionView(collection: collections[i])
+                                if let index = collections.firstIndex(where: { $0.id == collection.id }), index % 2 != 0 {
+                                    CollectionView(collection: collections[index])
                                 }
                             }
                         }
@@ -124,4 +126,5 @@ struct MyProfileView: View {
 
 #Preview {
     MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "entuasista", isWhatsappPublic: true, createdAt: .now, avatar: nil))
+        .modelContainer(for: [MyProfile.self, Collection.self, ItemCollection.self])
 }

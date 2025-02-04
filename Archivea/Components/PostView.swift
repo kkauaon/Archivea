@@ -16,34 +16,28 @@ struct PostView: View {
                 .cornerRadius(8)
                 .scaledToFit()
                 .overlay(alignment: .topLeading) {
-                    Image(post.photo)
+                    // Adiciona a borda do círculo primeiro
+                    Circle()
+                        .stroke(Color.white, lineWidth: 2)
+                        .frame(width: 32, height: 32)
+                        .padding(8)
+                    Image(post.author.avatar)
                         .resizable()
-                        .cornerRadius(8)
-                        .scaledToFit()
-                        .overlay(alignment: .topLeading) {
-                            // Adiciona a borda do círculo primeiro
-                            Circle()
-                                .stroke(Color.white, lineWidth: 2)
-                                .frame(width: 32, height: 32)
-                                .padding(8)
-                            Image(post.author.avatar)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 32, height: 32)
-                                .clipShape(Circle())
-                                .padding(8)
-                                
-                        }
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 32, height: 32)
+                        .clipShape(Circle())
+                        .padding(8)
+                    
                     
                 }
             VStack(alignment: .leading) {
                 Text(post.name)
                     .bold()
-                    .font(.system(size: 12))
+                    .font(.system(size: 17))
                     .lineLimit(1)
                 HStack(spacing: 2) {
                     Text("Conservação: ")
-                        .font(.system(size: 12))
+                        .font(.system(size: 13))
                     Text(String(post.preservation))
                         .bold()
                         .font(.system(size: 12))
@@ -51,8 +45,8 @@ struct PostView: View {
                         .foregroundColor(.yellow)
                         .font(.system(size: 12))
                 }
-                Text("@" + post.author.handle)
-                    .font(.system(size: 12))
+//                Text("@" + post.author.handle)
+//                    .font(.system(size: 12))
             }
         }
         .padding(.bottom, 25)

@@ -9,10 +9,17 @@ import SwiftUI
 import SwiftData
 
 struct CollectionView: View {
+    
+    
+    @Environment(\.modelContext) var modelContext
+
+    
     @State var collection: Collection
     
     @Query var items: [ItemCollection]
     @State var itemsFromCollection: [ItemCollection] = []
+    
+    @State var isPopoverPresented: Bool = false
     
     
     var body: some View {
@@ -33,8 +40,25 @@ struct CollectionView: View {
                     
                 }
             }
-
-            Text(collection.name)
+            HStack{
+                Text(collection.name)
+                
+                Spacer()
+                
+                Menu("", systemImage: "pencil"){
+                    Button{
+                        //CollectionManager()
+                    }label:{
+                        Text("Gerenciar coleção")
+                    }
+                    Button(role:.destructive){
+                        modelContext.delete(collection)
+                    }label:{
+                        Text("Deletar coleção")
+                    }
+                }
+                .foregroundColor(.black)
+            }
         }
         .task {
             for item in items {
