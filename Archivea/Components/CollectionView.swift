@@ -71,5 +71,5 @@ struct CollectionView: View {
 }
 
 #Preview {
-    CollectionView(collection: .init(name: "kiko da silva"))
+    CollectionView(collection: .init(name: "Colecao Teste", isPrivate: false, image: nil))
 }

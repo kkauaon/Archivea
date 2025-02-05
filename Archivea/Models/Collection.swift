@@ -6,9 +6,9 @@ class Collection {
     var name: String
     var isPrivate: Bool
     //Mudar pra Data
-    var image: String
+    var image: Data?
     
-    init(name: String, isPrivate: Bool, image: String) {
+    init(name: String, isPrivate: Bool = false, image: Data? = nil) {
         self.name = name
         self.isPrivate = isPrivate
         self.image = image

@@ -12,7 +12,7 @@ struct AddNewCollectionView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     
-    @State var collectionIsPrivate: Bool
+    @State var collectionIsPrivate: Bool = false
     
     @State var name: String = ""
     var body: some View {
@@ -66,7 +66,7 @@ struct AddNewCollectionView: View {
                 //Botão de salvar
                 Button{
                     //Instanciar a colecao - tirar a imagem sendo string e colocar Data
-                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: "cachorro")
+                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: nil)
                     
                     modelContext.insert(collection)
                     
