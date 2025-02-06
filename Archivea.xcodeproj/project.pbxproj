@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		22656A9B2D4016E6005B1987 /* Archivea */ = {
+		A2D58B452D54319A00E378AD /* Archivea */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Archivea;
 			sourceTree = "<group>";
@@ -32,8 +32,8 @@
 		22656A902D4016E6005B1987 = {
 			isa = PBXGroup;
 			children = (
-				22656A9B2D4016E6005B1987 /* Archivea */,
 				22656A9A2D4016E6005B1987 /* Products */,
+				A2D58B452D54319A00E378AD /* Archivea */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				22656A9B2D4016E6005B1987 /* Archivea */,
+				A2D58B452D54319A00E378AD /* Archivea */,
 			);
 			name = Archivea;
 			packageProductDependencies = (

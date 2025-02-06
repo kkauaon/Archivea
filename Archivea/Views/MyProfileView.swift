@@ -47,15 +47,15 @@ struct MyProfileView: View {
                     Button{
                         //DEFINIR ACAO DESSE BOTAO AQUI, ELE ABRIRA UMA BARRA LATERAL DE CONFIGURACOES. SERA UM XITE.
                     }label: {
-                        Image(systemName: "line.3.horizontal")
+                        Image(systemName: "gear")
                             .resizable()
                             .foregroundColor(.black)
-                            .frame(width: 24, height: 24)
+                            .frame(width: 32, height: 32)
                     }
                 }
                 HStack(){
                     Text("\(profile.bio)")
-                        .font(.system(size: 16).weight(.light))
+                        .font(.system(size: 17))
                     Spacer()
                 }
                 HStack{
@@ -81,6 +81,19 @@ struct MyProfileView: View {
                     .buttonStyle(.bordered)
                 }
                 Divider()
+                HStack {
+                    Text("Coleções")
+                        .font(.system(size: 20))
+                    Spacer()
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "line.3.horizontal.decrease")
+                            .resizable()
+                            .foregroundColor(.black)
+                            .frame(width: 24, height: 16)
+                    }
+                }
                 HStack(alignment: .top, spacing: 25) {
                     VStack {
                         ForEach (collections, id: \.self.id) { collection in

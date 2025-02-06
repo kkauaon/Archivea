@@ -45,7 +45,7 @@ struct CollectionView: View {
                 
                 Spacer()
                 
-                Menu("", systemImage: "pencil"){
+                Menu {
                     Button{
                         //CollectionManager()
                     }label:{
@@ -56,17 +56,20 @@ struct CollectionView: View {
                     }label:{
                         Text("Deletar coleção")
                     }
+                } label: {
+                    Image(systemName: "pencil")
+                        .foregroundColor(.black)
                 }
-                .foregroundColor(.black)
+                //
             }
         }
-        .task {
-            for item in items {
-                if item.collection.id == collection.id {
-                    itemsFromCollection.append(item)
-                }
-            }
-        }
+//        .task {
+//            for item in items {
+//                if item.collection.id == collection.id {
+//                    itemsFromCollection.append(item)
+//                }
+//            }
+//        }
     }
 }
 
