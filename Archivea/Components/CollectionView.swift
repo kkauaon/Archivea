@@ -24,15 +24,17 @@ struct CollectionView: View {
     
     var body: some View {
         VStack {
-            if itemsFromCollection.count > 0, let data = itemsFromCollection.first!.photo, let image = UIImage(data: data) {
+            if let data = collection.image, let image = UIImage(data: data) {
                 Image(uiImage: image)
                     .resizable()
+                    .scaledToFill()
+                    .frame(width: 170, height: 130)
                     .cornerRadius(5)
-                    .frame(height: 150)
+                    .clipped()
             } else {
                 RoundedRectangle(cornerRadius: 5)
                 .fill(.gray)
-                .frame(height: 150)
+                .frame(height: 130)
                 .overlay {
                     Image(systemName: "person.circle")
                         .resizable()

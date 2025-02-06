@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddNewCollectionView: View {
     
@@ -15,41 +16,58 @@ struct AddNewCollectionView: View {
     @State var collectionIsPrivate: Bool = false
     
     @State var name: String = ""
+    
+    @State var selectedPhoto: PhotosPickerItem?
+    
+    @State var collection : Collection = .init(name: "")
+    
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 12) {
-                //Falta centralizar esse título (Adicionar coleção)
-                //                Text("Adicionar coleção")
-                //                    .font(.title2)
-                //                    .bold()
-                //                    .padding(.bottom, 16)
-                
                 //Imagem
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(.gray)
-                    .frame(width: 170, height: 130)
-                    .padding(.top, 10)
-                //Botão de adicionar capa
-                Button{
-                    //Fazer abrir a galeria do celular
-                    //Escolher foto
-                    
-                    //Alterar imagem, do retângulo cinza para a imagem escolhida
-                    
-                    //Mudar a label desse botão para:
-                    
-                    //                    Button("Remover capa", systemImage: "play.fill", action: action)
-                    //                    .labelStyle(.titleAndIcon)
-                    //                    .buttonStyle(.borderedProminent)
-                    //                    .controlSize(.small)
-                    
-                }label:{
-                    Label("Adicionar capa", systemImage: "plus.circle")
+                if let data = collection.image, let image = UIImage(data: data) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 170, height: 130)
+                        .clipped()
+                        .cornerRadius(5)
+                        .padding(.top, 10)
+                } else {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(.gray)
+                        .frame(width: 170, height: 130)
+                        .padding(.top, 10)
                 }
-                .padding(.top, 5)
-                .labelStyle(.titleAndIcon)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
+                
+                
+                //Botão de adicionar capa
+                if selectedPhoto != nil {
+                        Button(role: .destructive) {
+                            selectedPhoto = nil
+                            collection.image = nil
+                        }label:{
+                            Label("Remover capa", systemImage: "play.fill")
+                        }
+                        .padding(.top, 5)
+                        .labelStyle(.titleAndIcon)
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.small)
+                    
+                } else {
+                    //Entender o PhotosPicker como um botão.
+                    PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                            Label("Adicionar capa", systemImage: "plus.circle")
+                    }
+                    .padding(.top, 5)
+                    .labelStyle(.titleAndIcon)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
+                    Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
+                        .foregroundColor(.gray)
+                        .font(.caption2)
+                }
                 
                 
                 HStack {
@@ -59,27 +77,10 @@ struct AddNewCollectionView: View {
                 
                 TextField("Nome da coleção", text: $name)
                     .textFieldStyle(.roundedBorder)
-                    .background(Color.clear)
                 
                 Toggle(isOn: $collectionIsPrivate){
                     Text("Privado")
                 }
-                
-                //Botão de salvar
-//                Button{
-//                    //Instanciar a colecao - tirar a imagem sendo string e colocar Data
-//                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: nil)
-//                    
-//                    modelContext.insert(collection)
-//                    
-//                    name = ""
-//                    
-//                    dismiss()
-//                }label:{
-//                    Text("Salvar")
-//                        .frame(maxWidth: .infinity)
-//                }
-//                .buttonStyle(.borderedProminent)
             }
             .frame(
                 maxWidth: .infinity,
@@ -92,7 +93,7 @@ struct AddNewCollectionView: View {
             .toolbar {
                 Button {
                     //Instanciar a colecao - tirar a imagem sendo string e colocar Data
-                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: nil)
+                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: collection.image)
                     
                     modelContext.insert(collection)
                     
@@ -110,7 +111,11 @@ struct AddNewCollectionView: View {
         //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
         .presentationDetents([.height(450), .large])
         .presentationCornerRadius(20)
-        
+        .task(id: selectedPhoto) {
+            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+                collection.image = data
+            }
+        }
         
         //Mostrar o Grab da sheet
         //AddNewCollectionView.prefersGrabberVisible = true

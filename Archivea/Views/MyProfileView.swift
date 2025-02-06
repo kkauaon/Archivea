@@ -15,6 +15,7 @@ struct MyProfileView: View {
     
     @State var addNewCollectionViewIsPresented = false
     
+    
     var body: some View {
         NavigationStack {
             ScrollView {

@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A2D58B452D54319A00E378AD /* Archivea */ = {
+		22656A9B2D4016E6005B1987 /* Archivea */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Archivea;
 			sourceTree = "<group>";
@@ -32,8 +32,8 @@
 		22656A902D4016E6005B1987 = {
 			isa = PBXGroup;
 			children = (
+				22656A9B2D4016E6005B1987 /* Archivea */,
 				22656A9A2D4016E6005B1987 /* Products */,
-				A2D58B452D54319A00E378AD /* Archivea */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				A2D58B452D54319A00E378AD /* Archivea */,
+				22656A9B2D4016E6005B1987 /* Archivea */,
 			);
 			name = Archivea;
 			packageProductDependencies = (
@@ -252,6 +252,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Archivea/Preview Content\"";
+				DEVELOPMENT_TEAM = W632AW96W5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -280,6 +281,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Archivea/Preview Content\"";
+				DEVELOPMENT_TEAM = W632AW96W5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
