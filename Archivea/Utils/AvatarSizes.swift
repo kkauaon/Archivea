@@ -6,13 +6,13 @@ enum AvatarSizes{
     case large
     
     var size: CGFloat{
-        switch self{
+        switch self {
         case .small:
-            return //Tamanho pequeno (w: , h:)
+            return 64 //Tamanho pequeno (w: , h:)
         case .medium:
-            return //Tamanho médio (w: , h:)
+            return 96 //Tamanho médio (w: , h:)
         case .large:
-            return //Tamanho grande (w: , h:)
+            return 110//Tamanho grande (w: , h:)
         }
     }
 }

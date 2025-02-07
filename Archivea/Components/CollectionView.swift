@@ -27,8 +27,8 @@ struct CollectionView: View {
             if let data = collection.image, let image = UIImage(data: data) {
                 Image(uiImage: image)
                     .resizable()
-                    .scaledToFill()
-                    .frame(width: 170, height: 130)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 130)
                     .cornerRadius(5)
                     .clipped()
                     .allowsHitTesting(false)
@@ -61,6 +61,7 @@ struct CollectionView: View {
         .sheet(isPresented: $isSheetPresented) {
             EditCollectionView(collection: collection)
         }
+        //.frame(width: 190)
     }
 }
 

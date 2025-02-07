@@ -2,17 +2,19 @@ import SwiftUI
 
 struct AvatarView: View {
     var avatarData: Data?
+    
+    var avatarSize: AvatarSizes
 
     var body: some View {
         if let avatar = avatarData, let image = UIImage(data: avatar) {
             Image(uiImage: image)
                 .resizable()
                 .cornerRadius(5)
-                .frame(width: 64, height: 64)
+                .frame(width: avatarSize.size, height: avatarSize.size)
         } else {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color.gray)
-                .frame(width: 64, height: 64)
+                .frame(width: avatarSize.size, height: avatarSize.size)
                 .overlay {
                     Image(systemName: "person.circle")
                         .resizable()
@@ -22,5 +24,5 @@ struct AvatarView: View {
     }
 }
 #Preview {
-    AvatarView()
+    AvatarView(avatarData: nil, avatarSize: .large)
 }

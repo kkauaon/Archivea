@@ -19,7 +19,7 @@ struct LoginRegisterView: View {
         VStack(spacing: 10) { // <-- verificar no figma
             Text(isSignUp ? "Primeiro Acesso" : "Conecte-se")
             
-            TextField("Nome", text: $username)
+            TextField("Apelido", text: $username)
                 .textFieldStyle(.roundedBorder)
                 .textInputAutocapitalization(.never)
             

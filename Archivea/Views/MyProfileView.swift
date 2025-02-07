@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MyProfileView: View {
-    var profile : MyProfile
+    @State var profile : MyProfile
     
     @Query(sort: \Collection.name, order: .forward) var collections : [Collection]
     
@@ -20,7 +20,7 @@ struct MyProfileView: View {
         NavigationStack {
             ScrollView {
                 HStack(alignment: .top){
-                    AvatarView(avatarData: profile.avatar)
+                    AvatarView(avatarData: profile.avatar, avatarSize: .small)
                     VStack(alignment: .leading){
                         Spacer()
                         Text("\(profile.name)")
@@ -47,7 +47,7 @@ struct MyProfileView: View {
                 HStack{
                     //Botao de editar perfil
                     NavigationLink {
-                        EditProfileView(profile: profile)
+                        EditProfileView(profile: $profile)
                     } label: {
                         Text("Editar perfil")
                             .foregroundColor(.black)
@@ -80,8 +80,8 @@ struct MyProfileView: View {
                             .frame(width: 24, height: 16)
                     }
                 }
-                HStack(alignment: .top, spacing: 25) {
-                    VStack {
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading) {
                         ForEach (collections, id: \.self.id) { collection in
                             
                             if let index = collections.firstIndex(where: { $0.id == collection.id }), index % 2 == 0 {
@@ -89,6 +89,7 @@ struct MyProfileView: View {
                             }
                         }
                     }
+                    Spacer()
                     if collections.count > 1 {
                         VStack {
                             ForEach (collections, id: \.self.id) { collection in
