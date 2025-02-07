@@ -20,22 +20,7 @@ struct MyProfileView: View {
         NavigationStack {
             ScrollView {
                 HStack(alignment: .top){
-                    if let avatar = profile.avatar, let image = UIImage(data: avatar) {
-                        Image(uiImage: image)
-                            .resizable()
-                            .cornerRadius(5)
-                            .frame(width: 64, height: 64)
-                    } else {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.gray)
-                            .frame(width: 64, height: 64)
-                            .overlay {
-                                Image(systemName: "person.circle")
-                                    .resizable()
-                                    .frame(width: 48, height: 48)
-                                
-                            }
-                    }
+                    AvatarView(avatarData: profile.avatar)
                     VStack(alignment: .leading){
                         Spacer()
                         Text("\(profile.name)")
@@ -61,9 +46,9 @@ struct MyProfileView: View {
                 }
                 HStack{
                     //Botao de editar perfil
-                    Button{
-                        
-                    }label: {
+                    NavigationLink {
+                        EditProfileView(profile: profile)
+                    } label: {
                         Text("Editar perfil")
                             .foregroundColor(.black)
                             .padding(.horizontal, 28)
@@ -116,6 +101,8 @@ struct MyProfileView: View {
                     }
                 }
             }
+            .navigationTitle("Seu Perfil")
+            .navigationBarHidden(true)
             .scrollIndicators(.never)
             .frame(
                 maxWidth: .infinity,
@@ -127,13 +114,14 @@ struct MyProfileView: View {
                 AddNewCollectionView()
             }
             .task(id: collections) {
-                print("---")
+                print("---------------")
                 for collection in collections {
                     
                     print(collection.name)
                 }
-                print("---")
+                print("---------------")
             }
+            //.navigationTitle("\(profile.name)")
         }
     }
 }

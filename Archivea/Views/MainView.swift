@@ -11,14 +11,13 @@ import SwiftData
 struct MainView: View {
     var body: some View {
         TabView{
-            NotificationsView()
-                .tabItem{
-                    Label("Notificações", systemImage: "bell")
-                }
-                
             FeedView()
                 .tabItem{
-                    Label("Feed", systemImage: "house")
+                    Label("Feed", systemImage: "book.fill")
+            }
+            FavoritesView()
+                .tabItem{
+                    Label("Favoritos", systemImage: "star")
                 }
             MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "entuasista", isWhatsappPublic: true, createdAt: .now, avatar: nil))
                 .tabItem{

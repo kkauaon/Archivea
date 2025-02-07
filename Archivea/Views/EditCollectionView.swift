@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct AddNewCollectionView: View {
+struct EditCollectionView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
@@ -19,14 +19,16 @@ struct AddNewCollectionView: View {
     
     @State var selectedPhoto: PhotosPickerItem?
     
-    @State var collection : Collection = .init(name: "")
+    @State var collection : Collection
+    
+    @State var imageData : Data?
     
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 12) {
                 //Imagem
-                if let data = collection.image, let image = UIImage(data: data) {
+                if let data = imageData, let image = UIImage(data: data) {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFill()
@@ -49,10 +51,12 @@ struct AddNewCollectionView: View {
                 
                 
                 //Botão de adicionar capa
-                if selectedPhoto != nil {
+                //Caso já haja uma capa da coleção.
+                if imageData != nil {
                         Button(role: .destructive) {
                             selectedPhoto = nil
-                            collection.image = nil
+                            imageData = nil
+                            //Aparece a opção de remover a capa.
                         }label:{
                             Label("Remover capa", systemImage: "play.fill")
                         }
@@ -60,10 +64,11 @@ struct AddNewCollectionView: View {
                         .labelStyle(.titleAndIcon)
                         .buttonStyle(.borderedProminent)
                         .controlSize(.small)
-                    
+                //Caso não haja uma capa na coleção.
                 } else {
                     //Entender o PhotosPicker como um botão.
                     PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                        //Aparece a opção de
                             Label("Adicionar capa", systemImage: "plus.circle")
                     }
                     .padding(.top, 5)
@@ -87,6 +92,13 @@ struct AddNewCollectionView: View {
                 Toggle(isOn: $collectionIsPrivate){
                     Text("Privado")
                 }
+                Button(role: .destructive){
+                    modelContext.delete(collection)
+                }label:{
+                    Label("Deletar coleção", systemImage: "trash")
+                }
+                .buttonStyle(.borderedProminent)
+                .cornerRadius(40)
             }
             .frame(
                 maxWidth: .infinity,
@@ -95,15 +107,13 @@ struct AddNewCollectionView: View {
             )
             .padding(.horizontal, 40)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Adicionar coleção")
+            .navigationTitle("Editar Coleção")
             .toolbar {
                 Button {
-                    //Instanciar a colecao - tirar a imagem sendo string e colocar Data
-                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: collection.image)
-                    
+                    modelContext.delete(collection)
+                    //Instanciando a coleção
+                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: imageData)
                     modelContext.insert(collection)
-                    
-                    name = ""
                     
                     dismiss()
                 } label: {
@@ -117,9 +127,14 @@ struct AddNewCollectionView: View {
         //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
         .presentationDetents([.height(450), .large])
         .presentationCornerRadius(20)
+        .onAppear {
+            name = collection.name
+            collectionIsPrivate = collection.isPrivate
+            imageData = collection.image
+        }
         .task(id: selectedPhoto) {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                collection.image = data
+                imageData = data
             }
         }
         

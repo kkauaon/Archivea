@@ -19,7 +19,7 @@ struct CollectionView: View {
     @Query var items: [ItemCollection]
     @State var itemsFromCollection: [ItemCollection] = []
     
-    @State var isPopoverPresented: Bool = false
+    @State var isSheetPresented: Bool = false
     
     
     var body: some View {
@@ -31,15 +31,16 @@ struct CollectionView: View {
                     .frame(width: 170, height: 130)
                     .cornerRadius(5)
                     .clipped()
+                    .allowsHitTesting(false)
             } else {
                 RoundedRectangle(cornerRadius: 5)
                 .fill(.gray)
                 .frame(height: 130)
                 .overlay {
-                    Image(systemName: "person.circle")
+                    Image(systemName: "photo.badge.plus.fill")
                         .resizable()
-                        .frame(width: 48, height: 48)
-                    
+                        .scaledToFit()
+                        .frame(width: 48)
                 }
             }
             HStack{
@@ -47,34 +48,22 @@ struct CollectionView: View {
                 
                 Spacer()
                 
-                Menu {
-                    Button{
-                        //CollectionManager()
-                    }label:{
-                        Text("Gerenciar coleção")
-                    }
-                    Button(role:.destructive){
-                        modelContext.delete(collection)
-                    }label:{
-                        Text("Deletar coleção")
-                    }
+                Button {
+                    isSheetPresented = true
                 } label: {
                     Image(systemName: "pencil")
                         .foregroundColor(.black)
+                        .padding(5)
                 }
                 //
             }
         }
-//        .task {
-//            for item in items {
-//                if item.collection.id == collection.id {
-//                    itemsFromCollection.append(item)
-//                }
-//            }
-//        }
+        .sheet(isPresented: $isSheetPresented) {
+            EditCollectionView(collection: collection)
+        }
     }
 }
 
 #Preview {
-    CollectionView(collection: .init(name: "Colecao Teste", isPrivate: false, image: nil))
+    CollectionView(collection: .init(name: "Coleção Teste", isPrivate: false, image: nil))
 }
