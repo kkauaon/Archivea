@@ -30,8 +30,6 @@ struct EditProfileView: View {
                 
                     AvatarView(avatarData: imageData, avatarSize: .large)
                 
-                
-                
                 //Botão de adicionar capa
                 //Caso já haja uma capa da coleção.
                 if imageData != nil {

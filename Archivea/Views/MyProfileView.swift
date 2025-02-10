@@ -51,7 +51,7 @@ struct MyProfileView: View {
                     } label: {
                         Text("Editar perfil")
                             .foregroundColor(.black)
-                            .padding(.horizontal, 28)
+                            .padding(.horizontal, 20)
                     }
                     .buttonStyle(.bordered)
                     

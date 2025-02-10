@@ -21,47 +21,48 @@ struct CollectionView: View {
     
     @State var isSheetPresented: Bool = false
     
+    let screenSizes = UIScreen.main.bounds.size
     
     var body: some View {
-        VStack {
-            if let data = collection.image, let image = UIImage(data: data) {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 130)
-                    .cornerRadius(5)
-                    .clipped()
-                    .allowsHitTesting(false)
-            } else {
-                RoundedRectangle(cornerRadius: 5)
-                .fill(.gray)
-                .frame(height: 130)
-                .overlay {
-                    Image(systemName: "photo.badge.plus.fill")
+            VStack {
+                if let data = collection.image, let image = UIImage(data: data) {
+                    Image(uiImage: image)
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 48)
+                        .scaledToFill()
+                        .frame(width: (screenSizes.width / 2) - 30, height: 130)
+                        .cornerRadius(5)
+                        .clipped()
+                        .allowsHitTesting(false)
+                } else {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(.gray)
+                        .frame(width: (screenSizes.width / 2) - 30, height: 130)
+                        .overlay {
+                            Image(systemName: "photo.badge.plus.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 48)
+                        }
+                }
+                HStack{
+                    Text(collection.name)
+                    
+                    Spacer()
+                    
+                    Button {
+                        isSheetPresented = true
+                    } label: {
+                        Image(systemName: "pencil")
+                            .foregroundColor(.black)
+                            .padding(5)
+                    }
                 }
             }
-            HStack{
-                Text(collection.name)
-                
-                Spacer()
-                
-                Button {
-                    isSheetPresented = true
-                } label: {
-                    Image(systemName: "pencil")
-                        .foregroundColor(.black)
-                        .padding(5)
-                }
-                //
+            .sheet(isPresented: $isSheetPresented) {
+                EditCollectionView(collection: collection)
             }
-        }
-        .sheet(isPresented: $isSheetPresented) {
-            EditCollectionView(collection: collection)
-        }
-        //.frame(width: 190)
+            .frame(width: (screenSizes.width / 2) - 30)
+
     }
 }
 

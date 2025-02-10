@@ -23,6 +23,8 @@ struct AvatarView: View {
         }
     }
 }
+//Cade o construtor view nao tem construtor que a pssoa vai passar se e 
+
 #Preview {
     AvatarView(avatarData: nil, avatarSize: .large)
 }
