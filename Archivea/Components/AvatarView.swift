@@ -9,8 +9,11 @@ struct AvatarView: View {
         if let avatar = avatarData, let image = UIImage(data: avatar) {
             Image(uiImage: image)
                 .resizable()
-                .cornerRadius(5)
+                
+                .aspectRatio(contentMode: .fill)
                 .frame(width: avatarSize.size, height: avatarSize.size)
+                .clipped()
+                .cornerRadius(5)
         } else {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color.gray)

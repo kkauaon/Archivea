@@ -189,17 +189,6 @@ struct FeedView: View {
                 ]
             ),
             .init(
-                author: fakeUser[2],
-                name: "Álbum Raríssimo Banda Mamonas Assassinas",
-                desc: "Primeiro e único álbum da banda, prensagem original em vinil.",
-                photo: "mamonas",
-                preservation: 4,
-                fields: [
-                    .init(fieldName: "ano", fieldValue: "1995"),
-                    .init(fieldName: "formato", fieldValue: "Vinil")
-                ]
-            ),
-            .init(
                 author: fakeUser[0],
                 name: "Máquina Fotográfica Polaroid OneStep",
                 desc: "Câmera instantânea vintage, testada e funcionando. Inclui manual original.",
@@ -265,116 +254,116 @@ struct FeedView: View {
                     .init(fieldName: "ano", fieldValue: "1981")
                 ]
             ),
-            .init(
-                author: fakeUser[1],
-                name: "Tazos Coleção Completa Looney Tunes",
-                desc: "Coleção completa de tazos dos Looney Tunes, incluindo os holográficos.",
-                photo: "tazos",
-                preservation: 5,
-                fields: [
-                    .init(fieldName: "quantidade", fieldValue: "50"),
-                    .init(fieldName: "ano", fieldValue: "1996")
-                ]
-            ),
-            .init(
-                author: fakeUser[2],
-                name: "Agenda Eletrônica Sharp Zaurus",
-                desc: "Agenda eletrônica japonesa com teclado QWERTY e tela touch.",
-                photo: "zaurus",
-                preservation: 4,
-                fields: [
-                    .init(fieldName: "modelo", fieldValue: "ZR-5800"),
-                    .init(fieldName: "ano", fieldValue: "1996")
-                ]
-            ),
-            .init(
-                author: fakeUser[0],
-                name: "Atari 2600 Jr.",
-                desc: "Console em perfeito estado com dois controles e cinco cartuchos originais.",
-                photo: "atari",
-                preservation: 4,
-                fields: [
-                    .init(fieldName: "modelo", fieldValue: "2600 Jr"),
-                    .init(fieldName: "ano", fieldValue: "1986")
-                ]
-            ),
-            .init(
-                author: fakeUser[3],
-                name: "Relógio Calculator Casio",
-                desc: "Relógio calculadora vintage, todas funções funcionando perfeitamente.",
-                photo: "casio",
-                preservation: 4,
-                fields: [
-                    .init(fieldName: "modelo", fieldValue: "CA-53W"),
-                    .init(fieldName: "ano", fieldValue: "1984")
-                ]
-            ),
-            .init(
-                author: fakeUser[1],
-                name: "Mini TV Seiko TV Watch",
-                desc: "Relógio com TV em miniatura, peça raríssima dos anos 80.",
-                photo: "tvwatch",
-                preservation: 3,
-                fields: [
-                    .init(fieldName: "modelo", fieldValue: "T001"),
-                    .init(fieldName: "ano", fieldValue: "1982")
-                ]
-            ),
-            .init(
-                author: fakeUser[2],
-                name: "Master System III Compact",
-                desc: "Console com 40 jogos na memória, em perfeito estado de conservação.",
-                photo: "mastersystem",
-                preservation: 5,
-                fields: [
-                    .init(fieldName: "modelo", fieldValue: "III Compact"),
-                    .init(fieldName: "ano", fieldValue: "1995")
-                ]
-            ),
-            .init(
-                author: fakeUser[0],
-                name: "Nokia 5110",
-                desc: "Celular clássico funcionando, com jogo da cobrinha e toques polifônicos.",
-                photo: "nokia",
-                preservation: 4,
-                fields: [
-                    .init(fieldName: "modelo", fieldValue: "5110"),
-                    .init(fieldName: "ano", fieldValue: "1998")
-                ]
-            ),
-            .init(
-                author: fakeUser[3],
-                name: "Brinquedo Simon",
-                desc: "Jogo eletrônico de memória Simon, todas as luzes e sons funcionando.",
-                photo: "simon",
-                preservation: 4,
-                fields: [
-                    .init(fieldName: "fabricante", fieldValue: "Milton Bradley"),
-                    .init(fieldName: "ano", fieldValue: "1978")
-                ]
-            ),
-            .init(
-                author: fakeUser[1],
-                name: "Micro System CCE",
-                desc: "Som portátil com rádio AM/FM, toca-fitas e CD player funcionando.",
-                photo: "microsystem",
-                preservation: 3,
-                fields: [
-                    .init(fieldName: "modelo", fieldValue: "AS-5000"),
-                    .init(fieldName: "ano", fieldValue: "1995")
-                ]
-            ),
-            .init(
-                author: fakeUser[2],
-                name: "Álbum Candy Cards She-Ra",
-                desc: "Álbum completo de cards da She-Ra, com todos os 180 cards originais.",
-                photo: "shera",
-                preservation: 4,
-                fields: [
-                    .init(fieldName: "quantidade", fieldValue: "180"),
-                    .init(fieldName: "ano", fieldValue: "1985")
-                ]
-            )
+//            .init(
+//                author: fakeUser[1],
+//                name: "Tazos Coleção Completa Looney Tunes",
+//                desc: "Coleção completa de tazos dos Looney Tunes, incluindo os holográficos.",
+//                photo: "tazos",
+//                preservation: 5,
+//                fields: [
+//                    .init(fieldName: "quantidade", fieldValue: "50"),
+//                    .init(fieldName: "ano", fieldValue: "1996")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[2],
+//                name: "Agenda Eletrônica Sharp Zaurus",
+//                desc: "Agenda eletrônica japonesa com teclado QWERTY e tela touch.",
+//                photo: "zaurus",
+//                preservation: 4,
+//                fields: [
+//                    .init(fieldName: "modelo", fieldValue: "ZR-5800"),
+//                    .init(fieldName: "ano", fieldValue: "1996")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[0],
+//                name: "Atari 2600 Jr.",
+//                desc: "Console em perfeito estado com dois controles e cinco cartuchos originais.",
+//                photo: "atari",
+//                preservation: 4,
+//                fields: [
+//                    .init(fieldName: "modelo", fieldValue: "2600 Jr"),
+//                    .init(fieldName: "ano", fieldValue: "1986")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[3],
+//                name: "Relógio Calculator Casio",
+//                desc: "Relógio calculadora vintage, todas funções funcionando perfeitamente.",
+//                photo: "casio",
+//                preservation: 4,
+//                fields: [
+//                    .init(fieldName: "modelo", fieldValue: "CA-53W"),
+//                    .init(fieldName: "ano", fieldValue: "1984")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[1],
+//                name: "Mini TV Seiko TV Watch",
+//                desc: "Relógio com TV em miniatura, peça raríssima dos anos 80.",
+//                photo: "tvwatch",
+//                preservation: 3,
+//                fields: [
+//                    .init(fieldName: "modelo", fieldValue: "T001"),
+//                    .init(fieldName: "ano", fieldValue: "1982")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[2],
+//                name: "Master System III Compact",
+//                desc: "Console com 40 jogos na memória, em perfeito estado de conservação.",
+//                photo: "mastersystem",
+//                preservation: 5,
+//                fields: [
+//                    .init(fieldName: "modelo", fieldValue: "III Compact"),
+//                    .init(fieldName: "ano", fieldValue: "1995")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[0],
+//                name: "Nokia 5110",
+//                desc: "Celular clássico funcionando, com jogo da cobrinha e toques polifônicos.",
+//                photo: "nokia",
+//                preservation: 4,
+//                fields: [
+//                    .init(fieldName: "modelo", fieldValue: "5110"),
+//                    .init(fieldName: "ano", fieldValue: "1998")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[3],
+//                name: "Brinquedo Simon",
+//                desc: "Jogo eletrônico de memória Simon, todas as luzes e sons funcionando.",
+//                photo: "simon",
+//                preservation: 4,
+//                fields: [
+//                    .init(fieldName: "fabricante", fieldValue: "Milton Bradley"),
+//                    .init(fieldName: "ano", fieldValue: "1978")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[1],
+//                name: "Micro System CCE",
+//                desc: "Som portátil com rádio AM/FM, toca-fitas e CD player funcionando.",
+//                photo: "microsystem",
+//                preservation: 3,
+//                fields: [
+//                    .init(fieldName: "modelo", fieldValue: "AS-5000"),
+//                    .init(fieldName: "ano", fieldValue: "1995")
+//                ]
+//            ),
+//            .init(
+//                author: fakeUser[2],
+//                name: "Álbum Candy Cards She-Ra",
+//                desc: "Álbum completo de cards da She-Ra, com todos os 180 cards originais.",
+//                photo: "shera",
+//                preservation: 4,
+//                fields: [
+//                    .init(fieldName: "quantidade", fieldValue: "180"),
+//                    .init(fieldName: "ano", fieldValue: "1985")
+//                ]
+//            )
         ]
     }
     var body: some View {
@@ -387,6 +376,7 @@ struct FeedView: View {
                                 NavigationLink(destination: PostExtendedView(post: fakePosts[position])){
                                     PostView(post: fakePosts[position])
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
@@ -396,6 +386,7 @@ struct FeedView: View {
                                 NavigationLink(destination: PostExtendedView(post: fakePosts[position])){
                                     PostView(post: fakePosts[position])
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
@@ -411,6 +402,7 @@ struct FeedView: View {
             .navigationTitle("Feed")
         }
         .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "Pesquise por um item...")
+        .background(Color("backgroundFeedColor"))
     }
 }
 

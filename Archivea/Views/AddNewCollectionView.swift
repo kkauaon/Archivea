@@ -21,6 +21,8 @@ struct AddNewCollectionView: View {
     
     @State var collection : Collection = .init(name: "")
     
+    @State var isAlertPresented : Bool = false
+    
     
     var body: some View {
         NavigationView {
@@ -98,14 +100,17 @@ struct AddNewCollectionView: View {
             .navigationTitle("Adicionar coleção")
             .toolbar {
                 Button {
-                    //Instanciar a colecao - tirar a imagem sendo string e colocar Data
-                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: collection.image)
-                    
-                    modelContext.insert(collection)
-                    
-                    name = ""
-                    
-                    dismiss()
+                    if !name.isEmpty {
+                        let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: collection.image)
+                        
+                        modelContext.insert(collection)
+                        
+                        name = ""
+                        
+                        dismiss()
+                    }else{
+                        isAlertPresented = true
+                    }
                 } label: {
                     Text("Salvar")
                         .bold()
@@ -121,6 +126,14 @@ struct AddNewCollectionView: View {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
                 collection.image = data
             }
+        }
+//        .alert(Text("Coloque um título na sua categoria!"), isPresented: $isAlertPresented) message: Text("Não é possível criar uma coleção sem nome. \n Para adicionar sua coleção, por favor, ponha um nome e tente novamente."))
+        .alert(Text("Entitule a sua coleção."), isPresented: $isAlertPresented) {
+            Button("Ok") {
+                isAlertPresented = false
+            }
+        } message: {
+            Text("Não é possível criar uma coleção sem nome.\nPara adicionar sua coleção, por favor, ponha um nome e tente novamente.")
         }
         
         //Mostrar o Grab da sheet

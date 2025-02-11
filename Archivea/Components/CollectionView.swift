@@ -46,6 +46,7 @@ struct CollectionView: View {
                 }
                 HStack{
                     Text(collection.name)
+                        .foregroundColor(.black)
                     
                     Spacer()
                     
@@ -62,7 +63,7 @@ struct CollectionView: View {
                 EditCollectionView(collection: collection)
             }
             .frame(width: (screenSizes.width / 2) - 30)
-
+            
     }
 }
 

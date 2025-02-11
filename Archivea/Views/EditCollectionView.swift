@@ -23,6 +23,8 @@ struct EditCollectionView: View {
     
     @State var imageData : Data?
     
+    @State var isAlertPresented : Bool = false
+    
     
     var body: some View {
         NavigationView {
@@ -110,12 +112,17 @@ struct EditCollectionView: View {
             .navigationTitle("Editar Coleção")
             .toolbar {
                 Button {
-                    modelContext.delete(collection)
-                    //Instanciando a coleção
-                    let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: imageData)
-                    modelContext.insert(collection)
-                    
-                    dismiss()
+                    if !name.isEmpty {
+                        modelContext.delete(collection)
+                        //Instanciando a coleção
+                        let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: imageData)
+                        modelContext.insert(collection)
+                        
+                        dismiss()
+                    }
+                    else{
+                        isAlertPresented = true
+                    }
                 } label: {
                     Text("Salvar")
                         .bold()
@@ -137,10 +144,13 @@ struct EditCollectionView: View {
                 imageData = data
             }
         }
-        
-        //Mostrar o Grab da sheet
-        //AddNewCollectionView.prefersGrabberVisible = true
-        
+        .alert(Text("Entitule a sua coleção."), isPresented: $isAlertPresented) {
+            Button("Ok") {
+                isAlertPresented = false
+            }
+        } message: {
+            Text("Não é possível criar uma coleção sem nome.\nPara adicionar sua coleção, por favor, ponha um nome e tente novamente.")
+        }
     }
 }
 

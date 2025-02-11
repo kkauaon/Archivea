@@ -20,3 +20,5 @@ class Post{
         self.fields = fields
     }
 }
+
+

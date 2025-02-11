@@ -37,12 +37,8 @@ struct PostView: View {
                 HStack(spacing: 2) {
                     Text("Conservação: ")
                         .font(.system(size: 13))
-                    Text(String(post.preservation))
-                        .bold()
-                        .font(.system(size: 12))
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                        .font(.system(size: 12))
+                    Text(preservationToString(preservation: post.preservation))
+                        .font(.system(size: 13))
                 }
                 //                Text("@" + post.author.handle)
                 //                    .font(.system(size: 12))

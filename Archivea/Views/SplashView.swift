@@ -14,12 +14,15 @@ struct SplashView: View {
     // tempo em segundos do splash
     
     var body: some View {
-        ZStack {
+        VStack {
             if isActive {
                 Text("Archivea")
                     .font(.largeTitle)
                     .foregroundColor(.mint)
-                    .shadow(radius: 1)
+                Image("archivealogo2")
+                    .frame(width: 500, height: 500, alignment: .center)
+                    .cornerRadius(10)
+                    .scaledToFit()
             } else {
                 MainView()
             }

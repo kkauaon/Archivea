@@ -19,7 +19,7 @@ struct MainView: View {
                 .tabItem{
                     Label("Favoritos", systemImage: "star")
                 }
-            MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "entuasista", isWhatsappPublic: true, createdAt: .now, avatar: nil))
+            MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "Sou desenvolvedor desde os 2 anos de idade, e adoro colecionar coisas!", isWhatsappPublic: true, createdAt: .now, avatar: nil))
                 .tabItem{
                     Label("Perfil", systemImage: "person.crop.circle")
                 }
