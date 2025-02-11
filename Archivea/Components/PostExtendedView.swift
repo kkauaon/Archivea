@@ -13,7 +13,7 @@ struct PostExtendedView: View {
     
     var body: some View {
         ScrollView{
-            VStack {
+            VStack (alignment: .leading, spacing: 7){
                 Image(post.photo)
                     .resizable()
                     .cornerRadius(8)
@@ -32,28 +32,62 @@ struct PostExtendedView: View {
                             .padding(8)
                     }
                 
-                VStack(alignment: .leading) {
-                    Text(post.name)
-                        .bold()
-                        .font(.system(size: 17))
-                        .lineLimit(1)
-                    HStack(spacing: 2) {
-                        Text("Conservação: ")
-                            .font(.system(size: 13))
-                        Text(String(post.preservation))
+                HStack{
+                    //Botão de adicionar aos favoritos
+                    Button{
+                        //Função de favoritar
+                    }label: {
+                        Image(systemName: "star")
+                            .resizable()
+                            .foregroundColor(.black)
+                            .frame(width: 24, height: 24)
+                    }
+                    //Botão de compartilhar
+                    Button{
+                        //Função de compartilhar
+                    }label: {
+                        Image(systemName: "paperplane")
+                            .resizable()
+                            .foregroundColor(.black)
+                            .frame(width: 24, height: 24)
+                    }
+                    
+                    Spacer()
+                    
+                    //Botão de Solicitar Contato
+                    Button{
+                        //Função de Solicitar Contato
+                    }label: {
+                        Label("Solicitar contato", systemImage: "person.badge.plus.fill")
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 8)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+                }
+                
+                VStack(alignment: .leading, spacing: 24) {
+                    VStack(alignment: .leading){
+                        Text(post.name)
                             .bold()
-                            .font(.system(size: 12))
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                            .font(.system(size: 12))
+                            .font(.system(size: 20))
+                        Text("Conservação: \(preservationToString(preservation: post.preservation))")
+                    }
+                    
+                    Text(post.desc)
+                    
+                    VStack(alignment: .leading){
+                        ForEach (post.fields){ field in
+                            Text("\(field.fieldName):  \(field.fieldValue)")
+                        }
                     }
                 }
-            }.padding()
+            }.padding(.horizontal, 24)
         }
     }
 }
 
 #Preview {
-    PostExtendedView(post: Post(author: User(name: "Kauã Sousa", handle: "kkauabr", bio: "entuasista", isWhatsappPublic: false, createdAt: .now, avatar: "user2"), name: "mewtwo ex edição limitada", desc: "este disco foi encontrado na sede da ROckstar Games e é de extrema confidencialidade", photo: "carta", preservation: 5, fields: [.init(fieldName: "local", fieldValue: "porao da sede da rockstar")]))
+    PostExtendedView(post: fakePosts.randomElement()!)
 }
 

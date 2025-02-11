@@ -19,32 +19,38 @@ struct MyProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                HStack(alignment: .top){
-                    AvatarView(avatarData: profile.avatar, avatarSize: .small)
-                    VStack(alignment: .leading){
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(alignment: .top){
+                        AvatarView(avatarData: profile.avatar, avatarSize: .small)
+                        VStack(alignment: .leading){
+                            Spacer()
+                            Text("\(profile.name)")
+                                .font(.system(size: 24))
+                            Text("@\(profile.handle)")
+                                .font(.system(size: 16))
+                            Spacer()
+                        }
                         Spacer()
-                        Text("\(profile.name)")
-                            .font(.system(size: 24))
-                        Text("@\(profile.handle)")
-                            .font(.system(size: 16))
-                        Spacer()
+                        Button{
+                            //DEFINIR ACAO DESSE BOTAO AQUI, ELE ABRIRA UMA BARRA LATERAL DE CONFIGURACOES. SERA UM XITE.
+                        }label: {
+                            Image(systemName: "gear")
+                                .resizable()
+                                .foregroundColor(.black)
+                                .frame(width: 32, height: 32)
+                        }
                     }
-                    Spacer()
-                    Button{
-                        //DEFINIR ACAO DESSE BOTAO AQUI, ELE ABRIRA UMA BARRA LATERAL DE CONFIGURACOES. SERA UM XITE.
-                    }label: {
-                        Image(systemName: "gear")
-                            .resizable()
-                            .foregroundColor(.black)
-                            .frame(width: 32, height: 32)
-                    }
-                }
-                HStack(){
+                    //                    HStack(){
+                    //                        Text("\(profile.bio)")
+                    //                            .font(.system(size: 17))
+                    //                            .lineLimit(4)
+                    //                        //.padding(.top, 18)
+                    //                        Spacer()
+                    //                    }
+                    
                     Text("\(profile.bio)")
                         .font(.system(size: 17))
-                    Spacer()
-                }
-                HStack{
+                        .lineLimit(4)
                     //Botao de editar perfil
                     NavigationLink {
                         EditProfileView(profile: $profile)
@@ -55,31 +61,28 @@ struct MyProfileView: View {
                     }
                     .buttonStyle(.bordered)
                     
-                    Spacer()
-                    //Botao de adicionar uma nova colecao
-                    Button{
-                        addNewCollectionViewIsPresented = true
-                    }label: {
-                        Label("Nova coleção", systemImage: "plus")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 8)
+                    Divider()
+                    
+                    VStack(alignment: .leading) {
+                        Text("Coleções")
+                            .font(.system(size: 24))
+                        HStack{
+                            Text("Adicionar coleção")
+                                .font(.system(size: 20))
+                            Spacer()
+                            Button {
+                                addNewCollectionViewIsPresented = true
+                            } label: {
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .foregroundColor(.black)
+                                    .frame(width: 20, height: 20)
+                            }
+                        }
                     }
-                    .buttonStyle(.bordered)
+                    
                 }
-                Divider()
-                HStack {
-                    Text("Coleções")
-                        .font(.system(size: 20))
-                    Spacer()
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "line.3.horizontal.decrease")
-                            .resizable()
-                            .foregroundColor(.black)
-                            .frame(width: 24, height: 16)
-                    }
-                }
+                
                 HStack(alignment: .top) {
                     VStack(alignment: .leading) {
                         ForEach (collections, id: \.self.id) { collection in
@@ -128,6 +131,6 @@ struct MyProfileView: View {
 }
 
 #Preview {
-    MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "entuasista", isWhatsappPublic: true, createdAt: .now, avatar: nil))
+    MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "Lorem ipsum nulla vestibulum convallis phasellus donec felis, morbi.", isWhatsappPublic: true, createdAt: .now, avatar: nil))
         .modelContainer(for: [MyProfile.self, Collection.self, ItemCollection.self])
 }

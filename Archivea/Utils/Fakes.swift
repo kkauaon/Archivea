@@ -17,8 +17,8 @@ var fakePosts: [Post] {
             photo: "cybershot",
             preservation: 5,
             fields: [
-                .init(fieldName: "ano", fieldValue: "2012"),
-                .init(fieldName: "marca", fieldValue: "Sony")
+                .init(fieldName: "Ano", fieldValue: "2012"),
+                .init(fieldName: "Marca", fieldValue: "Sony")
             ]
         ),
         .init(
@@ -28,8 +28,8 @@ var fakePosts: [Post] {
             photo: "disco",
             preservation: 5,
             fields: [
-                .init(fieldName: "local", fieldValue: "Londres"),
-                .init(fieldName: "ano", fieldValue: "1969")
+                .init(fieldName: "Local", fieldValue: "Londres"),
+                .init(fieldName: "Ano", fieldValue: "1969")
             ]
         ),
         .init(
@@ -39,8 +39,8 @@ var fakePosts: [Post] {
             photo: "manga",
             preservation: 4,
             fields: [
-                .init(fieldName: "idioma", fieldValue: "Japonês"),
-                .init(fieldName: "ano", fieldValue: "2012")
+                .init(fieldName: "Idioma", fieldValue: "Japonês"),
+                .init(fieldName: "Ano", fieldValue: "2012")
             ]
         ),
         .init(
@@ -50,8 +50,8 @@ var fakePosts: [Post] {
             photo: "carta",
             preservation: 5,
             fields: [
-                .init(fieldName: "raridade", fieldValue: "Ultra Rara"),
-                .init(fieldName: "ano", fieldValue: "2015")
+                .init(fieldName: "Raridade", fieldValue: "Ultra Rara"),
+                .init(fieldName: "Ano", fieldValue: "2015")
             ]
         ),
         
@@ -63,8 +63,8 @@ var fakePosts: [Post] {
             photo: "n64_pikachu",
             preservation: 5,
             fields: [
-                .init(fieldName: "ano", fieldValue: "1999"),
-                .init(fieldName: "região", fieldValue: "Japonesa")
+                .init(fieldName: "Ano", fieldValue: "1999"),
+                .init(fieldName: "Região", fieldValue: "Japonesa")
             ]
         ),
         .init(
@@ -74,8 +74,8 @@ var fakePosts: [Post] {
             photo: "walkman",
             preservation: 4,
             fields: [
-                .init(fieldName: "década", fieldValue: "1980"),
-                .init(fieldName: "cor", fieldValue: "Azul")
+                .init(fieldName: "Década", fieldValue: "1980"),
+                .init(fieldName: "Cor", fieldValue: "Azul")
             ]
         ),
         .init(
@@ -85,8 +85,8 @@ var fakePosts: [Post] {
             photo: "tamagotchi",
             preservation: 3,
             fields: [
-                .init(fieldName: "versão", fieldValue: "P1"),
-                .init(fieldName: "cor", fieldValue: "Rosa")
+                .init(fieldName: "Versão", fieldValue: "P1"),
+                .init(fieldName: "Cor", fieldValue: "Rosa")
             ]
         ),
         .init(
@@ -96,8 +96,8 @@ var fakePosts: [Post] {
             photo: "album_copa",
             preservation: 4,
             fields: [
-                .init(fieldName: "estado", fieldValue: "Completo"),
-                .init(fieldName: "editora", fieldValue: "Panini")
+                .init(fieldName: "Estado", fieldValue: "Completo"),
+                .init(fieldName: "Editora", fieldValue: "Panini")
             ]
         ),
         .init(
@@ -107,8 +107,8 @@ var fakePosts: [Post] {
             photo: "gameboy",
             preservation: 4,
             fields: [
-                .init(fieldName: "modelo", fieldValue: "CGB-001"),
-                .init(fieldName: "ano", fieldValue: "1998")
+                .init(fieldName: "Modelo", fieldValue: "CGB-001"),
+                .init(fieldName: "Ano", fieldValue: "1998")
             ]
         ),
         .init(
@@ -118,8 +118,8 @@ var fakePosts: [Post] {
             photo: "gigapet",
             preservation: 5,
             fields: [
-                .init(fieldName: "tipo", fieldValue: "Dinossauro"),
-                .init(fieldName: "fabricante", fieldValue: "Tiger Electronics")
+                .init(fieldName: "Tipo", fieldValue: "Dinossauro"),
+                .init(fieldName: "Fabricante", fieldValue: "Tiger Electronics")
             ]
         ),
         .init(
@@ -129,8 +129,8 @@ var fakePosts: [Post] {
             photo: "discman",
             preservation: 4,
             fields: [
-                .init(fieldName: "ano", fieldValue: "2001"),
-                .init(fieldName: "cor", fieldValue: "Prata")
+                .init(fieldName: "Ano", fieldValue: "2001"),
+                .init(fieldName: "Cor", fieldValue: "Prata")
             ]
         ),
         .init(
@@ -140,8 +140,8 @@ var fakePosts: [Post] {
             photo: "streetfighter",
             preservation: 4,
             fields: [
-                .init(fieldName: "região", fieldValue: "NTSC-J"),
-                .init(fieldName: "ano", fieldValue: "1992")
+                .init(fieldName: "Região", fieldValue: "NTSC-J"),
+                .init(fieldName: "Ano", fieldValue: "1992")
             ]
         ),
         .init(
@@ -151,8 +151,8 @@ var fakePosts: [Post] {
             photo: "furby",
             preservation: 3,
             fields: [
-                .init(fieldName: "geração", fieldValue: "Primeira"),
-                .init(fieldName: "cor", fieldValue: "Marrom/Branco")
+                .init(fieldName: "Geração", fieldValue: "Primeira"),
+                .init(fieldName: "Cor", fieldValue: "Marrom/Branco")
             ]
         ),
         .init(
@@ -162,8 +162,8 @@ var fakePosts: [Post] {
             photo: "brickgame",
             preservation: 4,
             fields: [
-                .init(fieldName: "jogos", fieldValue: "9999"),
-                .init(fieldName: "cor", fieldValue: "Amarelo")
+                .init(fieldName: "Jogos", fieldValue: "9999"),
+                .init(fieldName: "Cor", fieldValue: "Amarelo")
             ]
         ),
         .init(
@@ -173,19 +173,8 @@ var fakePosts: [Post] {
             photo: "pager",
             preservation: 5,
             fields: [
-                .init(fieldName: "modelo", fieldValue: "Advisor"),
-                .init(fieldName: "ano", fieldValue: "1995")
-            ]
-        ),
-        .init(
-            author: fakeUser[2],
-            name: "Álbum Raríssimo Banda Mamonas Assassinas",
-            desc: "Primeiro e único álbum da banda, prensagem original em vinil.",
-            photo: "mamonas",
-            preservation: 4,
-            fields: [
-                .init(fieldName: "ano", fieldValue: "1995"),
-                .init(fieldName: "formato", fieldValue: "Vinil")
+                .init(fieldName: "Modelo", fieldValue: "Advisor"),
+                .init(fieldName: "Ano", fieldValue: "1995")
             ]
         ),
         .init(
@@ -195,8 +184,8 @@ var fakePosts: [Post] {
             photo: "polaroid",
             preservation: 4,
             fields: [
-                .init(fieldName: "modelo", fieldValue: "OneStep"),
-                .init(fieldName: "década", fieldValue: "1970")
+                .init(fieldName: "Modelo", fieldValue: "OneStep"),
+                .init(fieldName: "Década", fieldValue: "1970")
             ]
         ),
         .init(
@@ -206,8 +195,8 @@ var fakePosts: [Post] {
             photo: "paintpad",
             preservation: 3,
             fields: [
-                .init(fieldName: "conexão", fieldValue: "Serial"),
-                .init(fieldName: "ano", fieldValue: "1998")
+                .init(fieldName: "Conexão", fieldValue: "Serial"),
+                .init(fieldName: "Ano", fieldValue: "1998")
             ]
         ),
         .init(
@@ -217,8 +206,8 @@ var fakePosts: [Post] {
             photo: "et_vhs",
             preservation: 4,
             fields: [
-                .init(fieldName: "ano", fieldValue: "1983"),
-                .init(fieldName: "dublagem", fieldValue: "Português")
+                .init(fieldName: "Ano", fieldValue: "1983"),
+                .init(fieldName: "Dublagem", fieldValue: "Português")
             ]
         ),
         .init(
@@ -228,8 +217,8 @@ var fakePosts: [Post] {
             photo: "palm",
             preservation: 5,
             fields: [
-                .init(fieldName: "modelo", fieldValue: "Professional"),
-                .init(fieldName: "ano", fieldValue: "1997")
+                .init(fieldName: "Modelo", fieldValue: "Professional"),
+                .init(fieldName: "Ano", fieldValue: "1997")
             ]
         ),
         .init(
@@ -239,8 +228,8 @@ var fakePosts: [Post] {
             photo: "actionman",
             preservation: 4,
             fields: [
-                .init(fieldName: "linha", fieldValue: "Extremo"),
-                .init(fieldName: "ano", fieldValue: "1999")
+                .init(fieldName: "Linha", fieldValue: "Extremo"),
+                .init(fieldName: "Ano", fieldValue: "1999")
             ]
         ),
         .init(
@@ -250,119 +239,119 @@ var fakePosts: [Post] {
             photo: "ibm5150",
             preservation: 4,
             fields: [
-                .init(fieldName: "processador", fieldValue: "8088"),
-                .init(fieldName: "ano", fieldValue: "1981")
+                .init(fieldName: "Processador", fieldValue: "8088"),
+                .init(fieldName: "Ano", fieldValue: "1981")
             ]
-        ),
-        .init(
-            author: fakeUser[1],
-            name: "Tazos Coleção Completa Looney Tunes",
-            desc: "Coleção completa de tazos dos Looney Tunes, incluindo os holográficos.",
-            photo: "tazos",
-            preservation: 5,
-            fields: [
-                .init(fieldName: "quantidade", fieldValue: "50"),
-                .init(fieldName: "ano", fieldValue: "1996")
-            ]
-        ),
-        .init(
-            author: fakeUser[2],
-            name: "Agenda Eletrônica Sharp Zaurus",
-            desc: "Agenda eletrônica japonesa com teclado QWERTY e tela touch.",
-            photo: "zaurus",
-            preservation: 4,
-            fields: [
-                .init(fieldName: "modelo", fieldValue: "ZR-5800"),
-                .init(fieldName: "ano", fieldValue: "1996")
-            ]
-        ),
-        .init(
-            author: fakeUser[0],
-            name: "Atari 2600 Jr.",
-            desc: "Console em perfeito estado com dois controles e cinco cartuchos originais.",
-            photo: "atari",
-            preservation: 4,
-            fields: [
-                .init(fieldName: "modelo", fieldValue: "2600 Jr"),
-                .init(fieldName: "ano", fieldValue: "1986")
-            ]
-        ),
-        .init(
-            author: fakeUser[3],
-            name: "Relógio Calculator Casio",
-            desc: "Relógio calculadora vintage, todas funções funcionando perfeitamente.",
-            photo: "casio",
-            preservation: 4,
-            fields: [
-                .init(fieldName: "modelo", fieldValue: "CA-53W"),
-                .init(fieldName: "ano", fieldValue: "1984")
-            ]
-        ),
-        .init(
-            author: fakeUser[1],
-            name: "Mini TV Seiko TV Watch",
-            desc: "Relógio com TV em miniatura, peça raríssima dos anos 80.",
-            photo: "tvwatch",
-            preservation: 3,
-            fields: [
-                .init(fieldName: "modelo", fieldValue: "T001"),
-                .init(fieldName: "ano", fieldValue: "1982")
-            ]
-        ),
-        .init(
-            author: fakeUser[2],
-            name: "Master System III Compact",
-            desc: "Console com 40 jogos na memória, em perfeito estado de conservação.",
-            photo: "mastersystem",
-            preservation: 5,
-            fields: [
-                .init(fieldName: "modelo", fieldValue: "III Compact"),
-                .init(fieldName: "ano", fieldValue: "1995")
-            ]
-        ),
-        .init(
-            author: fakeUser[0],
-            name: "Nokia 5110",
-            desc: "Celular clássico funcionando, com jogo da cobrinha e toques polifônicos.",
-            photo: "nokia",
-            preservation: 4,
-            fields: [
-                .init(fieldName: "modelo", fieldValue: "5110"),
-                .init(fieldName: "ano", fieldValue: "1998")
-            ]
-        ),
-        .init(
-            author: fakeUser[3],
-            name: "Brinquedo Simon",
-            desc: "Jogo eletrônico de memória Simon, todas as luzes e sons funcionando.",
-            photo: "simon",
-            preservation: 4,
-            fields: [
-                .init(fieldName: "fabricante", fieldValue: "Milton Bradley"),
-                .init(fieldName: "ano", fieldValue: "1978")
-            ]
-        ),
-        .init(
-            author: fakeUser[1],
-            name: "Micro System CCE",
-            desc: "Som portátil com rádio AM/FM, toca-fitas e CD player funcionando.",
-            photo: "microsystem",
-            preservation: 3,
-            fields: [
-                .init(fieldName: "modelo", fieldValue: "AS-5000"),
-                .init(fieldName: "ano", fieldValue: "1995")
-            ]
-        ),
-        .init(
-            author: fakeUser[2],
-            name: "Álbum Candy Cards She-Ra",
-            desc: "Álbum completo de cards da She-Ra, com todos os 180 cards originais.",
-            photo: "shera",
-            preservation: 4,
-            fields: [
-                .init(fieldName: "quantidade", fieldValue: "180"),
-                .init(fieldName: "ano", fieldValue: "1985")
-            ]
-        )
+        )//,
+//        .init(
+//            author: fakeUser[1],
+//            name: "Tazos Coleção Completa Looney Tunes",
+//            desc: "Coleção completa de tazos dos Looney Tunes, incluindo os holográficos.",
+//            photo: "tazos",
+//            preservation: 5,
+//            fields: [
+//                .init(fieldName: "quantidade", fieldValue: "50"),
+//                .init(fieldName: "ano", fieldValue: "1996")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[2],
+//            name: "Agenda Eletrônica Sharp Zaurus",
+//            desc: "Agenda eletrônica japonesa com teclado QWERTY e tela touch.",
+//            photo: "zaurus",
+//            preservation: 4,
+//            fields: [
+//                .init(fieldName: "modelo", fieldValue: "ZR-5800"),
+//                .init(fieldName: "ano", fieldValue: "1996")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[0],
+//            name: "Atari 2600 Jr.",
+//            desc: "Console em perfeito estado com dois controles e cinco cartuchos originais.",
+//            photo: "atari",
+//            preservation: 4,
+//            fields: [
+//                .init(fieldName: "modelo", fieldValue: "2600 Jr"),
+//                .init(fieldName: "ano", fieldValue: "1986")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[3],
+//            name: "Relógio Calculator Casio",
+//            desc: "Relógio calculadora vintage, todas funções funcionando perfeitamente.",
+//            photo: "casio",
+//            preservation: 4,
+//            fields: [
+//                .init(fieldName: "modelo", fieldValue: "CA-53W"),
+//                .init(fieldName: "ano", fieldValue: "1984")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[1],
+//            name: "Mini TV Seiko TV Watch",
+//            desc: "Relógio com TV em miniatura, peça raríssima dos anos 80.",
+//            photo: "tvwatch",
+//            preservation: 3,
+//            fields: [
+//                .init(fieldName: "modelo", fieldValue: "T001"),
+//                .init(fieldName: "ano", fieldValue: "1982")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[2],
+//            name: "Master System III Compact",
+//            desc: "Console com 40 jogos na memória, em perfeito estado de conservação.",
+//            photo: "mastersystem",
+//            preservation: 5,
+//            fields: [
+//                .init(fieldName: "modelo", fieldValue: "III Compact"),
+//                .init(fieldName: "ano", fieldValue: "1995")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[0],
+//            name: "Nokia 5110",
+//            desc: "Celular clássico funcionando, com jogo da cobrinha e toques polifônicos.",
+//            photo: "nokia",
+//            preservation: 4,
+//            fields: [
+//                .init(fieldName: "modelo", fieldValue: "5110"),
+//                .init(fieldName: "ano", fieldValue: "1998")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[3],
+//            name: "Brinquedo Simon",
+//            desc: "Jogo eletrônico de memória Simon, todas as luzes e sons funcionando.",
+//            photo: "simon",
+//            preservation: 4,
+//            fields: [
+//                .init(fieldName: "fabricante", fieldValue: "Milton Bradley"),
+//                .init(fieldName: "ano", fieldValue: "1978")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[1],
+//            name: "Micro System CCE",
+//            desc: "Som portátil com rádio AM/FM, toca-fitas e CD player funcionando.",
+//            photo: "microsystem",
+//            preservation: 3,
+//            fields: [
+//                .init(fieldName: "modelo", fieldValue: "AS-5000"),
+//                .init(fieldName: "ano", fieldValue: "1995")
+//            ]
+//        ),
+//        .init(
+//            author: fakeUser[2],
+//            name: "Álbum Candy Cards She-Ra",
+//            desc: "Álbum completo de cards da She-Ra, com todos os 180 cards originais.",
+//            photo: "shera",
+//            preservation: 4,
+//            fields: [
+//                .init(fieldName: "quantidade", fieldValue: "180"),
+//                .init(fieldName: "ano", fieldValue: "1985")
+//            ]
+//        )
     ]
 }

@@ -21,7 +21,7 @@ struct CollectionView: View {
     
     @State var isSheetPresented: Bool = false
     
-    let screenSizes = UIScreen.main.bounds.size
+    @State var screenSizes = UIScreen.main.bounds.size
     
     var body: some View {
             VStack {
@@ -67,6 +67,25 @@ struct CollectionView: View {
     }
 }
 
+//Aprendendo sobre grid com a Bia
+struct TestView: View {
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    let colors = [Color.red, Color.blue, Color.green, Color.yellow]
+    
+    var body: some View {
+        LazyVGrid(columns: columns) {
+            ForEach(colors, id: \.self) { color in
+                ZStack {
+                    color
+                }
+            }
+        }
+    }
+}
+//#Preview {
+//    CollectionView(collection: .init(name: "Coleção Teste", isPrivate: false, image: nil))
+//}
+
 #Preview {
-    CollectionView(collection: .init(name: "Coleção Teste", isPrivate: false, image: nil))
+    TestView()
 }

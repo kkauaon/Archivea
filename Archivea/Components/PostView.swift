@@ -35,9 +35,7 @@ struct PostView: View {
                     .font(.system(size: 17))
                     .lineLimit(1)
                 HStack(spacing: 2) {
-                    Text("Conservação: ")
-                        .font(.system(size: 13))
-                    Text(preservationToString(preservation: post.preservation))
+                    Text("Conservação: \(preservationToString(preservation: post.preservation))")
                         .font(.system(size: 13))
                 }
                 //                Text("@" + post.author.handle)
