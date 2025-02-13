@@ -10,7 +10,7 @@ import SwiftUI
 struct SplashView: View {
     @State var isActive : Bool = true
     
-    let splashTime = 2.5;
+    let splashTime = 0.1;
     // tempo em segundos do splash
     
     var body: some View {

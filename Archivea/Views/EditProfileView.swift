@@ -18,6 +18,8 @@ struct EditProfileView: View {
     
     @State var handle: String = ""
     
+    @State var bio: String = ""
+    
     @State var selectedPhoto: PhotosPickerItem?
     
     @State var imageData : Data?
@@ -76,27 +78,23 @@ struct EditProfileView: View {
                     TextField(profile.handle, text: $handle)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
+                        
                     
-                    //                HStack {
-                    //                    Text("E-mail")
-                    //                    Spacer()
-                    //                }
-                    //
-                    //                TextField(profile.name, text: $name)
-                    //                    .textFieldStyle(.roundedBorder)
-                    //
-                    //                HStack {
-                    //                    Text("Senha")
-                    //                    Spacer()
-                    //                }
-                    //
-                    //                SecureField(profile.name, text: $name)
-                    //                    .textFieldStyle(.roundedBorder)
+                    HStack{
+                        Text("Biografia")
+                        Spacer()
+                    }
+                    
+                    TextField(profile.bio, text: $bio,  axis: .vertical)
+                        .lineLimit(5...10)
+                        .textFieldStyle(.roundedBorder)
+                        .textInputAutocapitalization(.never)
                     
                     Button {
                         profile.name = name
                         profile.avatar = imageData
                         profile.handle = handle
+                        profile.bio = bio
                         
                         dismiss()
                     } label: {
@@ -104,19 +102,6 @@ struct EditProfileView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.extraLarge)
-                    
-                    
-                    
-                    //                Toggle(isOn: $collectionIsPrivate){
-                    //                    Text("Privado")
-                    //                }
-                    //                Button(role: .destructive){
-                    //                    modelContext.delete(collection)
-                    //                }label:{
-                    //                    Label("Deletar coleção", systemImage: "trash")
-                    //                }
-                    //                .buttonStyle(.borderedProminent)
-                    //                .cornerRadius(40)
                 }
                 .frame(
                     maxWidth: .infinity,
@@ -135,6 +120,7 @@ struct EditProfileView: View {
             .onAppear {
                 name = profile.name
                 handle = profile.handle
+                bio = profile.bio
                 imageData = profile.avatar
             }
             .task(id: selectedPhoto) {

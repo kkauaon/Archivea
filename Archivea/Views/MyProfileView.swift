@@ -15,6 +15,7 @@ struct MyProfileView: View {
     
     @State var addNewCollectionViewIsPresented = false
     
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationStack {
@@ -40,17 +41,9 @@ struct MyProfileView: View {
                                 .frame(width: 32, height: 32)
                         }
                     }
-                    //                    HStack(){
-                    //                        Text("\(profile.bio)")
-                    //                            .font(.system(size: 17))
-                    //                            .lineLimit(4)
-                    //                        //.padding(.top, 18)
-                    //                        Spacer()
-                    //                    }
-                    
                     Text("\(profile.bio)")
                         .font(.system(size: 17))
-                        .lineLimit(4)
+                        .lineLimit(8)
                     //Botao de editar perfil
                     NavigationLink {
                         EditProfileView(profile: $profile)
@@ -83,24 +76,10 @@ struct MyProfileView: View {
                     
                 }
                 
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        ForEach (collections, id: \.self.id) { collection in
-                            
-                            if let index = collections.firstIndex(where: { $0.id == collection.id }), index % 2 == 0 {
-                                CollectionView(collection: collections[index])
-                            }
-                        }
-                    }
-                    Spacer()
-                    if collections.count > 1 {
-                        VStack {
-                            ForEach (collections, id: \.self.id) { collection in
-                                
-                                if let index = collections.firstIndex(where: { $0.id == collection.id }), index % 2 != 0 {
-                                    CollectionView(collection: collections[index])
-                                }
-                            }
+                LazyVGrid(columns: columns){
+                    ForEach(collections) { collection in
+                        NavigationLink(destination: CollectionExtendedView(collection: collection)){
+                            CollectionView(collection: collection)
                         }
                     }
                 }
