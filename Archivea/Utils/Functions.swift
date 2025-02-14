@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 func preservationToString(preservation: Int) -> String {
     switch preservation{
@@ -15,4 +16,12 @@ func preservationToString(preservation: Int) -> String {
     default:
         return "Não disponível"
     }
+}
+
+func fakeCollectionToRealCollection (fake: FakeCollection) -> Collection {
+    return Collection(
+        name: fake.name,
+        isPrivate: fake.isPrivate,
+        image: UIImage(named: fake.image)?.pngData()
+    )
 }

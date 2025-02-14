@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostExtendedView: View {
+struct PostExtendedView2: View {
     
     @State var post : Post
     
@@ -88,6 +88,6 @@ struct PostExtendedView: View {
 }
 
 #Preview {
-    PostExtendedView(post: fakePosts.randomElement()!)
+    PostExtendedView2(post: fakePosts.randomElement()!)
 }
 

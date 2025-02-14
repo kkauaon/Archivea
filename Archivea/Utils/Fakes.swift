@@ -7,6 +7,16 @@ var fakeUser: [User] = [
     User(name: "Ismael Lira Nascimento", handle: "maelkk", bio: "oie, sou o mael developer", isWhatsappPublic: false, createdAt: .now, avatar: "user4")
 ]
 
+var fakeCollections: [FakeCollection] = [
+    FakeCollection(name: "Jogos e Consoles", isPrivate: false, image: "gameboy"),
+    FakeCollection(name: "Música e Áudio", isPrivate: false, image: "walkman"),
+    FakeCollection(name: "Fotografia", isPrivate: true, image: "cybershot"),
+    FakeCollection(name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150"),
+    FakeCollection(name: "Brinquedos", isPrivate: false, image: "tamagotchi"),
+    FakeCollection(name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs")
+]
+
+
 var fakePosts: [Post] {
     return [
         // Corrected existing posts
@@ -19,7 +29,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Ano", fieldValue: "2012"),
                 .init(fieldName: "Marca", fieldValue: "Sony")
-            ]
+            ],
+            collection: fakeCollections[2]
         ),
         .init(
             author: fakeUser[0],
@@ -30,7 +41,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Local", fieldValue: "Londres"),
                 .init(fieldName: "Ano", fieldValue: "1969")
-            ]
+            ],
+            collection: fakeCollections[1]
         ),
         .init(
             author: fakeUser[1],
@@ -41,7 +53,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Idioma", fieldValue: "Japonês"),
                 .init(fieldName: "Ano", fieldValue: "2012")
-            ]
+            ],
+            collection: fakeCollections[5]
         ),
         .init(
             author: fakeUser[0],
@@ -52,7 +65,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Raridade", fieldValue: "Ultra Rara"),
                 .init(fieldName: "Ano", fieldValue: "2015")
-            ]
+            ],
+            collection: fakeCollections[0]
         ),
         
         // New posts
@@ -65,7 +79,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Ano", fieldValue: "1999"),
                 .init(fieldName: "Região", fieldValue: "Japonesa")
-            ]
+            ],
+            collection: fakeCollections[0]
         ),
         .init(
             author: fakeUser[3],
@@ -76,7 +91,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Década", fieldValue: "1980"),
                 .init(fieldName: "Cor", fieldValue: "Azul")
-            ]
+            ],
+            collection: fakeCollections[1]
         ),
         .init(
             author: fakeUser[1],
@@ -87,7 +103,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Versão", fieldValue: "P1"),
                 .init(fieldName: "Cor", fieldValue: "Rosa")
-            ]
+            ],
+            collection: fakeCollections[4]
         ),
         .init(
             author: fakeUser[2],
@@ -98,7 +115,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Estado", fieldValue: "Completo"),
                 .init(fieldName: "Editora", fieldValue: "Panini")
-            ]
+            ],
+            collection: fakeCollections[5]
         ),
         .init(
             author: fakeUser[0],
@@ -109,7 +127,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Modelo", fieldValue: "CGB-001"),
                 .init(fieldName: "Ano", fieldValue: "1998")
-            ]
+            ],
+            collection: fakeCollections[0]
         ),
         .init(
             author: fakeUser[3],
@@ -120,7 +139,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Tipo", fieldValue: "Dinossauro"),
                 .init(fieldName: "Fabricante", fieldValue: "Tiger Electronics")
-            ]
+            ],
+            collection: fakeCollections[4]
         ),
         .init(
             author: fakeUser[1],
@@ -131,7 +151,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Ano", fieldValue: "2001"),
                 .init(fieldName: "Cor", fieldValue: "Prata")
-            ]
+            ],
+            collection: fakeCollections[1]
         ),
         .init(
             author: fakeUser[2],
@@ -142,7 +163,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Região", fieldValue: "NTSC-J"),
                 .init(fieldName: "Ano", fieldValue: "1992")
-            ]
+            ],
+            collection: fakeCollections[0]
         ),
         .init(
             author: fakeUser[0],
@@ -153,7 +175,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Geração", fieldValue: "Primeira"),
                 .init(fieldName: "Cor", fieldValue: "Marrom/Branco")
-            ]
+            ],
+            collection: fakeCollections[4]
         ),
         .init(
             author: fakeUser[3],
@@ -164,7 +187,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Jogos", fieldValue: "9999"),
                 .init(fieldName: "Cor", fieldValue: "Amarelo")
-            ]
+            ],
+            collection: fakeCollections[0]
         ),
         .init(
             author: fakeUser[1],
@@ -175,7 +199,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Modelo", fieldValue: "Advisor"),
                 .init(fieldName: "Ano", fieldValue: "1995")
-            ]
+            ],
+            collection: fakeCollections[3]
         ),
         .init(
             author: fakeUser[0],
@@ -186,7 +211,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Modelo", fieldValue: "OneStep"),
                 .init(fieldName: "Década", fieldValue: "1970")
-            ]
+            ],
+            collection: fakeCollections[2]
         ),
         .init(
             author: fakeUser[3],
@@ -197,7 +223,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Conexão", fieldValue: "Serial"),
                 .init(fieldName: "Ano", fieldValue: "1998")
-            ]
+            ],
+            collection: fakeCollections[3]
         ),
         .init(
             author: fakeUser[1],
@@ -208,7 +235,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Ano", fieldValue: "1983"),
                 .init(fieldName: "Dublagem", fieldValue: "Português")
-            ]
+            ],
+            collection: fakeCollections[1]
         ),
         .init(
             author: fakeUser[2],
@@ -219,7 +247,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Modelo", fieldValue: "Professional"),
                 .init(fieldName: "Ano", fieldValue: "1997")
-            ]
+            ],
+            collection: fakeCollections[3]
         ),
         .init(
             author: fakeUser[0],
@@ -230,7 +259,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Linha", fieldValue: "Extremo"),
                 .init(fieldName: "Ano", fieldValue: "1999")
-            ]
+            ],
+            collection: fakeCollections[4]
         ),
         .init(
             author: fakeUser[3],
@@ -241,7 +271,8 @@ var fakePosts: [Post] {
             fields: [
                 .init(fieldName: "Processador", fieldValue: "8088"),
                 .init(fieldName: "Ano", fieldValue: "1981")
-            ]
+            ],
+            collection: fakeCollections[3]
         )//,
 //        .init(
 //            author: fakeUser[1],

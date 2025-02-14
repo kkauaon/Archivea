@@ -23,16 +23,7 @@ struct CollectionView: View {
     
     var body: some View {
             VStack {
-                if let data = collection.image, let image = UIImage(data: data) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: 130)
-                        .cornerRadius(5)
-                        .clipped()
-                        .allowsHitTesting(false)
-                } else {
-                    RoundedRectangle(cornerRadius: 5)
+                RoundedRectangle(cornerRadius: 5)
                         .fill(.gray)
                         .frame(height: 130)
                         .overlay {
@@ -41,7 +32,18 @@ struct CollectionView: View {
                                 .scaledToFit()
                                 .frame(width: 48)
                         }
-                }
+                        .overlay {
+                            if let data = collection.image, let image = UIImage(data: data) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(height: 130)
+                                    .cornerRadius(5)
+                                    .clipped()
+                                    .allowsHitTesting(false)
+                            }
+                        }
+                        
                 HStack{
                     Text(collection.name)
                         .foregroundColor(.black)

@@ -81,6 +81,8 @@ struct MyProfileView: View {
                         NavigationLink(destination: CollectionExtendedView(collection: collection)){
                             CollectionView(collection: collection)
                         }
+                        //Isso aqui foi necessário para os textos relativos à essa Navigation não ficarem azuis!
+                        .buttonStyle(.plain)
                     }
                 }
             }

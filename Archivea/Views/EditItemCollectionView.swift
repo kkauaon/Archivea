@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct EditCollectionView: View {
+struct EditItemCollectionView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
@@ -17,9 +17,11 @@ struct EditCollectionView: View {
     
     @State var name: String = ""
     
+    @State var desc: String = ""
+    
     @State var selectedPhoto: PhotosPickerItem?
     
-    @State var collection : Collection
+    @State var itemCollection : ItemCollection
     
     @State var imageData : Data?
     
@@ -84,20 +86,29 @@ struct EditCollectionView: View {
                 
                 
                 HStack {
-                    Text("Título da coleção:")
+                    Text("Nome")
                     Spacer()
                 }
                 
-                TextField("Nome da coleção", text: $name)
+                TextField("Nome do item", text: $name)
                     .textFieldStyle(.roundedBorder)
                 
-                Toggle(isOn: $collectionIsPrivate){
-                    Text("Privado")
+                //COLOCAR AQUI O Picker DA preservation!!!
+                
+                HStack {
+                    Text("Descrição:")
+                    Spacer()
                 }
+                
+                TextField("Descrição do item", text: $desc, axis: .vertical)
+                    .textFieldStyle(.roundedBorder)
+                    .lineLimit(5...10)
+                
+                
                 Button(role: .destructive){
-                    modelContext.delete(collection)
+                    modelContext.delete(itemCollection)
                 }label:{
-                    Label("Deletar coleção", systemImage: "trash")
+                    Label("Deletar Item", systemImage: "trash")
                 }
                 .buttonStyle(.borderedProminent)
                 .cornerRadius(40)
@@ -109,18 +120,13 @@ struct EditCollectionView: View {
             )
             .padding(.horizontal, 40)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Editar Coleção")
+            .navigationTitle("Editar Item")
             .toolbar {
                 Button {
                     if !name.isEmpty {
-//                        modelContext.delete(collection)
-//                        //Instanciando a coleção
-//                        let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: imageData)
-//                        modelContext.insert(collection)
-                        
-                        collection.name = name
-                        collection.isPrivate = collectionIsPrivate
-                        collection.image = imageData
+                        itemCollection.name = name
+                        itemCollection.desc = desc
+                        itemCollection.photo = imageData
                         
                         dismiss()
                     }
@@ -136,12 +142,12 @@ struct EditCollectionView: View {
         //.padding(.horizontal, 32)
         //.presentationDragIndicator(.visible)
         //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
-        .presentationDetents([.height(450), .large])
+        .presentationDetents([.height(550), .large])
         .presentationCornerRadius(20)
         .onAppear {
-            name = collection.name
-            collectionIsPrivate = collection.isPrivate
-            imageData = collection.image
+            name = itemCollection.name
+            desc = itemCollection.desc
+            imageData = itemCollection.photo
         }
         .task(id: selectedPhoto) {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
@@ -159,5 +165,5 @@ struct EditCollectionView: View {
 }
 
 #Preview {
-    EditCollectionView(collection: .init(name: "Carrinhos HotWheels"))
+    EditItemCollectionView(itemCollection: .init(name: "Porsche 911", desc: "Edicao de 1999", photo: nil, fields: [], collection: .init(name: "Carrinhos HotWheels")))
 }

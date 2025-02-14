@@ -47,5 +47,5 @@ struct PostView: View {
 }
 
 #Preview {
-    PostView(post: .init(author: User(name: "João Gabriel", handle: "jotagezim", bio: "meu nome  joao grabiel tenho 17 anos e amo Jesus", isWhatsappPublic: false, createdAt: .now, avatar: "manga"), name: "camera cybershot dsc-w620", desc: "eu ganhei essa câmera de aniversário de 17 anos, da minha tia Claudia. amei!", photo: "cybershot", preservation: 5, fields: []))
+    PostView(post: fakePosts.randomElement()!)
 }

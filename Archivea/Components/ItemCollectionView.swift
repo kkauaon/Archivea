@@ -14,7 +14,7 @@ struct ItemCollectionView: View {
     @State var isSheetPresented : Bool = false
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if let data = itemCollection.photo, let image = UIImage(data: data) {
                 Image(uiImage: image)
                     .resizable()
@@ -23,6 +23,23 @@ struct ItemCollectionView: View {
                     .cornerRadius(5)
                     .clipped()
                     .allowsHitTesting(false)
+                    .overlay(alignment: .topLeading){
+                        Button {
+                            isSheetPresented = true
+                        } label: {
+                            Circle()
+                                .frame(width: 40, height: 40)
+                                .padding(8)
+                                .foregroundColor(.black)
+                                .overlay(alignment: .topLeading) {
+                                    Image(systemName: "square.and.pencil.circle.fill")
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(.white)
+                                        .padding(8)
+                                }
+                        }
+                    }
             } else {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(.gray)
@@ -33,20 +50,32 @@ struct ItemCollectionView: View {
                             .scaledToFit()
                             .frame(width: 48)
                     }
+                    .overlay(alignment: .topLeading){
+                        Button {
+                            isSheetPresented = true
+                        } label: {
+                            Circle()
+                                .frame(width: 40, height: 40)
+                                .padding(8)
+                                .foregroundColor(.black)
+                                .overlay(alignment: .topLeading) {
+                                    Image(systemName: "square.and.pencil.circle.fill")
+                                        .resizable()
+                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(.white)
+                                        .padding(8)
+                                }
+                        }
+                    }
+                    
             }
             HStack{
                 Text(itemCollection.name)
+                    .bold()
+                    //.font(.system(size: 17))
                     .foregroundColor(.black)
                 
                 Spacer()
-                
-                Button {
-                    isSheetPresented = true
-                } label: {
-                    Image(systemName: "pencil")
-                        .foregroundColor(.black)
-                        .padding(5)
-                }
             }
             
             Text(itemCollection.desc)
@@ -58,11 +87,14 @@ struct ItemCollectionView: View {
             }
         }
         .sheet(isPresented: $isSheetPresented) {
-            //            EditItemCollectionView(itemCollection: itemCollection)
+            EditItemCollectionView(itemCollection: itemCollection)
         }
     }
 }
 
 #Preview {
-    ItemCollectionView(itemCollection: .init(name: "OiItem", desc: "OiItem", photo: nil, fields: [], collection: .init(name: "OiColeção")))
+    ItemCollectionView(itemCollection: .init(name: "Mangá Haikyuu!! Vol. 01", desc: "Mangá extremamente conservado do Haikyuu!! Esse é o primeiro volume.", photo: nil, fields: [
+        .init(fieldName: "Idioma", fieldValue: "Japonês"),
+        .init(fieldName: "Ano", fieldValue: "2012")
+    ], collection: .init(name: "OiColeção")))
 }

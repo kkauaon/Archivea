@@ -33,7 +33,7 @@ struct CollectionExtendedView: View {
                 }
             }
             
-            VStack {
+            VStack(spacing: 20) {
                 ForEach(itemsFromCollection, id: \.self.id) { item in
                     ItemCollectionView(itemCollection: item)
                 }
