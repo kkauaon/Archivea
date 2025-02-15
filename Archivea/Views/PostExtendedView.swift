@@ -14,7 +14,6 @@ struct PostExtendedView: View {
     @State var post : Post
     
     var body: some View {
-        
         ScrollView{
             Image(post.photo)
                 .resizable()
@@ -22,7 +21,7 @@ struct PostExtendedView: View {
                 .padding(.bottom, 16)
                 .overlay(alignment: .topTrailing) {
                     Button {
-                       // colocar acao favoritin
+                        // colocar acao favoritin
                     } label: {
                         Circle()
                             .frame(width: 40, height: 40)
@@ -51,7 +50,7 @@ struct PostExtendedView: View {
                     
                     
                     Spacer()
-
+                    
                 }
                 
                 VStack(alignment: .leading, spacing: 24) {
@@ -89,9 +88,8 @@ struct PostExtendedView: View {
                 HStack{
                     Spacer()
                     Text("Pertence à coleção")
-                    NavigationLink(
-                        destination: CollectionExtendedView(collection: fakeCollectionToRealCollection(fake: post.collection))
-                    )
+                    NavigationLink { FakeCollectionExtendedView(collection: post.collection)
+                    } label:
                     {
                         Text(post.collection.name)
                         Image(systemName: "chevron.right")

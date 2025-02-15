@@ -13,31 +13,36 @@ struct ItemCollectionView: View {
     
     @State var isSheetPresented : Bool = false
     
+    @State var editable : Bool = true
+    
     var body: some View {
         VStack(alignment: .leading) {
             if let data = itemCollection.photo, let image = UIImage(data: data) {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-                    //.frame(height: 250)
+                
+                //.frame(height: 250)
                     .cornerRadius(5)
                     .clipped()
-                    .allowsHitTesting(false)
+                    //.allowsHitTesting(false)
                     .overlay(alignment: .topLeading){
-                        Button {
-                            isSheetPresented = true
-                        } label: {
-                            Circle()
-                                .frame(width: 40, height: 40)
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .overlay(alignment: .topLeading) {
-                                    Image(systemName: "square.and.pencil.circle.fill")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .foregroundColor(.white)
-                                        .padding(8)
-                                }
+                        if editable {
+                            Button {
+                                isSheetPresented = true
+                            } label: {
+                                Circle()
+                                    .frame(width: 40, height: 40)
+                                    .padding(8)
+                                    .foregroundColor(.black)
+                                    .overlay(alignment: .topLeading) {
+                                        Image(systemName: "square.and.pencil.circle.fill")
+                                            .resizable()
+                                            .frame(width: 40, height: 40)
+                                            .foregroundColor(.white)
+                                            .padding(8)
+                                    }
+                            }
                         }
                     }
             } else {
@@ -51,28 +56,30 @@ struct ItemCollectionView: View {
                             .frame(width: 48)
                     }
                     .overlay(alignment: .topLeading){
-                        Button {
-                            isSheetPresented = true
-                        } label: {
-                            Circle()
-                                .frame(width: 40, height: 40)
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .overlay(alignment: .topLeading) {
-                                    Image(systemName: "square.and.pencil.circle.fill")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .foregroundColor(.white)
-                                        .padding(8)
-                                }
+                        if editable {
+                            Button {
+                                isSheetPresented = true
+                            } label: {
+                                Circle()
+                                    .frame(width: 40, height: 40)
+                                    .padding(8)
+                                    .foregroundColor(.black)
+                                    .overlay(alignment: .topLeading) {
+                                        Image(systemName: "square.and.pencil.circle.fill")
+                                            .resizable()
+                                            .frame(width: 40, height: 40)
+                                            .foregroundColor(.white)
+                                            .padding(8)
+                                    }
+                            }
                         }
                     }
-                    
+                
             }
             HStack{
                 Text(itemCollection.name)
                     .bold()
-                    //.font(.system(size: 17))
+                //.font(.system(size: 17))
                     .foregroundColor(.black)
                 
                 Spacer()
@@ -93,8 +100,5 @@ struct ItemCollectionView: View {
 }
 
 #Preview {
-    ItemCollectionView(itemCollection: .init(name: "Mangá Haikyuu!! Vol. 01", desc: "Mangá extremamente conservado do Haikyuu!! Esse é o primeiro volume.", photo: nil, fields: [
-        .init(fieldName: "Idioma", fieldValue: "Japonês"),
-        .init(fieldName: "Ano", fieldValue: "2012")
-    ], collection: .init(name: "OiColeção")))
+    ItemCollectionView(itemCollection: postToItemCollection(post: fakePosts.randomElement()!))
 }

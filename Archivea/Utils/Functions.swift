@@ -25,3 +25,13 @@ func fakeCollectionToRealCollection (fake: FakeCollection) -> Collection {
         image: UIImage(named: fake.image)?.pngData()
     )
 }
+
+func postToItemCollection (post: Post) -> ItemCollection {
+    return ItemCollection(
+        name: post.name,
+        desc: post.desc,
+        photo: UIImage(named: post.photo)?.pngData(),
+        fields: post.fields,
+        collection: fakeCollectionToRealCollection(fake: post.collection)
+    )
+}

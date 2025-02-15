@@ -26,110 +26,111 @@ struct EditProfileView: View {
     
     
     var body: some View {
-        ScrollView{
-            NavigationView {
-                VStack(alignment: .center, spacing: 12) {
-                    //Imagem
-                    
-                    AvatarView(avatarData: imageData, avatarSize: .large)
-                    
-                    //Botão de adicionar capa
-                    //Caso já haja uma capa da coleção.
-                    if imageData != nil {
-                        Button(role: .destructive) {
-                            selectedPhoto = nil
-                            imageData = nil
-                            //Aparece a opção de remover a capa.
-                        }label:{
-                            Label("Remover foto", systemImage: "play.fill")
-                        }
-                        .labelStyle(.titleAndIcon)
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.small)
-                        //Caso não haja uma capa na coleção.
-                    } else {
-                        //Entender o PhotosPicker como um botão.
-                        PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                            //Aparece a opção de
-                            Label("Adicionar foto", systemImage: "plus.circle")
-                        }
-                        .labelStyle(.titleAndIcon)
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.small)
-                        //                    Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
-                        //                        .foregroundColor(.gray)
-                        //                        .font(.caption2)
-                    }
-                    
-                    
-                    HStack {
-                        Text("Nome de usuário")
-                        Spacer()
-                    }
-                    
-                    TextField(profile.name, text: $name)
-                        .textFieldStyle(.roundedBorder)
-                    
-                    HStack {
-                        Text("Apelido")
-                        Spacer()
-                    }
-                    
-                    TextField(profile.handle, text: $handle)
-                        .textFieldStyle(.roundedBorder)
-                        .textInputAutocapitalization(.never)
-                        
-                    
-                    HStack{
-                        Text("Biografia")
-                        Spacer()
-                    }
-                    
-                    TextField(profile.bio, text: $bio,  axis: .vertical)
-                        .lineLimit(5...10)
-                        .textFieldStyle(.roundedBorder)
-                        .textInputAutocapitalization(.never)
-                    
-                    Button {
-                        profile.name = name
-                        profile.avatar = imageData
-                        profile.handle = handle
-                        profile.bio = bio
-                        
-                        dismiss()
-                    } label: {
-                        Text("Salvar alteraçoes")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.extraLarge)
+        
+        VStack(alignment: .center, spacing: 12) {
+            //Imagem
+            
+            AvatarView(avatarData: imageData, avatarSize: .large)
+            
+            //Botão de adicionar capa
+            //Caso já haja uma capa da coleção.
+            if imageData != nil {
+                Button(role: .destructive) {
+                    selectedPhoto = nil
+                    imageData = nil
+                    //Aparece a opção de remover a capa.
+                }label:{
+                    Label("Remover foto", systemImage: "play.fill")
                 }
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .top
-                )
-                .padding(.horizontal, 40)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("Editar Perfil")
-            }
-            //.padding(.horizontal, 32)
-            //.presentationDragIndicator(.visible)
-            //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
-//            .presentationDetents([.height(500), .large])
-//            .presentationCornerRadius(20)
-            .onAppear {
-                name = profile.name
-                handle = profile.handle
-                bio = profile.bio
-                imageData = profile.avatar
-            }
-            .task(id: selectedPhoto) {
-                if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                    imageData = data
+                .labelStyle(.titleAndIcon)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                //Caso não haja uma capa na coleção.
+            } else {
+                //Entender o PhotosPicker como um botão.
+                PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                    //Aparece a opção de
+                    Label("Adicionar foto", systemImage: "plus.circle")
                 }
+                .labelStyle(.titleAndIcon)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                //                    Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
+                //                        .foregroundColor(.gray)
+                //                        .font(.caption2)
+            }
+            
+            
+            HStack {
+                Text("Nome de usuário")
+                Spacer()
+            }
+            
+            TextField(profile.name, text: $name)
+                .textFieldStyle(.roundedBorder)
+            
+            HStack {
+                Text("Apelido")
+                Spacer()
+            }
+            
+            TextField(profile.handle, text: $handle)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+            
+            
+            HStack{
+                Text("Biografia")
+                Spacer()
+            }
+            
+            TextField(profile.bio, text: $bio,  axis: .vertical)
+                .lineLimit(5...10)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+            
+            Button {
+                profile.name = name
+                profile.avatar = imageData
+                profile.handle = handle
+                profile.bio = bio
+                
+                dismiss()
+            } label: {
+                Text("Salvar alteraçoes")
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.extraLarge)
+        }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .top
+        )
+        .padding(.horizontal, 40)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Editar Perfil")
+        
+        
+        
+        //.padding(.horizontal, 32)
+        //.presentationDragIndicator(.visible)
+        //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
+        //            .presentationDetents([.height(500), .large])
+        //            .presentationCornerRadius(20)
+        .onAppear {
+            name = profile.name
+            handle = profile.handle
+            bio = profile.bio
+            imageData = profile.avatar
+        }
+        .task(id: selectedPhoto) {
+            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+                imageData = data
             }
         }
     }
+
 }
 
 #Preview {

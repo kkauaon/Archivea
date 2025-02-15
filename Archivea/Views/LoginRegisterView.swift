@@ -14,54 +14,78 @@ struct LoginRegisterView: View {
     @State var username:String = ""
     @State var email:String = ""
     @State var password:String = ""
+    @State var name:String = ""
+    
+    @Binding var isLogged:Bool
     
     var body: some View {
-        VStack(spacing: 10) { // <-- verificar no figma
-            Text(isSignUp ? "Primeiro Acesso" : "Conecte-se")
+        ZStack {
+            Color.backgroundPrimary.ignoresSafeArea()
             
-            TextField("Apelido", text: $username)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
-            
-            if isSignUp {
-                TextField("E-mail", text: $email)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .textFieldStyle(.roundedBorder)
-            }
-            
-            SecureField("Senha", text: $password)
-                .textFieldStyle(.roundedBorder)
-            
-            Button {
+            VStack(spacing: 16) { // <-- verificar no figma
+                Text(isSignUp ? "Primeiro Acesso" : "Conecte-se")
+                    .foregroundStyle(.accent2)
+                    .font(.system(size: 40))
                 
-            } label: {
-                Text("Entrar")
-                    .frame(maxWidth: .infinity)
+                if isSignUp {
+                    TextField("Nome", text: $name)
+                        .textFieldStyle(.roundedBorder)
+                        .textInputAutocapitalization(.never)
+                        .cornerRadius(8)
+                }
+                
+                TextField("Apelido", text: $username)
+                    .textFieldStyle(.roundedBorder)
+                    .textInputAutocapitalization(.never)
+                    .cornerRadius(8)
+                
+                if isSignUp {
+                    TextField("E-mail", text: $email)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .textFieldStyle(.roundedBorder)
+                        .cornerRadius(8)
+                }
+                
+                SecureField("Senha", text: $password)
+                    .textFieldStyle(.roundedBorder)
+                    .cornerRadius(8)
+                
+                Button {
+                    withAnimation {
+                        isLogged = true
+                    }
+                } label: {
+                    Text("Entrar")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .tint(.accent2)
+                .cornerRadius(16)
+                .bold()
+                
+                
+                Picker("Sign In or Sign Up?", selection: $isSignUp) {
+                    Text("Sign In").tag(false)
+                    Text("Sign Up").tag(true)
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 250) // <-- verificar no figma
+                .onChange(of: isSignUp) {
+                    username = ""
+                    email = ""
+                    password = ""
+                }
             }
-            .buttonStyle(.borderedProminent)
-            //.controlSize(.large)
-            
-            
-            Picker("Sign In or Sign Up?", selection: $isSignUp) {
-                Text("Sign In").tag(false)
-                Text("Sign Up").tag(true)
-            }
-            .pickerStyle(.segmented)
-            .frame(width: 250) // <-- verificar no figma
-            .onChange(of: isSignUp) {
-                username = ""
-                email = ""
-                password = ""
-            }
+            .padding(.horizontal, 40) // <-- verificar no figma
         }
-        .padding(.horizontal, 30) // <-- verificar no figma
     }
 }
 
 #Preview {
 
-        LoginRegisterView()
+    LoginRegisterView(isLogged: .constant(false))
 
 }
 

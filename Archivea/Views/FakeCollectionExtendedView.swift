@@ -10,18 +10,20 @@ import SwiftData
 
 struct FakeCollectionExtendedView: View {
     
-    @State var collection : Collection
+    @State var collection : FakeCollection
     
-    @State var itemsFromCollection: [ItemCollection] = []
+    @State var postsFromCollection: [Post] = []
     
     
     var body: some View {
+        
         ScrollView {
-            
-            
             VStack(spacing: 20) {
-                ForEach(itemsFromCollection, id: \.self.id) { item in
-                    ItemCollectionView(itemCollection: item)
+                ForEach(postsFromCollection, id: \.self.id) { item in
+                    NavigationLink(destination: PostExtendedView(post: item)) {
+                        ItemCollectionView(itemCollection: postToItemCollection(post: item), editable: false)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -33,7 +35,9 @@ struct FakeCollectionExtendedView: View {
             alignment: .top
         )
         .task {
-            //itemsFromCollection = fakePosts.filter { $0.collection.name == collection.name }
+            postsFromCollection = fakePosts.filter { $0.collection.id == collection.id }
+            
+            postsFromCollection.sort(by: { $0.name < $1.name })
         }
         .navigationTitle(collection.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -41,5 +45,7 @@ struct FakeCollectionExtendedView: View {
 }
 
 #Preview {
-    FakeCollectionExtendedView(collection: .init(name: "ColeçãoTeste"))
+    NavigationStack {
+        FakeCollectionExtendedView(collection: fakeCollections.randomElement()!)
+    }
 }

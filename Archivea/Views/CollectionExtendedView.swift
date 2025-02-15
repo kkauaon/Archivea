@@ -54,6 +54,8 @@ struct CollectionExtendedView: View {
                     itemsFromCollection.append(item)
                 }
             }
+            
+            itemsFromCollection.sort(by: { $0.name < $1.name })
         }
         .sheet(isPresented: $addNewItemCollectionViewIsPresented) {
             AddNewItemCollectionView(itemCollection: .init(name: "", desc: "", photo: nil, fields: [], collection: collection))

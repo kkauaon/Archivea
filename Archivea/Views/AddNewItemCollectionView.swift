@@ -41,8 +41,8 @@ struct AddNewItemCollectionView: View {
                 if let data = itemCollection.photo, let image = UIImage(data: data) {
                     Image(uiImage: image)
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: 170, height: 130)
+                        .scaledToFit()
+                        .frame(height: 130)
                         .clipped()
                         .cornerRadius(5)
                         .padding(.top, 10)
