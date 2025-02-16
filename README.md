@@ -25,7 +25,7 @@ Archivea é um aplicativo desenvolvido para colecionadores que desejam compartil
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Linguagem de Programação:** Swift
+- **Linguagem de Programação:** Swift 6
 - **Framework:** SwiftUI
 
 ## 🚀 Como Executar o Projeto
@@ -38,20 +38,15 @@ Archivea é um aplicativo desenvolvido para colecionadores que desejam compartil
    ```bash
    cd Archivea
    ```
-3. Abra o projeto no Xcode:
-   ```bash
-   open Archivea.xcodeproj
-   ```
-4. Instale as dependências (se houver):
-   - Certifique-se de que todas as dependências necessárias estejam instaladas.
+3. Abra o projeto no Xcode
 5. Execute a aplicação:
    - Selecione o dispositivo ou simulador desejado no Xcode.
    - Clique no botão de execução ou pressione `Cmd + R`.
 
 ## 📌 Requisitos
 
-- Xcode 12 ou superior
-- iOS 14 ou superior
+- Xcode 16 ou superior
+- iOS 18 ou superior
 
 ## 📷 Em funcionamento (Versão de 15 de fevereiro de 2025)
 
@@ -67,15 +62,3 @@ https://github.com/user-attachments/assets/8db861a0-c041-4059-8aae-fa5f24c33f15
 - [Ana Beatriz](https://github.com/anabcarvalho30)
 - [Arthur Lima](https://github.com/Arthur-Lima07)
 - [Kauã Sousa](https://github.com/kkauaon)
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 🔗 Links
-
-- Repositório: [Archivea no GitHub](https://github.com/kkauaon/Archivea)
-
----
-
-💡 _Sinta-se à vontade para contribuir com melhorias ou relatar problemas!_
