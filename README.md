@@ -59,10 +59,10 @@ _Aqui podem ser adicionadas imagens do app em funcionamento._
 
 ## 👥 Equipe de Desenvolvimento
 
-- João Gabriel Aguiar
-- Ana Beatriz
-- Arthur Lima
-- Kauã Sousa
+- [João Gabriel](https://github.com/Jot4g3)
+- [Ana Beatriz](https://github.com/anabcarvalho30)
+- [Arthur Lima](https://github.com/Arthur-Lima07)
+- [Kauã Sousa](https://github.com/kkauaon)
 
 ## 📄 Licença
 
