@@ -53,9 +53,13 @@ Archivea é um aplicativo desenvolvido para colecionadores que desejam compartil
 - Xcode 12 ou superior
 - iOS 14 ou superior
 
-## 📷 Capturas de Tela
+## 📷 Em funcionamento (Versão de 15 de fevereiro de 2025)
 
-_Aqui podem ser adicionadas imagens do app em funcionamento._
+
+
+https://github.com/user-attachments/assets/8db861a0-c041-4059-8aae-fa5f24c33f15
+
+
 
 ## 👥 Equipe de Desenvolvimento
 
