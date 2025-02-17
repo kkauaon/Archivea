@@ -1,7 +1,6 @@
 import SwiftData
 import SwiftUI
 
-
 @Model
 class Post{
     var author: User

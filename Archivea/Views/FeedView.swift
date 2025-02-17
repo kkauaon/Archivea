@@ -56,7 +56,12 @@ struct FeedView: View {
             if search.isEmpty {
                 posts = fakePosts
             } else {
-                posts = fakePosts.filter { $0.name.lowercased().contains(search.lowercased()) || $0.desc.lowercased().contains(search.lowercased()) }
+                posts = fakePosts.filter {
+                    $0.name.lowercased().contains(search.lowercased()) ||
+                    $0.desc.lowercased().contains(search.lowercased()) ||
+                    $0.author.handle.lowercased().contains(search.lowercased()) ||
+                    $0.author.name.lowercased().contains(search.lowercased())
+                }
                 
                 print("Resultados da pesquisa: ")
                 for p in posts {

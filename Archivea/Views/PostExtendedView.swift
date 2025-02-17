@@ -8,10 +8,21 @@
 
 //ESSE FOI O QUE O DAVID AUGUSTO PROPÔS!!!
 import SwiftUI
+import SwiftData
 
 struct PostExtendedView: View {
     
+    @Environment(\.modelContext) var modelContext
+    
+    @Query var favorites: [Favorite]
+    
     @State var post : Post
+    
+    @State var isFavorited: Bool = false
+    
+    @State var favorite: Favorite? = nil
+    
+    @State var isFavoriteSelectionSheetPresented: Bool = false
     
     var body: some View {
         ScrollView{
@@ -20,15 +31,20 @@ struct PostExtendedView: View {
                 .scaledToFit()
                 .padding(.bottom, 16)
                 .overlay(alignment: .topTrailing) {
+                    
                     Button {
-                        // colocar acao favoritin
+                        if isFavorited, let favorite {
+                            modelContext.delete(favorite)
+                        } else {
+                            isFavoriteSelectionSheetPresented = true
+                        }
                     } label: {
                         Circle()
                             .frame(width: 40, height: 40)
                             .padding(16)
                             .foregroundColor(.white)
                             .overlay(alignment: .center) {
-                                Image(systemName: "star")
+                                Image(systemName: isFavorited ? "star.fill" : "star")
                                     .resizable()
                                     .frame(width: 22, height: 22)
                                     .foregroundColor(.black)
@@ -88,9 +104,9 @@ struct PostExtendedView: View {
                 HStack{
                     Spacer()
                     Text("Pertence à coleção")
-                    NavigationLink { FakeCollectionExtendedView(collection: post.collection)
-                    } label:
-                    {
+                    NavigationLink {
+                        FakeCollectionExtendedView(collection: post.collection)
+                    } label: {
                         Text(post.collection.name)
                         Image(systemName: "chevron.right")
                     }
@@ -99,6 +115,17 @@ struct PostExtendedView: View {
                 .padding(.bottom, 16)
                 
             }.padding(.horizontal, 24)
+        }
+        // irá executar toda vez que o arrei de favoritos mudar
+        .task(id: favorites) {
+            if let favorite = favorites.first(where: { $0.post.id == post.id }) {
+                self.favorite = favorite
+                isFavorited = true
+            } else {
+                isFavorited = false
+            }
+        }
+        .sheet(isPresented: $isFavoriteSelectionSheetPresented) { FavoriteFolderSelectionView(isPresented: $isFavoriteSelectionSheetPresented, post: post)
         }
     }
 }

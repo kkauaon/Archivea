@@ -8,11 +8,13 @@
 import SwiftUI
 import SwiftData
 
-struct FakeCollectionExtendedView: View {
+struct FavoriteFolderExtendedView: View {
     
-    @State var collection : FakeCollection
+    @State var folder : FavoriteFolder
     
-    @State var postsFromCollection: [Post] = []
+    @State var postsFromCollection: [Favorite] = []
+    
+    @Query var favorites: [Favorite]
     
     
     var body: some View {
@@ -20,13 +22,16 @@ struct FakeCollectionExtendedView: View {
         ScrollView {
             VStack(spacing: 20) {
                 ForEach(postsFromCollection, id: \.self.id) { item in
-                    NavigationLink(destination: PostExtendedView(post: item)) {
+                    NavigationLink(destination: PostExtendedView(post: item.post)) {
                         //A função postToItemCollection está sendo usada para converter um post para um item de coleção. Assim, podemos utilizar a mesma view, ItemCollectionView, para colocar nas coleções fakes.
-                        ItemCollectionView(itemCollection: postToItemCollection(post: item), editable: false)
+                        ItemCollectionView(itemCollection: postToItemCollection(post: item.post), editable: false)
                     }
                     .buttonStyle(.plain)
                 }
             }
+        }
+        .task {
+            postsFromCollection = favorites.filter { $0.folder.id == folder.id }
         }
         .scrollIndicators(.never)
         .padding(.horizontal, 16)
@@ -35,18 +40,13 @@ struct FakeCollectionExtendedView: View {
             maxHeight: .infinity,
             alignment: .top
         )
-        .task {
-            postsFromCollection = fakePosts.filter { $0.collection.id == collection.id }
-            
-            postsFromCollection.sort(by: { $0.name < $1.name })
-        }
-        .navigationTitle(collection.name)
+        .navigationTitle(folder.name)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     NavigationStack {
-        FakeCollectionExtendedView(collection: fakeCollections.randomElement()!)
+        FavoriteFolderExtendedView(folder: .init(name: "Carrinhos"))
     }
 }

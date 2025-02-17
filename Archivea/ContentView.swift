@@ -13,7 +13,9 @@ struct ContentView: View {
         let schema = Schema([
             ItemCollection.self,
             Collection.self,
-            MyProfile.self
+            MyProfile.self,
+            Favorite.self,
+            FavoriteFolder.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

@@ -16,12 +16,19 @@ var fakeCollections: [FakeCollection] = [
     FakeCollection(name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs")
 ]
 
+// Coleção 0 - User 0
+// Coleção 1 - User 1
+// Coleção 2 - User 2
+// Coleção 3 - User 3
+// Coleção 4 - User 0
+// Coleção 5 - User 1
+
 
 var fakePosts: [Post] {
     return [
         // Corrected existing posts
         .init(
-            author: fakeUser[1],
+            author: fakeUser[2],
             name: "Câmera Cybershot DSC-W620",
             desc: "Eu ganhei essa câmera de aniversário de 17 anos da minha tia Cláudia. Amei!",
             photo: "cybershot",
@@ -33,7 +40,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[2]
         ),
         .init(
-            author: fakeUser[0],
+            author: fakeUser[1],
             name: "Disco de Vinil - Beatles Abbey Road",
             desc: "Disco original de 1969, encontrado em um sebo em Londres. Estado de conservação excepcional.",
             photo: "disco",
@@ -71,7 +78,7 @@ var fakePosts: [Post] {
         
         // New posts
         .init(
-            author: fakeUser[2],
+            author: fakeUser[0],
             name: "Console Nintendo 64 Pikachu Edition",
             desc: "Edição especial do N64 em perfeito estado. Veio com caixa original e todos os cabos.",
             photo: "n64_pikachu",
@@ -83,7 +90,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
-            author: fakeUser[3],
+            author: fakeUser[1],
             name: "Walkman Sony WM-F2015",
             desc: "Walkman azul em ótimo estado. Funciona perfeitamente e vem com fones originais.",
             photo: "walkman",
@@ -95,7 +102,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
-            author: fakeUser[1],
+            author: fakeUser[0],
             name: "Tamagotchi Original 1996",
             desc: "Primeiro modelo de Tamagotchi lançado. Ainda funciona com a bateria original!",
             photo: "tamagotchi",
@@ -107,7 +114,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[4]
         ),
         .init(
-            author: fakeUser[2],
+            author: fakeUser[1],
             name: "Álbum de Figurinhas Copa 1994 Completo",
             desc: "Álbum da Copa do Mundo de 1994 completamente preenchido, incluindo figurinhas raras.",
             photo: "album_copa",
@@ -131,7 +138,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
-            author: fakeUser[3],
+            author: fakeUser[0],
             name: "Bichinho Virtual Gigapets",
             desc: "Versão dinossauro do Gigapets, popular nos anos 90. Com embalagem original.",
             photo: "gigapet",
@@ -155,7 +162,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
-            author: fakeUser[2],
+            author: fakeUser[0],
             name: "Cartucho Street Fighter II SNES",
             desc: "Cartucho original japonês, funcionando perfeitamente. Label em ótimo estado.",
             photo: "streetfighter",
@@ -179,7 +186,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[4]
         ),
         .init(
-            author: fakeUser[3],
+            author: fakeUser[0],
             name: "Mini Game Brick Game 9999 in 1",
             desc: "Console portátil com jogos básicos como Tetris e Snake. Funciona com pilhas.",
             photo: "brickgame",
@@ -191,7 +198,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
-            author: fakeUser[1],
+            author: fakeUser[3],
             name: "Pager Motorola Advisor",
             desc: "Bip em perfeito estado de conservação, com clip e display funcionando.",
             photo: "pager",
@@ -203,7 +210,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[3]
         ),
         .init(
-            author: fakeUser[0],
+            author: fakeUser[2],
             name: "Máquina Fotográfica Polaroid OneStep",
             desc: "Câmera instantânea vintage, testada e funcionando. Inclui manual original.",
             photo: "polaroid",
@@ -239,7 +246,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
-            author: fakeUser[2],
+            author: fakeUser[3],
             name: "Palm Pilot Professional",
             desc: "PDA clássico em excelente estado. Com dock de sincronização original.",
             photo: "palm",

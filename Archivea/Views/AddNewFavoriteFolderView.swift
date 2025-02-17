@@ -8,37 +8,29 @@
 import SwiftUI
 import PhotosUI
 
-struct EditItemCollectionView: View {
+struct AddNewFavoriteFolderView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     
-    @State var collectionIsPrivate: Bool = false
-    
     @State var name: String = ""
-    
-    @State var desc: String = ""
     
     @State var selectedPhoto: PhotosPickerItem?
     
-    @State var itemCollection : ItemCollection
-    
-    @State var imageData : Data?
+    @State var folder : FavoriteFolder = .init(name: "", image: nil)
     
     @State var isAlertPresented : Bool = false
-    
-    //@State var preservation: Enumerador da Preservacao
     
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 12) {
                 //Imagem
-                if let data = imageData, let image = UIImage(data: data) {
+                if let data = folder.image, let image = UIImage(data: data) {
                     Image(uiImage: image)
                         .resizable()
-                        .scaledToFit()
-                        .frame(height: 130)
+                        .scaledToFill()
+                        .frame(width: 170, height: 130)
                         .clipped()
                         .cornerRadius(5)
                         .padding(.top, 10)
@@ -57,12 +49,10 @@ struct EditItemCollectionView: View {
                 
                 
                 //Botão de adicionar capa
-                //Caso já haja uma capa da coleção.
-                if imageData != nil {
+                if selectedPhoto != nil {
                         Button(role: .destructive) {
                             selectedPhoto = nil
-                            imageData = nil
-                            //Aparece a opção de remover a capa.
+                            folder.image = nil
                         }label:{
                             Label("Remover capa", systemImage: "play.fill")
                         }
@@ -70,11 +60,10 @@ struct EditItemCollectionView: View {
                         .labelStyle(.titleAndIcon)
                         .buttonStyle(.borderedProminent)
                         .controlSize(.small)
-                //Caso não haja uma capa na coleção.
+                    
                 } else {
                     //Entender o PhotosPicker como um botão.
                     PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                        //Aparece a opção de
                             Label("Adicionar capa", systemImage: "plus.circle")
                     }
                     .padding(.top, 5)
@@ -88,42 +77,12 @@ struct EditItemCollectionView: View {
                 
                 
                 HStack {
-                    Text("Nome")
+                    Text("Título da coleção:")
                     Spacer()
                 }
                 
-                TextField("Nome do item", text: $name)
+                TextField("Título", text: $name)
                     .textFieldStyle(.roundedBorder)
-                
-                //COLOCAR AQUI O Picker DA preservation!!!
-                
-//                List {
-//                    Picker("Preservação", selection: $preservation) {
-//                        Text("Péssimo").tag(Flavor.chocolate)
-//                        Text("Bom").tag(Flavor.vanilla)
-//                        Text("Regular").tag(Flavor.strawberry)
-//                        Text("Bom").tag(Flavor.vanilla)
-//                        Text("Regular").tag(Flavor.strawberry)
-//                    }
-//                }
-                
-                HStack {
-                    Text("Descrição:")
-                    Spacer()
-                }
-                
-                TextField("Descrição do item", text: $desc, axis: .vertical)
-                    .textFieldStyle(.roundedBorder)
-                    .lineLimit(5...10)
-                
-                
-                Button(role: .destructive){
-                    modelContext.delete(itemCollection)
-                }label:{
-                    Label("Deletar Item", systemImage: "trash")
-                }
-                .buttonStyle(.borderedProminent)
-                .cornerRadius(40)
             }
             .frame(
                 maxWidth: .infinity,
@@ -132,17 +91,18 @@ struct EditItemCollectionView: View {
             )
             .padding(.horizontal, 40)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Editar Item")
+            .navigationTitle("Adicionar Pasta de Favoritos")
             .toolbar {
                 Button {
                     if !name.isEmpty {
-                        itemCollection.name = name
-                        itemCollection.desc = desc
-                        itemCollection.photo = imageData
+                        let folder = FavoriteFolder(name: name, image: folder.image)
+                        
+                        modelContext.insert(folder)
+                        
+                        name = ""
                         
                         dismiss()
-                    }
-                    else{
+                    }else{
                         isAlertPresented = true
                     }
                 } label: {
@@ -151,31 +111,24 @@ struct EditItemCollectionView: View {
                 }
             }
         }
-        //.padding(.horizontal, 32)
-        //.presentationDragIndicator(.visible)
         //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
-        .presentationDetents([.height(550), .large])
+        .presentationDetents([.height(450), .large])
         .presentationCornerRadius(20)
-        .onAppear {
-            name = itemCollection.name
-            desc = itemCollection.desc
-            imageData = itemCollection.photo
-        }
         .task(id: selectedPhoto) {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                imageData = data
+                folder.image = data
             }
         }
-        .alert(Text("Entitule a sua coleção."), isPresented: $isAlertPresented) {
+        .alert(Text("Entitule a sua pasta de favoritos."), isPresented: $isAlertPresented) {
             Button("Ok") {
                 isAlertPresented = false
             }
         } message: {
-            Text("Não é possível criar uma coleção sem nome.\nPara adicionar sua coleção, por favor, ponha um nome e tente novamente.")
+            Text("Não é possível criar uma pasta de favoritos sem nome.\nPara adicionar, por favor, ponha um nome e tente novamente.")
         }
     }
 }
 
 #Preview {
-    EditItemCollectionView(itemCollection: .init(name: "Porsche 911", desc: "Edicao de 1999", photo: nil, fields: [], collection: .init(name: "Carrinhos HotWheels")))
+    AddNewFavoriteFolderView()
 }
