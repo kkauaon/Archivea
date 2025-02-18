@@ -53,7 +53,9 @@ struct PostExtendedView: View {
                 }
             
             VStack (alignment: .leading, spacing: 16){
-                HStack{
+                NavigationLink {
+                    ProfileView(profile: post.author)
+                } label: {
                     AvatarView(avatarData: UIImage(named: post.author.avatar)?.pngData(), avatarSize: .small)
                     VStack(alignment: .leading){
                         Spacer()
@@ -68,6 +70,7 @@ struct PostExtendedView: View {
                     Spacer()
                     
                 }
+                .buttonStyle(.plain)
                 
                 VStack(alignment: .leading, spacing: 24) {
                     VStack(alignment: .leading){
@@ -92,7 +95,7 @@ struct PostExtendedView: View {
                     Button{
                         //Função de Solicitar Contato
                     }label: {
-                        Label("Solicitar contato", systemImage: "person.badge.plus.fill")
+                        Label("Solicitar Contato", systemImage: "person.badge.plus.fill")
                             .foregroundColor(.black)
                             .padding(.horizontal, 8)
                     }
@@ -131,6 +134,8 @@ struct PostExtendedView: View {
 }
 
 #Preview {
-    PostExtendedView(post: fakePosts.randomElement()!)
+    NavigationView {
+        PostExtendedView(post: fakePosts.randomElement()!)
+    }
 }
 

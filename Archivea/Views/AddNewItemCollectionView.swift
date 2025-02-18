@@ -28,10 +28,11 @@ struct AddNewItemCollectionView: View {
     
     @State var selectedPhoto: PhotosPickerItem?
     
-    //@State var collection : Collection
-    @State var itemCollection : ItemCollection
+    @State var itemCollection : ItemCollection = .init(name: "", desc: "", preservation: 5, collection: .init(name: ""))
     
     @State var isAlertPresented : Bool = false
+    
+    @State var preservation : Int = 5
     
     
     var body: some View {
@@ -66,7 +67,7 @@ struct AddNewItemCollectionView: View {
                             selectedPhoto = nil
                             itemCollection.photo = nil
                         }label:{
-                            Label("Remover capa", systemImage: "play.fill")
+                            Label("Remover Imagem", systemImage: "play.fill")
                         }
                         .padding(.top, 5)
                         .labelStyle(.titleAndIcon)
@@ -76,7 +77,7 @@ struct AddNewItemCollectionView: View {
                 } else {
                     //Entender o PhotosPicker como um botão.
                     PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                            Label("Adicionar capa", systemImage: "plus.circle")
+                            Label("Adicionar Imagem", systemImage: "plus.circle")
                     }
                     .padding(.top, 5)
                     .labelStyle(.titleAndIcon)
@@ -97,13 +98,19 @@ struct AddNewItemCollectionView: View {
                     .textFieldStyle(.roundedBorder)
                 
                 //COLOCAR AQUI O Picker DA preservation!!!
+                HStack {
+                    Text("Estado de Conservação:")
+                    Spacer()
+                }
+                
+                PreservationPicker(selection: $preservation)
                 
                 HStack {
                     Text("Descrição:")
                     Spacer()
                 }
                 
-                TextField("Descrição do item", text: $desc, axis: .vertical)
+                TextField("Adicionar descrição", text: $desc, axis: .vertical)
                     .textFieldStyle(.roundedBorder)
                     .lineLimit(5...10)
             }
@@ -118,7 +125,7 @@ struct AddNewItemCollectionView: View {
             .toolbar {
                 Button {
                     if !name.isEmpty {
-                        let newItem = ItemCollection(name: name, desc: desc, photo: itemCollection.photo, fields: [], collection: itemCollection.collection)
+                        let newItem = ItemCollection(name: name, desc: desc, preservation: preservation, photo: itemCollection.photo, fields: [], collection: itemCollection.collection)
                         
                         modelContext.insert(newItem)
                         
@@ -134,8 +141,6 @@ struct AddNewItemCollectionView: View {
                 }
             }
         }
-        //.padding(.horizontal, 32)
-        //.presentationDragIndicator(.visible)
         //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
         .presentationDetents([.height(550), .large])
         .presentationCornerRadius(20)
@@ -144,7 +149,6 @@ struct AddNewItemCollectionView: View {
                 itemCollection.photo = data
             }
         }
-//        .alert(Text("Coloque um título na sua categoria!"), isPresented: $isAlertPresented) message: Text("Não é possível criar uma coleção sem nome. \n Para adicionar sua coleção, por favor, ponha um nome e tente novamente."))
         .alert(Text("Entitule o seu item de coleção."), isPresented: $isAlertPresented) {
             Button("Ok") {
                 isAlertPresented = false
@@ -153,12 +157,9 @@ struct AddNewItemCollectionView: View {
             Text("Não é possível criar um item sem nome.\nPara adicionar seu item, por favor, ponha um nome e tente novamente.")
         }
         
-        //Mostrar o Grab da sheet
-        //AddNewCollectionView.prefersGrabberVisible = true
-        
     }
 }
 
 #Preview {
-    AddNewCollectionView()
+    AddNewItemCollectionView()
 }

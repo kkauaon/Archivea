@@ -8,12 +8,12 @@ var fakeUser: [User] = [
 ]
 
 var fakeCollections: [FakeCollection] = [
-    FakeCollection(name: "Jogos e Consoles", isPrivate: false, image: "gameboy"),
-    FakeCollection(name: "Música e Áudio", isPrivate: false, image: "walkman"),
-    FakeCollection(name: "Fotografia", isPrivate: true, image: "cybershot"),
-    FakeCollection(name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150"),
-    FakeCollection(name: "Brinquedos", isPrivate: false, image: "tamagotchi"),
-    FakeCollection(name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs")
+    FakeCollection(name: "Jogos e Consoles", isPrivate: false, image: "gameboy", author: fakeUser[0]),
+    FakeCollection(name: "Música e Áudio", isPrivate: false, image: "walkman", author: fakeUser[1]),
+    FakeCollection(name: "Fotografia", isPrivate: true, image: "cybershot", author: fakeUser[2]),
+    FakeCollection(name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150", author: fakeUser[3]),
+    FakeCollection(name: "Brinquedos", isPrivate: false, image: "tamagotchi", author: fakeUser[0]),
+    FakeCollection(name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs", author: fakeUser[1])
 ]
 
 // Coleção 0 - User 0

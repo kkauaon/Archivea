@@ -58,7 +58,7 @@ struct CollectionExtendedView: View {
             itemsFromCollection.sort(by: { $0.name < $1.name })
         }
         .sheet(isPresented: $addNewItemCollectionViewIsPresented) {
-            AddNewItemCollectionView(itemCollection: .init(name: "", desc: "", photo: nil, fields: [], collection: collection))
+            AddNewItemCollectionView(itemCollection: .init(name: "", desc: "", preservation: 5, photo: nil, fields: [], collection: collection))
         }
         .navigationTitle(collection.name)
         .navigationBarTitleDisplayMode(.inline)

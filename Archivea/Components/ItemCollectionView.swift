@@ -16,7 +16,7 @@ struct ItemCollectionView: View {
     @State var editable : Bool = true
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             if let data = itemCollection.photo, let image = UIImage(data: data) {
                 Image(uiImage: image)
                     .resizable()
@@ -85,13 +85,19 @@ struct ItemCollectionView: View {
                 Spacer()
             }
             
-            Text(itemCollection.desc)
+            if !itemCollection.desc.isEmpty {
+                Text(itemCollection.desc)
+            }
             
-            VStack(alignment: .leading){
-                ForEach (itemCollection.fields){ field in
-                    Text("\(field.fieldName):  \(field.fieldValue)")
+            if itemCollection.fields.count > 0 {
+                VStack(alignment: .leading){
+                    ForEach (itemCollection.fields){ field in
+                        Text("\(field.fieldName):  \(field.fieldValue)")
+                    }
                 }
             }
+            
+            Text("Conservação: \(preservationToString(preservation: itemCollection.preservation))")
         }
         .sheet(isPresented: $isSheetPresented) {
             EditItemCollectionView(itemCollection: itemCollection)
@@ -100,5 +106,7 @@ struct ItemCollectionView: View {
 }
 
 #Preview {
-    ItemCollectionView(itemCollection: postToItemCollection(post: fakePosts.randomElement()!))
+    List {
+        ItemCollectionView(itemCollection: postToItemCollection(post: fakePosts.randomElement()!))
+    }
 }

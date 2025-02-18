@@ -21,6 +21,8 @@ struct CollectionView: View {
     
     @State var isSheetPresented: Bool = false
     
+    @State var editable : Bool = true
+    
     var body: some View {
             VStack {
                 RoundedRectangle(cornerRadius: 5)
@@ -50,12 +52,14 @@ struct CollectionView: View {
                     
                     Spacer()
                     
-                    Button {
-                        isSheetPresented = true
-                    } label: {
-                        Image(systemName: "pencil")
-                            .foregroundColor(.black)
-                            .padding(5)
+                    if editable {
+                        Button {
+                            isSheetPresented = true
+                        } label: {
+                            Image(systemName: "pencil")
+                                .foregroundColor(.black)
+                                .padding(5)
+                        }
                     }
                 }
             }

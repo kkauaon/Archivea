@@ -30,6 +30,7 @@ func postToItemCollection (post: Post) -> ItemCollection {
     return ItemCollection(
         name: post.name,
         desc: post.desc,
+        preservation: post.preservation,
         photo: UIImage(named: post.photo)?.pngData(),
         fields: post.fields,
         collection: fakeCollectionToRealCollection(fake: post.collection)

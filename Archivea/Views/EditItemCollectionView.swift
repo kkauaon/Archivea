@@ -27,7 +27,7 @@ struct EditItemCollectionView: View {
     
     @State var isAlertPresented : Bool = false
     
-    //@State var preservation: Enumerador da Preservacao
+    @State var preservation: Int = 5
     
     
     var body: some View {
@@ -96,16 +96,12 @@ struct EditItemCollectionView: View {
                     .textFieldStyle(.roundedBorder)
                 
                 //COLOCAR AQUI O Picker DA preservation!!!
+                HStack {
+                    Text("Estado de Conservação:")
+                    Spacer()
+                }
                 
-//                List {
-//                    Picker("Preservação", selection: $preservation) {
-//                        Text("Péssimo").tag(Flavor.chocolate)
-//                        Text("Bom").tag(Flavor.vanilla)
-//                        Text("Regular").tag(Flavor.strawberry)
-//                        Text("Bom").tag(Flavor.vanilla)
-//                        Text("Regular").tag(Flavor.strawberry)
-//                    }
-//                }
+                PreservationPicker(selection: $preservation)
                 
                 HStack {
                     Text("Descrição:")
@@ -138,6 +134,7 @@ struct EditItemCollectionView: View {
                     if !name.isEmpty {
                         itemCollection.name = name
                         itemCollection.desc = desc
+                        itemCollection.preservation = preservation
                         itemCollection.photo = imageData
                         
                         dismiss()
@@ -154,11 +151,12 @@ struct EditItemCollectionView: View {
         //.padding(.horizontal, 32)
         //.presentationDragIndicator(.visible)
         //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
-        .presentationDetents([.height(550), .large])
+        .presentationDetents([.height(600), .large])
         .presentationCornerRadius(20)
         .onAppear {
             name = itemCollection.name
             desc = itemCollection.desc
+            preservation = itemCollection.preservation
             imageData = itemCollection.photo
         }
         .task(id: selectedPhoto) {
@@ -177,5 +175,5 @@ struct EditItemCollectionView: View {
 }
 
 #Preview {
-    EditItemCollectionView(itemCollection: .init(name: "Porsche 911", desc: "Edicao de 1999", photo: nil, fields: [], collection: .init(name: "Carrinhos HotWheels")))
+    EditItemCollectionView(itemCollection: .init(name: "Porsche 911", desc: "Edicao de 1999", preservation: 5, collection: .init(name: "Carrinhos HotWheels")))
 }
