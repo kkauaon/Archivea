@@ -13,8 +13,6 @@ struct ProfileView: View {
     
     @State var collections: [FakeCollection] = []
     
-    @State var addNewCollectionViewIsPresented = false
-    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
@@ -70,9 +68,6 @@ struct ProfileView: View {
             alignment: .top
         )
         .padding(.horizontal, 16)
-        .sheet(isPresented: $addNewCollectionViewIsPresented) {
-            AddNewCollectionView()
-        }
         .task(id: collections) {
             collections = fakeCollections.filter { $0.author.id == profile.id }
         }
