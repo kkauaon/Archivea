@@ -119,6 +119,8 @@ struct PostExtendedView: View {
                 
             }.padding(.horizontal, 24)
         }
+        .navigationTitle("Post")
+        .navigationBarTitleDisplayMode(.inline)
         // irá executar toda vez que o arrei de favoritos mudar
         .task(id: favorites) {
             if let favorite = favorites.first(where: { $0.post.id == post.id }) {

@@ -34,11 +34,11 @@ struct ProfileView: View {
                     .lineLimit(8)
                 //Botao de editar perfil
                 Button {
-                    // solicitar contato
+                    // Ação do botão
                 } label: {
-                    Label("Solicitar Contato", systemImage: "person.badge.plus.fill")
-                        .foregroundColor(.black)
+                    Link(destination: URL("https://wa.me/\(profile.phone)"))
                 }
+
                 .buttonStyle(.bordered)
                 
                 Divider()

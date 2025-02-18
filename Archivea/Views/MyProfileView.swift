@@ -112,6 +112,6 @@ struct MyProfileView: View {
 }
 
 #Preview {
-    MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "Lorem ipsum nulla vestibulum convallis phasellus donec felis, morbi.", isWhatsappPublic: true, createdAt: .now, avatar: nil))
+    MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "Lorem ipsum nulla vestibulum convallis phasellus donec felis, morbi.", isWhatsappPublic: true, createdAt: .now, avatar: nil, phone: "85992076620"))
         .modelContainer(for: [MyProfile.self, Collection.self, ItemCollection.self])
 }
