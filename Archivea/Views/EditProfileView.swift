@@ -134,5 +134,5 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    EditProfileView(profile: .constant(.init(name: "Kauã Sousa", handle: "kkauabr", bio: "entuasista", isWhatsappPublic: true, createdAt: .now, avatar: nil)))
+    EditProfileView(profile: .constant(.init(name: "Kauã Sousa", handle: "kkauabr", bio: "entuasista", isWhatsappPublic: true, createdAt: .now, avatar: nil, phone: "85912345678")))
 }

@@ -33,12 +33,10 @@ struct ProfileView: View {
                     .font(.system(size: 17))
                     .lineLimit(8)
                 //Botao de editar perfil
-                Button {
-                    // Ação do botão
-                } label: {
-                    Link(destination: URL("https://wa.me/\(profile.phone)"))
-                }
-
+                Link (destination: URL(string: "https://wa.me//55\(profile.phone)?text=Olá \(profile.name), vi seu perfil no Archivea e tenho interesse em trocar com você.")!, label: {
+                    Label("Solicitar Contato", systemImage: "person.badge.plus.fill")
+                        .foregroundColor(.black)
+                })
                 .buttonStyle(.bordered)
                 
                 Divider()
