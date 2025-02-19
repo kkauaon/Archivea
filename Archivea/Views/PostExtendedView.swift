@@ -92,12 +92,15 @@ struct PostExtendedView: View {
                 HStack {
                     Spacer()
                     //Botão de Solicitar Contato
-                    Link (destination: URL(string: "https://wa.me//55\(post.author.phone)?text=Olá \(post.author.name), vi seu item \(post.name) no Archivea e tenho interesse em trocar com você.")!, label: {
-                        Label("Solicitar Contato", systemImage: "person.badge.plus.fill")
-                            .foregroundColor(.black)
-                    })
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
+                    if post.author.isWhatsappPublic{
+                        Link (destination: URL(string: "https://wa.me//55\(post.author.phone)?text=Olá \(post.author.name), vi seu item \(post.name) no Archivea e tenho interesse em trocar com você.")!, label: {
+                            Label("Solicitar Contato", systemImage: "person.badge.plus.fill")
+                                .foregroundColor(.black)
+                        })
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                    }
+                        
                     Spacer()
                 }
                 

@@ -14,7 +14,7 @@ func preservationToString(preservation: Int) -> String {
     case 5:
         return "Excelente"
     default:
-        return "Não disponível"
+        return "Não declarada"
     }
 }
 

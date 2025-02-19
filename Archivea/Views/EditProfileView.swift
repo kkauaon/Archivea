@@ -24,6 +24,9 @@ struct EditProfileView: View {
     
     @State var imageData : Data?
     
+    @State var isWhatsappPublic: Bool = false
+    
+    @State var phone : String = ""
     
     var body: some View {
         
@@ -55,9 +58,6 @@ struct EditProfileView: View {
                 .labelStyle(.titleAndIcon)
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
-                //                    Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
-                //                        .foregroundColor(.gray)
-                //                        .font(.caption2)
             }
             
             
@@ -89,11 +89,24 @@ struct EditProfileView: View {
                 .textFieldStyle(.roundedBorder)
                 .textInputAutocapitalization(.never)
             
+            HStack{
+                Text("Telefone")
+                Spacer()
+            }
+            
+            TextField(profile.phone, text: $phone)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+            
+            Toggle("Whatsapp Público", isOn: $isWhatsappPublic)
+            
             Button {
                 profile.name = name
                 profile.avatar = imageData
                 profile.handle = handle
                 profile.bio = bio
+                profile.isWhatsappPublic = isWhatsappPublic
+                profile.phone = phone
                 
                 dismiss()
             } label: {
@@ -101,6 +114,10 @@ struct EditProfileView: View {
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.extraLarge)
+            
+            Text("Conta criada em \(profile.createdAt.formatted())")
+                .foregroundStyle(.secondary)
+                .font(.caption)
         }
         .frame(
             maxWidth: .infinity,
@@ -111,18 +128,13 @@ struct EditProfileView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Editar Perfil")
         
-        
-        
-        //.padding(.horizontal, 32)
-        //.presentationDragIndicator(.visible)
-        //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
-        //            .presentationDetents([.height(500), .large])
-        //            .presentationCornerRadius(20)
         .onAppear {
             name = profile.name
             handle = profile.handle
             bio = profile.bio
             imageData = profile.avatar
+            isWhatsappPublic = profile.isWhatsappPublic
+            phone = profile.phone
         }
         .task(id: selectedPhoto) {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
@@ -130,7 +142,7 @@ struct EditProfileView: View {
             }
         }
     }
-
+    
 }
 
 #Preview {

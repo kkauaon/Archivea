@@ -32,12 +32,14 @@ struct ProfileView: View {
                 Text("\(profile.bio)")
                     .font(.system(size: 17))
                     .lineLimit(8)
-                //Botao de editar perfil
-                Link (destination: URL(string: "https://wa.me//55\(profile.phone)?text=Olá \(profile.name), vi seu perfil no Archivea e tenho interesse em trocar com você.")!, label: {
-                    Label("Solicitar Contato", systemImage: "person.badge.plus.fill")
-                        .foregroundColor(.black)
-                })
-                .buttonStyle(.bordered)
+                //Botao de Solicitar Contato
+                if profile.isWhatsappPublic{
+                    Link (destination: URL(string: "https://wa.me//55\(profile.phone)?text=Olá \(profile.name), vi seu perfil no Archivea e tenho interesse em trocar com você.")!, label: {
+                        Label("Solicitar Contato", systemImage: "person.badge.plus.fill")
+                            .foregroundColor(.black)
+                    })
+                    .buttonStyle(.bordered)
+                }
                 
                 Divider()
                 
