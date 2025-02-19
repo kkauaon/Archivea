@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LoginRegisterView: View {
 
+    @Environment (\.modelContext) var modelContext
+    
+    @Query var profiles: [MyProfile]
+    
     @State var isSignUp:Bool = false
     
     @State var username:String = ""
     @State var email:String = ""
     @State var password:String = ""
     @State var name:String = ""
-    
-    @Binding var isLogged:Bool
     
     var body: some View {
         ZStack {
@@ -53,7 +56,9 @@ struct LoginRegisterView: View {
                 
                 Button {
                     withAnimation {
-                        isLogged = true
+                        if !username.isEmpty, !password.isEmpty, profiles.isEmpty {
+                            modelContext.insert(MyProfile(name: name, handle: username, bio: "", isWhatsappPublic: false, createdAt: .now, phone: ""))
+                        }
                     }
                 } label: {
                     Text("Entrar")
@@ -85,7 +90,7 @@ struct LoginRegisterView: View {
 
 #Preview {
 
-    LoginRegisterView(isLogged: .constant(false))
+    LoginRegisterView()
 
 }
 

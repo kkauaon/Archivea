@@ -29,7 +29,7 @@ struct ProfileView: View {
                         Spacer()
                     }
                 }
-                Text("\(profile.bio)")
+                Text("\(profile.bio.trimmingCharacters(in: .whitespacesAndNewlines))")
                     .font(.system(size: 17))
                     .lineLimit(8)
                 //Botao de Solicitar Contato

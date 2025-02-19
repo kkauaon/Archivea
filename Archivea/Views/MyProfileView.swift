@@ -20,6 +20,7 @@ struct MyProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(alignment: .top){
                         AvatarView(avatarData: profile.avatar, avatarSize: .small)
@@ -32,8 +33,10 @@ struct MyProfileView: View {
                             Spacer()
                         }
                         Spacer()
-                        Button{
-                            //DEFINIR ACAO DESSE BOTAO AQUI, ELE ABRIRA UMA BARRA LATERAL DE CONFIGURACOES. SERA UM XITE.
+                        
+                        //Botão de Configuraões cancelado.
+                        NavigationLink {
+                            ConfigView()
                         }label: {
                             Image(systemName: "gear")
                                 .resizable()

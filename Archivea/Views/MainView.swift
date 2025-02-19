@@ -10,10 +10,10 @@ import SwiftData
 
 struct MainView: View {
     
-    @State var isLogged : Bool = true
+    @Query var profiles : [MyProfile]
     
     var body: some View {
-        if isLogged {
+        if !profiles.isEmpty {
             TabView{
                 FeedView()
                     .tabItem{
@@ -23,13 +23,13 @@ struct MainView: View {
                     .tabItem{
                         Label("Favoritos", systemImage: "star")
                     }
-                MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "Sou desenvolvedor desde os 2 anos de idade, e adoro colecionar coisas!", isWhatsappPublic: true, createdAt: .now, avatar: nil, phone: "85992076620"))
+                MyProfileView(profile: profiles.first!)
                     .tabItem{
                         Label("Perfil", systemImage: "person.crop.circle")
                     }
             }
         } else {
-            LoginRegisterView(isLogged: $isLogged)
+            LoginRegisterView()
         }
     }
 }

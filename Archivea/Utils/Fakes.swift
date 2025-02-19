@@ -1,10 +1,20 @@
 import Foundation
 
+// Nomes dos botões falsos
+let profileButtons = ["Alterar Senha", "Encerrar Sessão"]
+let notificationButtons = ["Gerenciar Notificações"]
+let accountButtons = ["Conectar Conta", "Desconectar Conta"]
+let appearanceButtons = ["Ativar/Desativar Modo Noturno"]
+let privacyButtons = ["Configurações de Privacidade", "Configurações de Segurança"]
+let storageButtons = ["Sincronizar Dados", "Limpar Cache"]
+let updateButtons = ["Atualizar Aplicativo", "Verificar Atualizações"]
+let supportButtons = ["Feedback", "Ajuda e Suporte", "Sobre o Aplicativo"]
+
 var fakeUser: [User] = [
     User(name: "Kauã Sousa", handle: "kkauabr", bio: "entusiasta", isWhatsappPublic: true, createdAt: .now, avatar: "user1", phone: "85992076620"),
     User(name: "João Gabriel", handle: "jotagezim", bio: "meu nome  joao grabiel tenho 17 anos e amo Jesus", isWhatsappPublic: true, createdAt: .now, avatar: "user2", phone: "85991422296"),
     User(name: "Ana Paula Sena", handle: "anacena", bio: "oii, sou a ana paula e gosto de psicologar", isWhatsappPublic: true, createdAt: .now, avatar: "user3", phone: "85994247927"),
-    User(name: "Ismael Lira Nascimento", handle: "maelkk", bio: "oie, sou o mael developer", isWhatsappPublic: true;, createdAt: .now, avatar: "user4", phone: "85991651334")
+    User(name: "Ismael Lira Nascimento", handle: "maelkk", bio: "oie, sou o mael developer", isWhatsappPublic: true, createdAt: .now, avatar: "user4", phone: "85991651334")
 ]
 
 var fakeCollections: [FakeCollection] = [

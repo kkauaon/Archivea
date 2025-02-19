@@ -29,102 +29,104 @@ struct EditProfileView: View {
     @State var phone : String = ""
     
     var body: some View {
-        
-        VStack(alignment: .center, spacing: 12) {
-            //Imagem
-            
-            AvatarView(avatarData: imageData, avatarSize: .large)
-            
-            //Botão de adicionar capa
-            //Caso já haja uma capa da coleção.
-            if imageData != nil {
-                Button(role: .destructive) {
-                    selectedPhoto = nil
-                    imageData = nil
-                    //Aparece a opção de remover a capa.
-                }label:{
-                    Label("Remover foto", systemImage: "play.fill")
-                }
-                .labelStyle(.titleAndIcon)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
-                //Caso não haja uma capa na coleção.
-            } else {
-                //Entender o PhotosPicker como um botão.
-                PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                    //Aparece a opção de
-                    Label("Adicionar foto", systemImage: "plus.circle")
-                }
-                .labelStyle(.titleAndIcon)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
-            }
-            
-            
-            HStack {
-                Text("Nome de usuário")
-                Spacer()
-            }
-            
-            TextField(profile.name, text: $name)
-                .textFieldStyle(.roundedBorder)
-            
-            HStack {
-                Text("Apelido")
-                Spacer()
-            }
-            
-            TextField(profile.handle, text: $handle)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
-            
-            
-            HStack{
-                Text("Biografia")
-                Spacer()
-            }
-            
-            TextField(profile.bio, text: $bio,  axis: .vertical)
-                .lineLimit(5...10)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
-            
-            HStack{
-                Text("Telefone")
-                Spacer()
-            }
-            
-            TextField(profile.phone, text: $phone)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
-            
-            Toggle("Whatsapp Público", isOn: $isWhatsappPublic)
-            
-            Button {
-                profile.name = name
-                profile.avatar = imageData
-                profile.handle = handle
-                profile.bio = bio
-                profile.isWhatsappPublic = isWhatsappPublic
-                profile.phone = phone
+        ScrollView {
+            VStack(alignment: .center, spacing: 12) {
+                //Imagem
                 
-                dismiss()
-            } label: {
-                Text("Salvar alteraçoes")
+                AvatarView(avatarData: imageData, avatarSize: .large)
+                
+                //Botão de adicionar capa
+                //Caso já haja uma capa da coleção.
+                if imageData != nil {
+                    Button(role: .destructive) {
+                        selectedPhoto = nil
+                        imageData = nil
+                        //Aparece a opção de remover a capa.
+                    }label:{
+                        Label("Remover foto", systemImage: "play.fill")
+                    }
+                    .labelStyle(.titleAndIcon)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
+                    //Caso não haja uma capa na coleção.
+                } else {
+                    //Entender o PhotosPicker como um botão.
+                    PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                        //Aparece a opção de
+                        Label("Adicionar foto", systemImage: "plus.circle")
+                    }
+                    .labelStyle(.titleAndIcon)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
+                }
+                
+                
+                HStack {
+                    Text("Nome de usuário")
+                    Spacer()
+                }
+                
+                TextField(profile.name, text: $name)
+                    .textFieldStyle(.roundedBorder)
+                
+                HStack {
+                    Text("Apelido")
+                    Spacer()
+                }
+                
+                TextField(profile.handle, text: $handle)
+                    .textFieldStyle(.roundedBorder)
+                    .textInputAutocapitalization(.never)
+                
+                
+                HStack{
+                    Text("Biografia")
+                    Spacer()
+                }
+                
+                TextField(profile.bio, text: $bio,  axis: .vertical)
+                    .lineLimit(5...10)
+                    .textFieldStyle(.roundedBorder)
+                    .textInputAutocapitalization(.never)
+                
+                HStack{
+                    Text("Telefone")
+                    Spacer()
+                }
+                
+                TextField(profile.phone, text: $phone)
+                    .textFieldStyle(.roundedBorder)
+                    .textInputAutocapitalization(.never)
+                
+                Toggle("Whatsapp Público", isOn: $isWhatsappPublic)
+                
+                Button {
+                    profile.name = name
+                    profile.avatar = imageData
+                    profile.handle = handle
+                    profile.bio = bio.trimmingCharacters(in: .whitespacesAndNewlines)
+                    profile.isWhatsappPublic = isWhatsappPublic
+                    profile.phone = phone
+                    
+                    dismiss()
+                } label: {
+                    Text("Salvar alterações")
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.extraLarge)
+                
+                Text("Conta criada em \(profile.createdAt.formatted())")
+                    .foregroundStyle(.secondary)
+                    .font(.caption)
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.extraLarge)
-            
-            Text("Conta criada em \(profile.createdAt.formatted())")
-                .foregroundStyle(.secondary)
-                .font(.caption)
+            .padding(.horizontal, 40)
         }
         .frame(
             maxWidth: .infinity,
             maxHeight: .infinity,
             alignment: .top
         )
-        .padding(.horizontal, 40)
+        .scrollIndicators(.never)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Editar Perfil")
         
