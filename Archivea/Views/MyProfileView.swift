@@ -20,7 +20,6 @@ struct MyProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(alignment: .top){
                         AvatarView(avatarData: profile.avatar, avatarSize: .small)
@@ -86,6 +85,7 @@ struct MyProfileView: View {
                         }
                         //Isso aqui foi necessário para os textos relativos à essa Navigation não ficarem azuis!
                         .buttonStyle(.plain)
+                        .frame(maxWidth: .infinity)
                     }
                 }
             }

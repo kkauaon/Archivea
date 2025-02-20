@@ -36,18 +36,21 @@ struct CollectionView: View {
                         }
                         .overlay {
                             if let data = collection.image, let image = UIImage(data: data) {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(height: 130)
-                                    .cornerRadius(5)
-                                    .clipped()
-                                    .allowsHitTesting(false)
+                                GeometryReader { sizes in
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: sizes.size.width, height: 130)
+                                        .cornerRadius(5)
+                                        .clipped()
+                                        .allowsHitTesting(false)
+                                }
                             }
                         }
                         
                 HStack{
                     Text(collection.name)
+                        .lineLimit(1)
                         .foregroundColor(.black)
                     
                     Spacer()

@@ -1,11 +1,3 @@
-//
-//  PostExtendedView.swift
-//  Archivea
-//
-//  Created by found on 04/02/25.
-//
-
-
 //ESSE FOI O QUE O DAVID AUGUSTO PROPÔS!!!
 import SwiftUI
 import SwiftData
@@ -16,6 +8,8 @@ struct PostExtendedView: View {
     
     @Query var favorites: [Favorite]
     
+    @Query var folders: [FavoriteFolder]
+    
     @State var post : Post
     
     @State var isFavorited: Bool = false
@@ -23,6 +17,8 @@ struct PostExtendedView: View {
     @State var favorite: Favorite? = nil
     
     @State var isFavoriteSelectionSheetPresented: Bool = false
+    
+    @State var isAlertPresented: Bool = false
     
     var body: some View {
         ScrollView{
@@ -36,7 +32,11 @@ struct PostExtendedView: View {
                         if isFavorited, let favorite {
                             modelContext.delete(favorite)
                         } else {
-                            isFavoriteSelectionSheetPresented = true
+                            if !folders.isEmpty{
+                                isFavoriteSelectionSheetPresented = true
+                            }else{
+                                isAlertPresented = true
+                            }
                         }
                     } label: {
                         Circle()
@@ -131,6 +131,13 @@ struct PostExtendedView: View {
             }
         }
         .sheet(isPresented: $isFavoriteSelectionSheetPresented) { FavoriteFolderSelectionView(isPresented: $isFavoriteSelectionSheetPresented, post: post)
+        }
+        .alert(Text("Sem pastas de favoritos"), isPresented: $isAlertPresented) {
+            Button("Ok") {
+                isAlertPresented = false
+            }
+        } message: {
+            Text("Parece que você ainda não possui nenhuma pasta de favoritos!\nNa barra inferior, vá em Favoritos e aperte no botão + para adicionar uma nova pasta de favoritos!")
         }
     }
 }

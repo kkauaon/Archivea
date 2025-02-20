@@ -31,19 +31,22 @@ struct FavoriteFolderView: View {
                         }
                         .overlay {
                             if let data = folder.image, let image = UIImage(data: data) {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(height: 130)
-                                    .cornerRadius(5)
-                                    .clipped()
-                                    .allowsHitTesting(false)
+                                GeometryReader { sizes in
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: sizes.size.width, height: 130)
+                                        .cornerRadius(5)
+                                        .clipped()
+                                        .allowsHitTesting(false)
+                                }
                             }
                         }
                         
                 HStack{
                     Text(folder.name)
                         .foregroundColor(.black)
+                        .lineLimit(1)
                     
                     Spacer()
                     
