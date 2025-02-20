@@ -28,6 +28,7 @@ struct FavoriteFolderView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 48)
+                                .foregroundStyle(.black)
                         }
                         .overlay {
                             if let data = folder.image, let image = UIImage(data: data) {
@@ -47,6 +48,7 @@ struct FavoriteFolderView: View {
                     Text(folder.name)
                         .foregroundColor(.black)
                         .lineLimit(1)
+                        .multilineTextAlignment(.leading)
                     
                     Spacer()
                     

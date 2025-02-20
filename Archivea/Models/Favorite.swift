@@ -13,16 +13,19 @@ class FavoriteFolder {
     var name: String
     var image: Data?
     
+    @Relationship(deleteRule: .cascade) var favorites: [Favorite]
+    
     init(name: String, image: Data? = nil) {
         self.name = name
         self.image = image
+        self.favorites = []
     }
 }
 
 @Model
 class Favorite {
     var post: Post
-    var folder: FavoriteFolder
+    @Relationship var folder: FavoriteFolder
     
     init(post: Post, folder: FavoriteFolder) {
         self.post = post

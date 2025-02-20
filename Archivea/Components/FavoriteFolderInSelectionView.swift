@@ -22,7 +22,10 @@ struct FavoriteFolderInSelectionView: View {
     var body: some View {
         Button {
             if !favorites.contains(where: { $0.post == post }) {
-                modelContext.insert(Favorite(post: post, folder: folder))
+                let newFavorite = Favorite(post: post, folder: folder)
+                
+                modelContext.insert(newFavorite)
+                folder.favorites.append(newFavorite)
                 
                 isPresented = false
             }
@@ -36,6 +39,7 @@ struct FavoriteFolderInSelectionView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 48)
+                            .foregroundStyle(.black)
                     }
                     .overlay {
                         if let data = folder.image, let image = UIImage(data: data) {
@@ -52,7 +56,8 @@ struct FavoriteFolderInSelectionView: View {
                     Text(folder.name)
                         .font(.system(size: 20))
                         .foregroundStyle(.black)
-                    Text("\(favorites.count(where: { $0.folder.id == folder.id })) itens")
+                        .multilineTextAlignment(.leading)
+                    Text("\(folder.favorites.count) itens")
                         .foregroundStyle(.gray)
                 }
             }
