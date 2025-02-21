@@ -152,5 +152,5 @@ struct EditFavoriteFolderView: View {
 }
 
 #Preview {
-    EditFavoriteFolderView(folder: .init(name: "Carrinhos"))
+    EditFavoriteFolderView(folder: .init(name: "Carrinhos", author: previewMyProfile))
 }

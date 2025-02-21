@@ -175,5 +175,5 @@ struct EditItemCollectionView: View {
 }
 
 #Preview {
-    EditItemCollectionView(itemCollection: .init(name: "Porsche 911", desc: "Edicao de 1999", preservation: 5, collection: .init(name: "Carrinhos HotWheels")))
+    EditItemCollectionView(itemCollection: .init(name: "Porsche 911", desc: "Edicao de 1999", preservation: 5, collection: .init(name: "Carrinhos HotWheels", author: previewMyProfile)))
 }

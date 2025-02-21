@@ -18,13 +18,15 @@ var fakeUser: [User] = [
 ]
 
 var fakeCollections: [FakeCollection] = [
-    FakeCollection(name: "Jogos e Consoles", isPrivate: false, image: "gameboy", author: fakeUser[0]),
-    FakeCollection(name: "Música e Áudio", isPrivate: false, image: "walkman", author: fakeUser[1]),
-    FakeCollection(name: "Fotografia", isPrivate: true, image: "cybershot", author: fakeUser[2]),
-    FakeCollection(name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150", author: fakeUser[3]),
-    FakeCollection(name: "Brinquedos", isPrivate: false, image: "tamagotchi", author: fakeUser[0]),
-    FakeCollection(name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs", author: fakeUser[1])
+    FakeCollection(id: 1, name: "Jogos e Consoles", isPrivate: false, image: "gameboy", author: fakeUser[0]),
+    FakeCollection(id: 2, name: "Música e Áudio", isPrivate: false, image: "walkman", author: fakeUser[1]),
+    FakeCollection(id: 3, name: "Fotografia", isPrivate: true, image: "cybershot", author: fakeUser[2]),
+    FakeCollection(id: 4, name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150", author: fakeUser[3]),
+    FakeCollection(id: 5, name: "Brinquedos", isPrivate: false, image: "tamagotchi", author: fakeUser[0]),
+    FakeCollection(id: 6, name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs", author: fakeUser[1])
 ]
+
+var previewMyProfile = MyProfile(name: "João Gabriel", handle: "jotagezim", isWhatsappPublic: true, createdAt: .now, phone: "123", password: "jotage123", email: "jotage@gmail.com", isLogged: true)
 
 // Coleção 0 - User 0
 // Coleção 1 - User 1
@@ -38,6 +40,7 @@ var fakePosts: [Post] {
     return [
         // Corrected existing posts
         .init(
+            id: 1,
             author: fakeUser[2],
             name: "Câmera Cybershot DSC-W620",
             desc: "Eu ganhei essa câmera de aniversário de 17 anos da minha tia Cláudia. Amei!",
@@ -50,6 +53,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[2]
         ),
         .init(
+            id: 2,
             author: fakeUser[1],
             name: "Disco de Vinil - Beatles Abbey Road",
             desc: "Disco original de 1969, encontrado em um sebo em Londres. Estado de conservação excepcional.",
@@ -62,6 +66,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
+            id: 3,
             author: fakeUser[1],
             name: "Mangá Haikyuu!! Volume 01",
             desc: "Primeira edição japonesa do mangá Haikyuu!!, comprada em Akihabara durante minha viagem ao Japão.",
@@ -74,6 +79,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[5]
         ),
         .init(
+            id: 4,
             author: fakeUser[0],
             name: "Carta Pokémon Mewtwo EX #282 Genetic Apex",
             desc: "Carta ultra rara da coleção Breakthrough, em perfeito estado. Guardada em sleeve desde a compra.",
@@ -88,6 +94,7 @@ var fakePosts: [Post] {
         
         // New posts
         .init(
+            id: 5,
             author: fakeUser[0],
             name: "Console Nintendo 64 Pikachu Edition",
             desc: "Edição especial do N64 em perfeito estado. Veio com caixa original e todos os cabos.",
@@ -100,6 +107,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
+            id: 6,
             author: fakeUser[1],
             name: "Walkman Sony WM-F2015",
             desc: "Walkman azul em ótimo estado. Funciona perfeitamente e vem com fones originais.",
@@ -112,6 +120,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
+            id: 7,
             author: fakeUser[0],
             name: "Tamagotchi Original 1996",
             desc: "Primeiro modelo de Tamagotchi lançado. Ainda funciona com a bateria original!",
@@ -124,6 +133,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[4]
         ),
         .init(
+            id: 8,
             author: fakeUser[1],
             name: "Álbum de Figurinhas Copa 1994 Completo",
             desc: "Álbum da Copa do Mundo de 1994 completamente preenchido, incluindo figurinhas raras.",
@@ -136,6 +146,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[5]
         ),
         .init(
+            id: 9,
             author: fakeUser[0],
             name: "Game Boy Color Transparente",
             desc: "Console portátil em edição transparente, com todos os botões originais funcionando.",
@@ -148,6 +159,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
+            id: 10,
             author: fakeUser[0],
             name: "Bichinho Virtual Gigapets",
             desc: "Versão dinossauro do Gigapets, popular nos anos 90. Com embalagem original.",
@@ -160,6 +172,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[4]
         ),
         .init(
+            id: 11,
             author: fakeUser[1],
             name: "Discman Sony D-EJ01",
             desc: "Discman anti-shock com design slim. Acompanha case original e fones.",
@@ -172,6 +185,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
+            id: 12,
             author: fakeUser[0],
             name: "Cartucho Street Fighter II SNES",
             desc: "Cartucho original japonês, funcionando perfeitamente. Label em ótimo estado.",
@@ -184,6 +198,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
+            id: 13,
             author: fakeUser[0],
             name: "Furby Original 1998",
             desc: "Furby da primeira geração, ainda falando e respondendo normalmente.",
@@ -196,6 +211,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[4]
         ),
         .init(
+            id: 14,
             author: fakeUser[0],
             name: "Mini Game Brick Game 9999 in 1",
             desc: "Console portátil com jogos básicos como Tetris e Snake. Funciona com pilhas.",
@@ -208,6 +224,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
+            id: 15,
             author: fakeUser[3],
             name: "Pager Motorola Advisor",
             desc: "Bip em perfeito estado de conservação, com clip e display funcionando.",
@@ -220,6 +237,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[3]
         ),
         .init(
+            id: 16,
             author: fakeUser[2],
             name: "Máquina Fotográfica Polaroid OneStep",
             desc: "Câmera instantânea vintage, testada e funcionando. Inclui manual original.",
@@ -232,6 +250,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[2]
         ),
         .init(
+            id: 17,
             author: fakeUser[3],
             name: "Genius Paint Pad",
             desc: "Mesa digitalizadora antiga da Genius, com caneta original e software.",
@@ -244,6 +263,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[3]
         ),
         .init(
+            id: 18,
             author: fakeUser[1],
             name: "Fita VHS E.T. O Extraterrestre",
             desc: "Filme em VHS original, primeira edição brasileira. Capa em ótimo estado.",
@@ -256,6 +276,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
+            id: 19,
             author: fakeUser[3],
             name: "Palm Pilot Professional",
             desc: "PDA clássico em excelente estado. Com dock de sincronização original.",
@@ -268,6 +289,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[3]
         ),
         .init(
+            id: 20,
             author: fakeUser[0],
             name: "Boneco Action Man Extremo",
             desc: "Boneco articulado com todos acessórios originais e roupas da época.",
@@ -280,6 +302,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[4]
         ),
         .init(
+            id: 21,
             author: fakeUser[3],
             name: "PC IBM 5150",
             desc: "Primeiro PC IBM lançado, funcionando perfeitamente. Com monitor original.",

@@ -6,30 +6,33 @@ struct ConfigView: View {
     @Environment(\.modelContext) var modelContext
     @Query var profiles: [MyProfile]
     
+    @State var isChangePasswordSheetPresented = false
+    
+    @State var profile: MyProfile
+    
     var body: some View {
         List {
-            
-            
             Section(header: Text("Perfil")) {
-                ForEach(profileButtons, id: \.self) { name in
-                    if !name.contains("Encerrar Sessão") {
-                        NavigationLink(destination: FeatureFuturaView()) {
-                            Text(name)
-                        }
-                        .buttonStyle(.borderless)
-                    }else{
-                        Button(role: .destructive){
-                            if let profile = profiles.first {
-                                withAnimation {
-                                    modelContext.delete(profile)
-                                }
-                            }
-                        } label: {
-                            Text(name)
-                        }
-                        .buttonStyle(.borderless)
-                    }
+                Button {
+                    isChangePasswordSheetPresented = true
+                } label: {
+                    Text("Alterar Senha")
                 }
+                .buttonStyle(.plain)
+                .sheet(isPresented: $isChangePasswordSheetPresented) {
+                    ChangePasswordView(profile: profile)
+                }
+                
+                Button(role: .destructive){
+                    if let profile = profiles.first(where: { $0.isLogged }) {
+                        print("Deslogado")
+                        profile.isLogged = false
+                    }
+                } label: {
+                    Text("Encerrar Sessão")
+                }
+                .buttonStyle(.borderless)
+                
             }
             
             Section(header: Text("Notificações")) {
@@ -96,11 +99,15 @@ struct ConfigView: View {
             }
         }
         .navigationTitle("Configurações")
-        
+        .onAppear {
+            if let profile = profiles.first(where: { $0.isLogged }) {
+                self.profile = profile
+            }
+        }
     }
 }
 #Preview {
     NavigationStack {
-        ConfigView()
+        ConfigView(profile: previewMyProfile)
     }
 }

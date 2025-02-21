@@ -159,5 +159,5 @@ struct EditCollectionView: View {
 }
 
 #Preview {
-    EditCollectionView(collection: .init(name: "Carrinhos HotWheels"))
+    EditCollectionView(collection: .init(name: "Carrinhos HotWheels", author: previewMyProfile))
 }

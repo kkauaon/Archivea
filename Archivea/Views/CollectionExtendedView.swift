@@ -66,5 +66,5 @@ struct CollectionExtendedView: View {
 }
 
 #Preview {
-    CollectionExtendedView(collection: .init(name: "ColeçãoTeste"))
+    CollectionExtendedView(collection: .init(name: "ColeçãoTeste", author: previewMyProfile))
 }

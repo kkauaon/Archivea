@@ -67,5 +67,5 @@ struct FavoriteFolderView: View {
     }
 }
 #Preview {
-    FavoriteFolderView(folder: FavoriteFolder(name: "Desejos"))
+    FavoriteFolderView(folder: FavoriteFolder(name: "Desejos", author: previewMyProfile))
 }

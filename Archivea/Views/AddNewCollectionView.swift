@@ -19,7 +19,9 @@ struct AddNewCollectionView: View {
     
     @State var selectedPhoto: PhotosPickerItem?
     
-    @State var collection : Collection = .init(name: "")
+    @State var collection : Collection = .init(name: "", author: previewMyProfile)
+    
+    @State var profile: MyProfile
     
     @State var isAlertPresented : Bool = false
     
@@ -101,7 +103,7 @@ struct AddNewCollectionView: View {
             .toolbar {
                 Button {
                     if !name.isEmpty {
-                        let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: collection.image)
+                        let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: collection.image, author: profile)
                         
                         modelContext.insert(collection)
                         
@@ -143,5 +145,5 @@ struct AddNewCollectionView: View {
 }
 
 #Preview {
-    AddNewCollectionView()
+    AddNewCollectionView(profile: previewMyProfile)
 }

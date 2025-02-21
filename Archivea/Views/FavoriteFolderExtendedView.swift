@@ -47,6 +47,6 @@ struct FavoriteFolderExtendedView: View {
 
 #Preview {
     NavigationStack {
-        FavoriteFolderExtendedView(folder: .init(name: "Carrinhos"))
+        FavoriteFolderExtendedView(folder: .init(name: "Carrinhos", author: previewMyProfile))
     }
 }

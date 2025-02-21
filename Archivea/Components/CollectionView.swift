@@ -72,5 +72,5 @@ struct CollectionView: View {
     }
 }
 #Preview {
-    CollectionView(collection: .init(name: "Coleção Teste", isPrivate: false, image: nil))
+    CollectionView(collection: .init(name: "Coleção Teste", isPrivate: false, image: nil, author: previewMyProfile))
 }

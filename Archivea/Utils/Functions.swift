@@ -18,11 +18,16 @@ func preservationToString(preservation: Int) -> String {
     }
 }
 
+func fakeUserToMyProfile (fake: User) -> MyProfile {
+    return MyProfile(name: fake.name, handle: fake.handle, isWhatsappPublic: fake.isWhatsappPublic, createdAt: fake.createdAt, phone: fake.phone, password: "", email: "", isLogged: false)
+}
+
 func fakeCollectionToRealCollection (fake: FakeCollection) -> Collection {
     return Collection(
         name: fake.name,
         isPrivate: fake.isPrivate,
-        image: UIImage(named: fake.image)?.pngData()
+        image: UIImage(named: fake.image)?.pngData(),
+        author: fakeUserToMyProfile(fake: fake.author)
     )
 }
 

@@ -12,20 +12,19 @@ import Foundation
 class FavoriteFolder {
     var name: String
     var image: Data?
+    var author: MyProfile
     
-    @Relationship(deleteRule: .cascade) var favorites: [Favorite]
-    
-    init(name: String, image: Data? = nil) {
+    init(name: String, image: Data? = nil, author: MyProfile) {
         self.name = name
         self.image = image
-        self.favorites = []
+        self.author = author
     }
 }
 
 @Model
 class Favorite {
     var post: Post
-    @Relationship var folder: FavoriteFolder
+    var folder: FavoriteFolder
     
     init(post: Post, folder: FavoriteFolder) {
         self.post = post

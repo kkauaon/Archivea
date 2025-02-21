@@ -21,11 +21,10 @@ struct FavoriteFolderInSelectionView: View {
     
     var body: some View {
         Button {
-            if !favorites.contains(where: { $0.post == post }) {
+            if !favorites.contains(where: { $0.post.id == post.id }) {
                 let newFavorite = Favorite(post: post, folder: folder)
                 
                 modelContext.insert(newFavorite)
-                folder.favorites.append(newFavorite)
                 
                 isPresented = false
             }
@@ -57,7 +56,7 @@ struct FavoriteFolderInSelectionView: View {
                         .font(.system(size: 20))
                         .foregroundStyle(.black)
                         .multilineTextAlignment(.leading)
-                    Text("\(folder.favorites.count) itens")
+                    Text("\(favorites.count(where: { $0.folder.id == folder.id })) itens")
                         .foregroundStyle(.gray)
                 }
             }
@@ -66,5 +65,5 @@ struct FavoriteFolderInSelectionView: View {
 }
 
 #Preview {
-    FavoriteFolderInSelectionView(folder: .init(name: "Carrinhos", image: nil), post: fakePosts.randomElement()!, isPresented: .constant(true))
+    FavoriteFolderInSelectionView(folder: .init(name: "Carrinhos", image: nil, author: previewMyProfile), post: fakePosts.randomElement()!, isPresented: .constant(true))
 }

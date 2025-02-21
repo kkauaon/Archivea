@@ -12,24 +12,35 @@ struct MainView: View {
     
     @Query var profiles : [MyProfile]
     
+    @State var currentProfile : MyProfile?
+    
     var body: some View {
-        if !profiles.isEmpty {
-            TabView{
-                FeedView()
-                    .tabItem{
-                        Label("Feed", systemImage: "book.fill")
-                    }
-                FavoritesView()
-                    .tabItem{
-                        Label("Favoritos", systemImage: "star")
-                    }
-                MyProfileView(profile: profiles.first!)
-                    .tabItem{
-                        Label("Perfil", systemImage: "person.crop.circle")
-                    }
+        ZStack {
+            if let profile = currentProfile {
+                TabView{
+                    FeedView()
+                        .tabItem{
+                            Label("Feed", systemImage: "book.fill")
+                        }
+                    FavoritesView(profile: profile)
+                        .tabItem{
+                            Label("Favoritos", systemImage: "star")
+                        }
+                    MyProfileView(profile: profile)
+                        .tabItem{
+                            Label("Perfil", systemImage: "person.crop.circle")
+                        }
+                }
+            } else {
+                LoginRegisterView()
             }
-        } else {
-            LoginRegisterView()
+        }
+        .task(id: profiles) {
+            if let profile = profiles.first(where: { $0.isLogged }) {
+                currentProfile = profile
+            } else {
+                currentProfile = nil
+            }
         }
     }
 }

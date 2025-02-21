@@ -11,7 +11,9 @@ import SwiftData
 struct MyProfileView: View {
     @State var profile : MyProfile
     
-    @Query(sort: \Collection.name, order: .forward) var collections : [Collection]
+    @Query(sort: \Collection.name, order: .forward) var allCollections : [Collection]
+    
+    @State var collections : [Collection] = []
     
     @State var addNewCollectionViewIsPresented = false
     
@@ -35,7 +37,7 @@ struct MyProfileView: View {
                         
                         //Botão de Configuraões cancelado.
                         NavigationLink {
-                            ConfigView()
+                            ConfigView(profile: profile)
                         }label: {
                             Image(systemName: "gear")
                                 .resizable()
@@ -99,15 +101,10 @@ struct MyProfileView: View {
             )
             .padding(.horizontal, 16)
             .sheet(isPresented: $addNewCollectionViewIsPresented) {
-                AddNewCollectionView()
+                AddNewCollectionView(profile: profile)
             }
-            .task(id: collections) {
-                print("---------------")
-                for collection in collections {
-                    
-                    print(collection.name)
-                }
-                print("---------------")
+            .task(id: allCollections) {
+                collections = allCollections.filter { $0.author.id == profile.id }
             }
             //.navigationTitle("\(profile.name)")
         }
@@ -115,6 +112,6 @@ struct MyProfileView: View {
 }
 
 #Preview {
-    MyProfileView(profile: .init(name: "Kauã Sousa", handle: "kkauabr", bio: "Lorem ipsum nulla vestibulum convallis phasellus donec felis, morbi.", isWhatsappPublic: true, createdAt: .now, avatar: nil, phone: "85992076620"))
+    MyProfileView(profile: previewMyProfile)
         .modelContainer(for: [MyProfile.self, Collection.self, ItemCollection.self])
 }

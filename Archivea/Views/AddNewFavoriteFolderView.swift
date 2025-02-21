@@ -17,7 +17,9 @@ struct AddNewFavoriteFolderView: View {
     
     @State var selectedPhoto: PhotosPickerItem?
     
-    @State var folder : FavoriteFolder = .init(name: "", image: nil)
+    @State var folder : FavoriteFolder = .init(name: "", image: nil, author: previewMyProfile)
+    
+    @State var profile: MyProfile
     
     @State var isAlertPresented : Bool = false
     
@@ -95,7 +97,7 @@ struct AddNewFavoriteFolderView: View {
             .toolbar {
                 Button {
                     if !name.isEmpty {
-                        let folder = FavoriteFolder(name: name, image: folder.image)
+                        let folder = FavoriteFolder(name: name, image: folder.image, author: profile)
                         
                         modelContext.insert(folder)
                         
@@ -130,5 +132,5 @@ struct AddNewFavoriteFolderView: View {
 }
 
 #Preview {
-    AddNewFavoriteFolderView()
+    AddNewFavoriteFolderView(profile: previewMyProfile)
 }

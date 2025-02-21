@@ -2,7 +2,8 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Post{
+class Post {
+    var id: Int
     var author: User
     var name: String
     var desc: String
@@ -12,7 +13,8 @@ class Post{
     
     var collection: FakeCollection
     
-    init(author: User, name: String, desc: String, photo: String, preservation: Int, fields: [CustomField], collection: FakeCollection) {
+    init(id: Int = Int.random(in: 1...9999999999), author: User, name: String, desc: String, photo: String, preservation: Int, fields: [CustomField], collection: FakeCollection) {
+        self.id = id
         self.author = author
         self.name = name
         self.desc = desc

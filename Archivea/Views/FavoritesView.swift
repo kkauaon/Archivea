@@ -3,7 +3,11 @@ import SwiftData
 
 struct FavoritesView: View {
     
-    @Query var folders: [FavoriteFolder]
+    @Query(sort: \FavoriteFolder.name, order: .forward) var allFolders: [FavoriteFolder]
+    
+    @State var folders: [FavoriteFolder] = []
+    
+    @State var profile: MyProfile
     
     @State var addNewFavoriteFolderIsPresented : Bool = false
     
@@ -45,13 +49,16 @@ struct FavoritesView: View {
                 alignment: .top
             )
             .sheet(isPresented: $addNewFavoriteFolderIsPresented) {
-                AddNewFavoriteFolderView()
+                AddNewFavoriteFolderView(profile: profile)
             }
             .navigationTitle("Favoritos")
+        }
+        .task(id: allFolders) {
+            folders = allFolders.filter { $0.author.id == profile.id }
         }
     }
 }
 
 #Preview {
-    FavoritesView()
+    FavoritesView(profile: previewMyProfile)
 }

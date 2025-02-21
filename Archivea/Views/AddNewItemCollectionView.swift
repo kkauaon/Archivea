@@ -28,7 +28,7 @@ struct AddNewItemCollectionView: View {
     
     @State var selectedPhoto: PhotosPickerItem?
     
-    @State var itemCollection : ItemCollection = .init(name: "", desc: "", preservation: 5, collection: .init(name: ""))
+    @State var itemCollection : ItemCollection = .init(name: "", desc: "", preservation: 5, collection: .init(name: "", author: previewMyProfile))
     
     @State var isAlertPresented : Bool = false
     

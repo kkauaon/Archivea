@@ -10,7 +10,7 @@ import SwiftData
 
 struct LoginRegisterView: View {
 
-    @Environment (\.modelContext) var modelContext
+    @Environment(\.modelContext) var modelContext
     
     @Query var profiles: [MyProfile]
     
@@ -20,6 +20,13 @@ struct LoginRegisterView: View {
     @State var email:String = ""
     @State var password:String = ""
     @State var name:String = ""
+    
+    // Alertas
+    @State var fieldsEmpty: Bool = false
+    @State var wrongPassword: Bool = false
+    @State var takenUsername: Bool = false
+    @State var takenEmail: Bool = false
+    @State var notFoundProfile: Bool = false
     
     var body: some View {
         ZStack {
@@ -56,8 +63,41 @@ struct LoginRegisterView: View {
                 
                 Button {
                     withAnimation {
-                        if !username.isEmpty, !password.isEmpty, profiles.isEmpty {
-                            modelContext.insert(MyProfile(name: name, handle: username, bio: "", isWhatsappPublic: false, createdAt: .now, phone: ""))
+                        if isSignUp {
+                            if !name.isEmpty, !username.isEmpty, !email.isEmpty, !password.isEmpty {
+                                if profiles.first(where: { $0.email == email }) != nil {
+                                    takenEmail = true
+                                } else {
+                                    if profiles.first(where: { $0.handle == username }) != nil {
+                                        takenUsername = true
+                                    } else {
+                                        modelContext.insert(MyProfile(name: name, handle: username, isWhatsappPublic: false, createdAt: .now, phone: "", password: password, email: email, isLogged: true))
+                                    }
+                                }
+                            } else {
+                                fieldsEmpty = true
+                            }
+                        } else {
+                            if !username.isEmpty, !password.isEmpty {
+                                if let profile = profiles.first(where: { $0.handle == username }) {
+                                    if profile.password == password {
+                                        // Deslogando de todos os perfis, se ainda estiverem logados, caso extremamente raro.
+                                        for p in profiles {
+                                            if p.isLogged {
+                                                p.isLogged = false
+                                            }
+                                        }
+                                        
+                                        profile.isLogged = true
+                                    } else {
+                                        wrongPassword = true
+                                    }
+                                } else {
+                                    notFoundProfile = true
+                                }
+                            } else {
+                                fieldsEmpty = true
+                            }
                         }
                     }
                 } label: {
@@ -83,6 +123,11 @@ struct LoginRegisterView: View {
                     password = ""
                 }
             }
+            .simpleAlert(isPresented: $fieldsEmpty, title: "Erro", text: "Preencha todos os campos corretamente.")
+            .simpleAlert(isPresented: $wrongPassword, title: "Erro", text: "Senha incorreta.")
+            .simpleAlert(isPresented: $takenEmail, title: "Erro", text: "Este e-mail já está associado a uma conta.")
+            .simpleAlert(isPresented: $takenUsername, title: "Erro", text: "Este nome de usuário já está em uso.")
+            .simpleAlert(isPresented: $notFoundProfile, title: "Erro", text: "Usuário inexistente.")
             .padding(.horizontal, 40) // <-- verificar no figma
         }
     }
@@ -91,6 +136,7 @@ struct LoginRegisterView: View {
 #Preview {
 
     LoginRegisterView()
+        .modelContainer(for: MyProfile.self)
 
 }
 
