@@ -4,6 +4,8 @@ import SwiftData
 struct ConfigView: View {
     
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject private var loginManager: LoginManager
+    
     @Query var profiles: [MyProfile]
     
     @State var isChangePasswordSheetPresented = false
@@ -24,9 +26,11 @@ struct ConfigView: View {
                 }
                 
                 Button(role: .destructive){
-                    if let profile = profiles.first(where: { $0.isLogged }) {
-                        print("Deslogado")
-                        profile.isLogged = false
+                    if let profile = loginManager.profile {
+                        withAnimation {
+                            profile.isLogged = false
+                            loginManager.logout()
+                        }
                     }
                 } label: {
                     Text("Encerrar Sessão")

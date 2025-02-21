@@ -3,7 +3,6 @@ import SwiftUI
 
 struct LittleSheet: ViewModifier {
     var title: String
-    var sheetHeight: CGFloat
     var saveAction: () -> Void
     
     func body(content: Content) -> some View {
@@ -34,14 +33,17 @@ struct LittleSheet: ViewModifier {
 }
 
 extension View {
+    // Criando o modifier .littleSheet
+    // O que permite customizar? Altura da sheet, o título dela e ação de quando clicar em "Salvar"
     func littleSheet(height: CGFloat = 450, title: String, saveAction: @escaping () -> Void) -> some View {
         NavigationView {
-            modifier(LittleSheet(title: title, sheetHeight: height, saveAction: saveAction))
+            modifier(LittleSheet(title: title, saveAction: saveAction))
         }
         .presentationDetents([.height(height), .large])
         .presentationCornerRadius(20)
     }
     
+    // Alerta simplificado, vem com botão "Ok" com ação já feita. Basta usar .simpleAlert(isPresented, title: "Alerta", text: "Mensagem")
     func simpleAlert(isPresented: Binding<Bool>, title: String, text: String) -> some View {
         self.alert(title, isPresented: isPresented, actions: {
             Button("Ok") {

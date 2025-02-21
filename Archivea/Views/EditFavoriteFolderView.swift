@@ -25,113 +25,88 @@ struct EditFavoriteFolderView: View {
     
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .center, spacing: 12) {
-                //Imagem
-                if let data = imageData, let image = UIImage(data: data) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 170, height: 130)
-                        .clipped()
-                        .cornerRadius(5)
-                        .padding(.top, 10)
-                } else {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(.gray)
-                        .frame(width: 170, height: 130)
-                        .padding(.top, 10)
-                        .overlay {
-                            Image(systemName: "photo.badge.plus.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 48)
-                        }
-                }
-                
-                
-                //Botão de adicionar capa
-                //Caso já haja uma capa da coleção.
-                if imageData != nil {
-                        Button(role: .destructive) {
-                            selectedPhoto = nil
-                            imageData = nil
-                            //Aparece a opção de remover a capa.
-                        }label:{
-                            Label("Remover Imagem", systemImage: "play.fill")
-                        }
-                        .padding(.top, 5)
-                        .labelStyle(.titleAndIcon)
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.small)
-                //Caso não haja uma capa na coleção.
-                } else {
-                    //Entender o PhotosPicker como um botão.
-                    PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                        //Aparece a opção de
-                            Label("Adicionar Imagem", systemImage: "plus.circle")
+        VStack(alignment: .center, spacing: 12) {
+            //Imagem
+            if let data = imageData, let image = UIImage(data: data) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 170, height: 130)
+                    .clipped()
+                    .cornerRadius(5)
+                    .padding(.top, 10)
+            } else {
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(.gray)
+                    .frame(width: 170, height: 130)
+                    .padding(.top, 10)
+                    .overlay {
+                        Image(systemName: "photo.badge.plus.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 48)
                     }
-                    .padding(.top, 5)
-                    .labelStyle(.titleAndIcon)
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.small)
-                    Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
-                        .foregroundColor(.gray)
-                        .font(.caption2)
-                }
-                
-                
-                HStack {
-                    Text("Título:")
-                    Spacer()
-                }
-                
-                TextField("Adicionar título", text: $name)
-                    .textFieldStyle(.roundedBorder)
-                
-                Button(role: .destructive){
-                    modelContext.delete(folder)
-                }label:{
-                    Label("Deletar pasta", systemImage: "trash")
-                }
-                .buttonStyle(.borderedProminent)
-                .cornerRadius(40)
             }
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity,
-                alignment: .top
-            )
-            .padding(.horizontal, 40)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Editar Pasta de Favoritos")
-            .toolbar {
-                Button {
-                    if !name.isEmpty {
-//                        modelContext.delete(collection)
-//                        //Instanciando a coleção
-//                        let collection = Collection(name: name, isPrivate: collectionIsPrivate, image: imageData)
-//                        modelContext.insert(collection)
-                        
-                        folder.name = name
-                        folder.image = imageData
-                        
-                        dismiss()
-                    }
-                    else{
-                        isAlertPresented = true
-                    }
-                } label: {
-                    Text("Salvar")
-                        .bold()
+            
+            
+            //Botão de adicionar capa
+            //Caso já haja uma capa da coleção.
+            if imageData != nil {
+                Button(role: .destructive) {
+                    selectedPhoto = nil
+                    imageData = nil
+                    //Aparece a opção de remover a capa.
+                }label:{
+                    Label("Remover Imagem", systemImage: "play.fill")
                 }
+                .padding(.top, 5)
+                .labelStyle(.titleAndIcon)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                //Caso não haja uma capa na coleção.
+            } else {
+                //Entender o PhotosPicker como um botão.
+                PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                    //Aparece a opção de
+                    Label("Adicionar Imagem", systemImage: "plus.circle")
+                }
+                .padding(.top, 5)
+                .labelStyle(.titleAndIcon)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
+                    .foregroundColor(.gray)
+                    .font(.caption2)
+            }
+            
+            
+            HStack {
+                Text("Título:")
+                Spacer()
+            }
+            
+            TextField("Adicionar título", text: $name)
+                .textFieldStyle(.roundedBorder)
+            
+            Button(role: .destructive){
+                modelContext.delete(folder)
+            }label:{
+                Label("Deletar pasta", systemImage: "trash")
+            }
+            .buttonStyle(.borderedProminent)
+            .cornerRadius(40)
+        }
+        .littleSheet(title: "Editar Pasta de Favoritos") {
+            if !name.isEmpty {
+                folder.name = name
+                folder.image = imageData
+                
+                dismiss()
+            }
+            else{
+                isAlertPresented = true
             }
         }
-        //.padding(.horizontal, 32)
-        //.presentationDragIndicator(.visible)
-        //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
-        .presentationDetents([.height(450), .large])
-        .presentationCornerRadius(20)
         .onAppear {
             name = folder.name
             imageData = folder.image

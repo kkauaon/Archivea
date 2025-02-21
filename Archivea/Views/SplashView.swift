@@ -10,6 +10,8 @@ import SwiftUI
 struct SplashView: View {
     @State var isActive : Bool = true
     
+    @StateObject var loginManager =  LoginManager()
+    
     let splashTime = 0.1;
     // tempo em segundos do splash
     
@@ -25,6 +27,7 @@ struct SplashView: View {
                     .scaledToFit()
             } else {
                 MainView()
+                    .environmentObject(loginManager)
             }
         }
         .onAppear {

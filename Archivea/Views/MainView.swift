@@ -12,11 +12,11 @@ struct MainView: View {
     
     @Query var profiles : [MyProfile]
     
-    @State var currentProfile : MyProfile?
+    @EnvironmentObject private var loginManager: LoginManager
     
     var body: some View {
         ZStack {
-            if let profile = currentProfile {
+            if let profile = loginManager.profile {
                 TabView{
                     FeedView()
                         .tabItem{
@@ -37,9 +37,7 @@ struct MainView: View {
         }
         .task(id: profiles) {
             if let profile = profiles.first(where: { $0.isLogged }) {
-                currentProfile = profile
-            } else {
-                currentProfile = nil
+                loginManager.login(profile: profile)
             }
         }
     }
@@ -47,6 +45,6 @@ struct MainView: View {
 
 #Preview {
     MainView()
-        .modelContainer(for: [ItemCollection.self, Collection.self, MyProfile.self], inMemory: false)
+        .modelContainer(for: [ItemCollection.self, Collection.self, MyProfile.self, FavoriteFolder.self, Favorite.self], inMemory: false)
 }
 

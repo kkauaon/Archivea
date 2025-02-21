@@ -12,6 +12,8 @@ struct LoginRegisterView: View {
 
     @Environment(\.modelContext) var modelContext
     
+    @EnvironmentObject private var loginManager: LoginManager
+    
     @Query var profiles: [MyProfile]
     
     @State var isSignUp:Bool = false
@@ -89,6 +91,7 @@ struct LoginRegisterView: View {
                                         }
                                         
                                         profile.isLogged = true
+                                        loginManager.login(profile: profile)
                                     } else {
                                         wrongPassword = true
                                     }
