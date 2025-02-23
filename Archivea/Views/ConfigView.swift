@@ -48,7 +48,7 @@ struct ConfigView: View {
                 }
             }
             
-            Section(header: Text("Contas")) {
+            Section(header: Text("Integrações")) {
                 ForEach(accountButtons, id: \.self) { name in
                     NavigationLink(destination: FeatureFuturaView()) {
                         Text(name)

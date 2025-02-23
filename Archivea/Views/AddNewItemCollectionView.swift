@@ -12,6 +12,7 @@ struct AddNewItemCollectionView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
+    @Environment(\.defaultMinListRowHeight) var minRowHeight
     
     //Estrutura do ItemCollection
     //    var name: String
@@ -34,88 +35,117 @@ struct AddNewItemCollectionView: View {
     
     @State var preservation : Int = 5
     
+    @State var customFields: [CustomField] = []
+    
     
     var body: some View {
-        VStack(alignment: .center, spacing: 12) {
-            //Imagem
-            if let data = itemCollection.photo, let image = UIImage(data: data) {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 130)
-                    .clipped()
-                    .cornerRadius(5)
-                    .padding(.top, 10)
-            } else {
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(.gray)
-                    .frame(width: 170, height: 130)
-                    .padding(.top, 10)
-                    .overlay {
-                        Image(systemName: "photo.badge.plus.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 48)
-                    }
-            }
-            
-            
-            //Botão de adicionar capa
-            if selectedPhoto != nil {
-                Button(role: .destructive) {
-                    selectedPhoto = nil
-                    itemCollection.photo = nil
-                }label:{
-                    Label("Remover Imagem", systemImage: "play.fill")
+        ScrollView {
+            VStack(alignment: .center, spacing: 12) {
+                //Imagem
+                if let data = itemCollection.photo, let image = UIImage(data: data) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 130)
+                        .clipped()
+                        .cornerRadius(5)
+                        .padding(.top, 10)
+                } else {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(.gray)
+                        .frame(width: 170, height: 130)
+                        .padding(.top, 10)
+                        .overlay {
+                            Image(systemName: "photo.badge.plus.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 48)
+                        }
                 }
-                .padding(.top, 5)
-                .labelStyle(.titleAndIcon)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
                 
-            } else {
-                //Entender o PhotosPicker como um botão.
-                PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                    Label("Adicionar Imagem", systemImage: "plus.circle")
+                
+                //Botão de adicionar capa
+                if selectedPhoto != nil {
+                    Button(role: .destructive) {
+                        selectedPhoto = nil
+                        itemCollection.photo = nil
+                    }label:{
+                        Label("Remover Imagem", systemImage: "play.fill")
+                    }
+                    .padding(.top, 5)
+                    .labelStyle(.titleAndIcon)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
+                    
+                } else {
+                    //Entender o PhotosPicker como um botão.
+                    PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                        Label("Adicionar Imagem", systemImage: "plus.circle")
+                    }
+                    .padding(.top, 5)
+                    .labelStyle(.titleAndIcon)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
+                    Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
+                        .foregroundColor(.gray)
+                        .font(.caption2)
                 }
-                .padding(.top, 5)
-                .labelStyle(.titleAndIcon)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.small)
-                Text("💡Dica: Corte a imagem previamente para que ela fique melhor ajustada!")
-                    .foregroundColor(.gray)
-                    .font(.caption2)
+                
+                
+                HStack {
+                    Text("Nome:")
+                    Spacer()
+                }
+                
+                TextField("Nome do item", text: $name)
+                    .textFieldStyle(.roundedBorder)
+                
+                //COLOCAR AQUI O Picker DA preservation!!!
+                HStack {
+                    Text("Estado de Conservação:")
+                    Spacer()
+                }
+                
+                PreservationPicker(selection: $preservation)
+                
+                HStack {
+                    Text("Descrição:")
+                    Spacer()
+                }
+                
+                TextField("Adicionar descrição", text: $desc, axis: .vertical)
+                    .textFieldStyle(.roundedBorder)
+                    .lineLimit(5...10)
+                
+                HStack{
+                    Text("Características")
+                    Spacer()
+                    Button{
+                        customFields.append(CustomField(fieldName: "", fieldValue: ""))
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundStyle(.black)
+                    }
+                }
+                
+                List {
+                    ForEach ($customFields) { field in
+                        CustomFieldView(field: field)
+                            .listRowInsets(EdgeInsets())
+                            .listRowSeparator(.hidden)
+                    }
+                    .onDelete { indices in
+                        customFields.remove(atOffsets: indices)
+                    }
+                }
+                .frame(minHeight: minRowHeight * CGFloat(customFields.count))
+                .listStyle(.plain)
+                
             }
-            
-            
-            HStack {
-                Text("Nome:")
-                Spacer()
-            }
-            
-            TextField("Nome do item", text: $name)
-                .textFieldStyle(.roundedBorder)
-            
-            //COLOCAR AQUI O Picker DA preservation!!!
-            HStack {
-                Text("Estado de Conservação:")
-                Spacer()
-            }
-            
-            PreservationPicker(selection: $preservation)
-            
-            HStack {
-                Text("Descrição:")
-                Spacer()
-            }
-            
-            TextField("Adicionar descrição", text: $desc, axis: .vertical)
-                .textFieldStyle(.roundedBorder)
-                .lineLimit(5...10)
         }
-        .littleSheet(height: 550, title: "Adicionar Item") {
+        .littleSheet(height: 650, title: "Adicionar Item") {
             if !name.isEmpty {
-                let newItem = ItemCollection(name: name, desc: desc, preservation: preservation, photo: itemCollection.photo, fields: [], collection: itemCollection.collection)
+                let newItem = ItemCollection(name: name, desc: desc, preservation: preservation, photo: itemCollection.photo, fields: customFields, collection: itemCollection.collection)
                 
                 modelContext.insert(newItem)
                 

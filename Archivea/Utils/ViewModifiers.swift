@@ -6,7 +6,6 @@ struct LittleSheet: ViewModifier {
     var saveAction: () -> Void
     
     func body(content: Content) -> some View {
-
             content
                 .frame(
                     maxWidth: .infinity,
@@ -24,6 +23,7 @@ struct LittleSheet: ViewModifier {
                             .bold()
                     }
                 }
+                .scrollIndicators(.hidden)
             }
             //.padding(.horizontal, 32)
             //.presentationDragIndicator(.visible)
@@ -40,6 +40,14 @@ extension View {
             modifier(LittleSheet(title: title, saveAction: saveAction))
         }
         .presentationDetents([.height(height), .large])
+        .presentationCornerRadius(20)
+    }
+    
+    func littleSheet(height: PresentationDetent, title: String, saveAction: @escaping () -> Void) -> some View {
+        NavigationView {
+            modifier(LittleSheet(title: title, saveAction: saveAction))
+        }
+        .presentationDetents([height, .large])
         .presentationCornerRadius(20)
     }
     
