@@ -48,6 +48,7 @@ struct FeedView: View {
             )
             .padding(.horizontal, 16)
             .navigationTitle("Feed")
+            
         }
         .onAppear {
             posts = fakePosts

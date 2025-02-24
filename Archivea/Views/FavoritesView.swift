@@ -14,20 +14,6 @@ struct FavoritesView: View {
     var body: some View {
         NavigationStack{
             ScrollView {
-                HStack{
-                    Text("Adicionar pasta de favoritos")
-                        .font(.system(size: 20))
-                    Spacer()
-                    Button {
-                        addNewFavoriteFolderIsPresented = true
-                    } label: {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .foregroundColor(.black)
-                            .frame(width: 20, height: 20)
-                    }
-                }
-                
                 VStack(spacing: 20) {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())] ){
                         ForEach (folders){ folder in
@@ -52,6 +38,22 @@ struct FavoritesView: View {
                 AddNewFavoriteFolderView(profile: profile)
             }
             .navigationTitle("Favoritos")
+            .toolbar{
+                ToolbarItem(placement: .topBarTrailing){
+                    HStack{
+                        Spacer()
+                        
+                        Button {
+                            addNewFavoriteFolderIsPresented = true
+                        } label: {
+                            Image(systemName: "folder.badge.plus")
+                                .resizable()
+                                .foregroundColor(.black)
+                                .frame(width: 35, height: 25)
+                        }
+                    }
+                }
+            }
         }
         .task(id: allFolders) {
             folders = allFolders.filter { $0.author.id == profile.id }

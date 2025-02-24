@@ -13,6 +13,8 @@ struct ArchiveaApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
+                .environment(\.font, .system(.body, design: .rounded))
         }
     }
 }

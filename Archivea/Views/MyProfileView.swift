@@ -61,11 +61,9 @@ struct MyProfileView: View {
                     Divider()
                     
                     VStack(alignment: .leading) {
-                        Text("Coleções")
-                            .font(.system(size: 24))
                         HStack{
-                            Text("Adicionar coleção")
-                                .font(.system(size: 20))
+                            Text("Coleções")
+                                .font(.system(size: 24))
                             Spacer()
                             Button {
                                 addNewCollectionViewIsPresented = true

@@ -62,3 +62,23 @@ extension View {
         })
     }
 }
+
+//SFProRounded
+struct RoundedFont: ViewModifier {
+    let size: CGFloat
+    
+    init(size: CGFloat? = nil) {
+        self.size = size ?? 17 // Tamanho padrão do sistema se não for especificado!!
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.custom("SF Pro Rounded", size: size))
+    }
+}
+
+extension View {
+    func roundedFont(size: CGFloat? = nil) -> some View {
+        modifier(RoundedFont(size: size))
+    }
+}
