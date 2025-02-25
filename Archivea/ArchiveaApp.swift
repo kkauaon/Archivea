@@ -14,7 +14,7 @@ struct ArchiveaApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.light)
-                .environment(\.font, .system(.body, design: .rounded))
+                //.environment(\.font, .system(.body, design: .rounded))
         }
     }
 }

@@ -45,10 +45,14 @@ struct FavoriteFolderView: View {
                         }
                         
                 HStack{
-                    Text(folder.name)
-                        .foregroundColor(.black)
-                        .lineLimit(1)
-                        .multilineTextAlignment(.leading)
+                    VStack(alignment: .leading){
+                        Text(folder.name)
+                            .foregroundColor(.black)
+                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
+                        Text("\(itemsFromFolder.count) itens")
+                            .foregroundStyle(.gray)
+                    }
                     
                     Spacer()
                     
@@ -58,6 +62,15 @@ struct FavoriteFolderView: View {
                         Image(systemName: "pencil")
                             .foregroundColor(.black)
                             .padding(5)
+                    }
+                }
+            }
+            .task(id: items) {
+                itemsFromFolder.removeAll()
+                
+                for item in items {
+                    if item.folder.id == folder.id {
+                        itemsFromFolder.append(item)
                     }
                 }
             }

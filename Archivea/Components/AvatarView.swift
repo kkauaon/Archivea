@@ -16,7 +16,7 @@ struct AvatarView: View {
                 .cornerRadius(5)
         } else {
             RoundedRectangle(cornerRadius: 5)
-                .fill(Color.gray)
+                .fill(Color(hex: 0xDFDFDF))
                 .frame(width: avatarSize.size, height: avatarSize.size)
                 .overlay {
                     Image(systemName: "person.circle")

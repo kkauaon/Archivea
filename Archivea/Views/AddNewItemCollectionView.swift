@@ -52,14 +52,15 @@ struct AddNewItemCollectionView: View {
                         .padding(.top, 10)
                 } else {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(.gray)
+                        .fill(Color(hex: 0xDFDFDF))
                         .frame(width: 170, height: 130)
                         .padding(.top, 10)
-                        .overlay {
-                            Image(systemName: "photo.badge.plus.fill")
+                        .overlay(alignment: .center) {
+                            Image(systemName: "plus.square")
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 48)
+                                .foregroundStyle(Color(hex: 0x3C3C43, alpha: 0.29))
+                                .frame(width: 60, height: 60)
+                                .padding(.top, 10)
                         }
                 }
                 
@@ -145,6 +146,8 @@ struct AddNewItemCollectionView: View {
         }
         .littleSheet(height: 650, title: "Adicionar Item") {
             if !name.isEmpty {
+                customFields.removeAll(where: { $0.fieldName.isEmpty || $0.fieldValue.isEmpty })
+                
                 let newItem = ItemCollection(name: name, desc: desc, preservation: preservation, photo: itemCollection.photo, fields: customFields, collection: itemCollection.collection)
                 
                 modelContext.insert(newItem)

@@ -41,3 +41,4 @@ func postToItemCollection (post: Post) -> ItemCollection {
         collection: fakeCollectionToRealCollection(fake: post.collection)
     )
 }
+

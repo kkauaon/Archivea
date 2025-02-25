@@ -39,14 +39,15 @@ struct AddNewCollectionView: View {
                     .padding(.top, 10)
             } else {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(.gray)
+                    .fill(Color(hex: 0xDFDFDF))
                     .frame(width: 170, height: 130)
                     .padding(.top, 10)
-                    .overlay {
-                        Image(systemName: "photo.badge.plus.fill")
+                    .overlay(alignment: .center) {
+                        Image(systemName: "plus.square")
                             .resizable()
-                            .scaledToFit()
-                            .frame(width: 48)
+                            .foregroundStyle(Color(hex: 0x3C3C43, alpha: 0.29))
+                            .frame(width: 60, height: 60)
+                            .padding(.top, 10)
                     }
             }
             
@@ -111,13 +112,7 @@ struct AddNewCollectionView: View {
             }
         }
         //        .alert(Text("Coloque um título na sua categoria!"), isPresented: $isAlertPresented) message: Text("Não é possível criar uma coleção sem nome. \n Para adicionar sua coleção, por favor, ponha um nome e tente novamente."))
-        .alert(Text("Entitule a sua coleção."), isPresented: $isAlertPresented) {
-            Button("Ok") {
-                isAlertPresented = false
-            }
-        } message: {
-            Text("Não é possível criar uma coleção sem nome.\nPara adicionar sua coleção, por favor, ponha um nome e tente novamente.")
-        }
+        .simpleAlert(isPresented: $isAlertPresented, title: "Entitule a sua coleção.", text:  "Não é possível criar uma coleção sem nome.\nPara adicionar sua coleção, por favor, ponha um nome e tente novamente.")
         
         //Mostrar o Grab da sheet
         //AddNewCollectionView.prefersGrabberVisible = true

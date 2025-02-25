@@ -49,9 +49,13 @@ struct CollectionView: View {
                         }
                         
                 HStack{
-                    Text(collection.name)
-                        .lineLimit(1)
-                        .foregroundColor(.black)
+                    VStack(alignment: .leading){
+                        Text(collection.name)
+                            .lineLimit(1)
+                            .foregroundColor(.black)
+                        Text("\(itemsFromCollection.count) itens")
+                            .foregroundStyle(.gray)
+                    }
                     
                     Spacer()
                     
@@ -63,6 +67,15 @@ struct CollectionView: View {
                                 .foregroundColor(.black)
                                 .padding(5)
                         }
+                    }
+                }
+            }
+            .task(id: items) {
+                itemsFromCollection.removeAll()
+                
+                for item in items {
+                    if item.collection.id == collection.id {
+                        itemsFromCollection.append(item)
                     }
                 }
             }
