@@ -21,7 +21,7 @@ struct FavoriteFolderInSelectionView: View {
     
     var body: some View {
         Button {
-            if !favorites.contains(where: { $0.post.id == post.id }) {
+            if !favorites.contains(where: { $0.post.id == post.id && $0.folder.id == folder.id }) {
                 let newFavorite = Favorite(post: post, folder: folder)
                 
                 modelContext.insert(newFavorite)
@@ -31,15 +31,8 @@ struct FavoriteFolderInSelectionView: View {
         } label: {
             HStack(alignment: .top){
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(.gray)
+                    .noPhotoOverlay(topPadding: 0, size: 30)
                     .frame(width: 125, height: 90)
-                    .overlay {
-                        Image(systemName: "photo.badge.plus.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 48)
-                            .foregroundStyle(.black)
-                    }
                     .overlay {
                         if let data = folder.image, let image = UIImage(data: data) {
                             Image(uiImage: image)

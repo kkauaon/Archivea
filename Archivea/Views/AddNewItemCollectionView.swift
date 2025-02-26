@@ -52,16 +52,9 @@ struct AddNewItemCollectionView: View {
                         .padding(.top, 10)
                 } else {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(Color(hex: 0xDFDFDF))
+                        .noPhotoOverlay()
                         .frame(width: 170, height: 130)
                         .padding(.top, 10)
-                        .overlay(alignment: .center) {
-                            Image(systemName: "plus.square")
-                                .resizable()
-                                .foregroundStyle(Color(hex: 0x3C3C43, alpha: 0.29))
-                                .frame(width: 60, height: 60)
-                                .padding(.top, 10)
-                        }
                 }
                 
                 
@@ -71,7 +64,7 @@ struct AddNewItemCollectionView: View {
                         selectedPhoto = nil
                         itemCollection.photo = nil
                     }label:{
-                        Label("Remover Imagem", systemImage: "play.fill")
+                        Label("Remover Imagem", systemImage: "trash")
                     }
                     .padding(.top, 5)
                     .labelStyle(.titleAndIcon)

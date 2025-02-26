@@ -43,7 +43,7 @@ struct EditProfileView: View {
                         imageData = nil
                         //Aparece a opção de remover a capa.
                     }label:{
-                        Label("Remover foto", systemImage: "play.fill")
+                        Label("Remover foto", systemImage: "trash")
                     }
                     .labelStyle(.titleAndIcon)
                     .buttonStyle(.borderedProminent)

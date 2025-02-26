@@ -26,14 +26,8 @@ struct CollectionView: View {
     var body: some View {
             VStack {
                 RoundedRectangle(cornerRadius: 5)
-                        .fill(.gray)
+                    .noPhotoOverlay()
                         .frame(height: 130)
-                        .overlay {
-                            Image(systemName: "photo.badge.plus.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 48)
-                        }
                         .overlay {
                             if let data = collection.image, let image = UIImage(data: data) {
                                 GeometryReader { sizes in

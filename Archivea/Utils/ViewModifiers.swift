@@ -3,6 +3,8 @@ import SwiftUI
 
 struct LittleSheet: ViewModifier {
     var title: String
+    var toolbarText: String
+    var padding: CGFloat
     var saveAction: () -> Void
     
     func body(content: Content) -> some View {
@@ -12,15 +14,17 @@ struct LittleSheet: ViewModifier {
                     maxHeight: .infinity,
                     alignment: .top
                 )
-                .padding(.horizontal, 40)
+                .padding(.horizontal, padding)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle(title)
                 .toolbar {
-                    Button {
-                        saveAction()
-                    } label: {
-                        Text("Salvar")
-                            .bold()
+                    if !toolbarText.isEmpty {
+                        Button {
+                            saveAction()
+                        } label: {
+                            Text(toolbarText)
+                                .bold()
+                        }
                     }
                 }
                 .scrollIndicators(.hidden)
@@ -35,17 +39,17 @@ struct LittleSheet: ViewModifier {
 extension View {
     // Criando o modifier .littleSheet
     // O que permite customizar? Altura da sheet, o título dela e ação de quando clicar em "Salvar"
-    func littleSheet(height: CGFloat = 450, title: String, saveAction: @escaping () -> Void) -> some View {
+    func littleSheet(height: CGFloat = 450, title: String, toolbarText: String = "Salvar", padding: CGFloat = 40, saveAction: @escaping () -> Void) -> some View {
         NavigationView {
-            modifier(LittleSheet(title: title, saveAction: saveAction))
+            modifier(LittleSheet(title: title, toolbarText: toolbarText, padding: padding, saveAction: saveAction))
         }
         .presentationDetents([.height(height), .large])
         .presentationCornerRadius(20)
     }
     
-    func littleSheet(height: PresentationDetent, title: String, saveAction: @escaping () -> Void) -> some View {
+    func littleSheet(height: PresentationDetent, title: String, toolbarText: String = "Salvar", padding: CGFloat = 40, saveAction: @escaping () -> Void) -> some View {
         NavigationView {
-            modifier(LittleSheet(title: title, saveAction: saveAction))
+            modifier(LittleSheet(title: title, toolbarText: toolbarText, padding: padding, saveAction: saveAction))
         }
         .presentationDetents([height, .large])
         .presentationCornerRadius(20)
@@ -61,6 +65,24 @@ extension View {
             Text(text)
         })
     }
+    
+    func roundedFont(size: CGFloat? = nil) -> some View {
+        modifier(RoundedFont(size: size))
+    }
+}
+
+extension RoundedRectangle {
+    func noPhotoOverlay(topPadding: CGFloat = 5.0, size: CGFloat = 60.0) -> some View {
+        self
+            .fill(Color(hex: 0xDFDFDF))
+            .overlay(alignment: .center) {
+                Image(systemName: "plus.square")
+                    .resizable()
+                    .foregroundStyle(Color(hex: 0x3C3C43, alpha: 0.29))
+                    .frame(width: size, height: size)
+                    .padding(.top, topPadding)
+            }
+    }
 }
 
 //SFProRounded
@@ -74,11 +96,5 @@ struct RoundedFont: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.custom("SF Pro Rounded", size: size))
-    }
-}
-
-extension View {
-    func roundedFont(size: CGFloat? = nil) -> some View {
-        modifier(RoundedFont(size: size))
     }
 }

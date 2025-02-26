@@ -103,6 +103,8 @@ struct MyProfileView: View {
             }
             .task(id: allCollections) {
                 collections = allCollections.filter { $0.author.id == profile.id }
+                
+                collections.sort(by: { $0.name < $1.name })
             }
             //.navigationTitle("\(profile.name)")
         }

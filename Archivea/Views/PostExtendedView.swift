@@ -9,6 +9,7 @@ struct PostExtendedView: View {
     @Query var favorites: [Favorite]
     
     @Query var folders: [FavoriteFolder]
+    //@State var folders: [FavoriteFolder] = []
     
     @State var post : Post
     
@@ -19,6 +20,8 @@ struct PostExtendedView: View {
     @State var isFavoriteSelectionSheetPresented: Bool = false
     
     @State var isAlertPresented: Bool = false
+    
+    @EnvironmentObject private var loginManager: LoginManager
     
     var body: some View {
         ScrollView{
@@ -32,11 +35,11 @@ struct PostExtendedView: View {
                         if isFavorited, let favorite {
                             modelContext.delete(favorite)
                         } else {
-                            if !folders.isEmpty{
-                                isFavoriteSelectionSheetPresented = true
-                            }else{
-                                isAlertPresented = true
+                            if folders.isEmpty, let profile = loginManager.profile {
+                                modelContext.insert(FavoriteFolder(name: "Lista de Desejos", author: profile))
                             }
+                            
+                            isFavoriteSelectionSheetPresented = true
                         }
                     } label: {
                         Circle()
@@ -123,7 +126,7 @@ struct PostExtendedView: View {
         .navigationBarTitleDisplayMode(.inline)
         // irá executar toda vez que o arrei de favoritos mudar
         .task(id: favorites) {
-            if let favorite = favorites.first(where: { $0.post.id == post.id }) {
+            if let favorite = favorites.first(where: { $0.post.id == post.id && $0.folder.author.id == loginManager.profile!.id }) {
                 self.favorite = favorite
                 isFavorited = true
             } else {
@@ -145,6 +148,7 @@ struct PostExtendedView: View {
 #Preview {
     NavigationView {
         PostExtendedView(post: fakePosts.randomElement()!)
+            .environmentObject(LoginManager(profile: previewMyProfile))
     }
 }
 

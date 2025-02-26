@@ -37,16 +37,9 @@ struct AddNewFavoriteFolderView: View {
                     .padding(.top, 10)
             } else {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(Color(hex: 0xDFDFDF))
+                    .noPhotoOverlay()
                     .frame(width: 170, height: 130)
                     .padding(.top, 10)
-                    .overlay(alignment: .center) {
-                        Image(systemName: "plus.square")
-                            .resizable()
-                            .foregroundStyle(Color(hex: 0x3C3C43, alpha: 0.29))
-                            .frame(width: 60, height: 60)
-                            .padding(.top, 10)
-                    }
             }
             
             
@@ -56,7 +49,7 @@ struct AddNewFavoriteFolderView: View {
                     selectedPhoto = nil
                     folder.image = nil
                 }label:{
-                    Label("Remover capa", systemImage: "play.fill")
+                    Label("Remover capa", systemImage: "trash")
                 }
                 .padding(.top, 5)
                 .labelStyle(.titleAndIcon)

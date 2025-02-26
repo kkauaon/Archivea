@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FeedView: View {
+    @Namespace private var animation
+    
     @State var search: String = ""
     
     @State var posts: [Post] = []
@@ -20,8 +22,10 @@ struct FeedView: View {
                         ForEach (posts) { post in
                             if let position = posts.firstIndex(where: { $0.id == post.id }), position % 2 == 0 {
                                 NavigationLink { PostExtendedView(post: post)
+                                        .navigationTransition(.zoom(sourceID: "zoom-\(post.id)", in: animation))
                                 } label: {
                                     PostView(post: post)
+                                        .matchedTransitionSource(id: "zoom-\(post.id)", in: animation)
                                 }
                                 .buttonStyle(.plain)
                             }
@@ -31,8 +35,10 @@ struct FeedView: View {
                         ForEach (posts) { post in
                             if let position = posts.firstIndex(where: { $0.id == post.id }), position % 2 != 0 {
                                 NavigationLink { PostExtendedView(post: post)
+                                        .navigationTransition(.zoom(sourceID: "zoom-\(post.id)", in: animation))
                                 } label: {
                                     PostView(post: post)
+                                        .matchedTransitionSource(id: "zoom-\(post.id)", in: animation)
                                 }
                                 .buttonStyle(.plain)
                             }

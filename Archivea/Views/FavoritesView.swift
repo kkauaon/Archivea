@@ -57,6 +57,8 @@ struct FavoritesView: View {
         }
         .task(id: allFolders) {
             folders = allFolders.filter { $0.author.id == profile.id }
+            
+            folders.sort(by: { $0.name < $1.name })
         }
     }
 }

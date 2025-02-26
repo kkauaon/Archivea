@@ -10,6 +10,10 @@ import SwiftUI
 class LoginManager: ObservableObject {
     @Published var profile: MyProfile?
     
+    init(profile: MyProfile? = nil) {
+        self.profile = profile
+    }
+    
     func login(profile: MyProfile) {
         self.profile = profile
     }

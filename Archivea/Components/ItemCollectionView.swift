@@ -47,14 +47,8 @@ struct ItemCollectionView: View {
                     }
             } else {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(.gray)
+                    .noPhotoOverlay()
                     .frame(height: 250)
-                    .overlay {
-                        Image(systemName: "photo.badge.plus.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 48)
-                    }
                     .overlay(alignment: .topLeading){
                         if editable {
                             Button {
