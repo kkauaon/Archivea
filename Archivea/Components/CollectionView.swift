@@ -76,6 +76,7 @@ struct CollectionView: View {
             .sheet(isPresented: $isSheetPresented) {
                 EditCollectionView(collection: collection)
             }
+            //frame(maxWidth: 400)
     }
 }
 #Preview {
