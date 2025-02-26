@@ -8,8 +8,8 @@ struct PostExtendedView: View {
     
     @Query var favorites: [Favorite]
     
-    @Query var folders: [FavoriteFolder]
-    //@State var folders: [FavoriteFolder] = []
+    @Query var allFolders: [FavoriteFolder]
+    @State var folders: [FavoriteFolder] = []
     
     @State var post : Post
     
@@ -132,6 +132,11 @@ struct PostExtendedView: View {
             } else {
                 isFavorited = false
             }
+        }
+        .task(id: allFolders) {
+            folders = allFolders.filter { $0.author.id == loginManager.profile!.id }
+            
+            folders.sort(by: { $0.name < $1.name })
         }
         .sheet(isPresented: $isFavoriteSelectionSheetPresented) { FavoriteFolderSelectionView(isPresented: $isFavoriteSelectionSheetPresented, post: post)
         }
