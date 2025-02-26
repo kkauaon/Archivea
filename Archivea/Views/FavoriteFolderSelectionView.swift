@@ -10,7 +10,7 @@ import SwiftData
 
 struct FavoriteFolderSelectionView: View {
     
-    @Binding var isPresented:Bool
+    @Binding var isPresented: Bool
     @State var post: Post
     @Query(sort: \FavoriteFolder.name, order: .forward) var allFolders : [FavoriteFolder]
     

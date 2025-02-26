@@ -18,7 +18,7 @@ struct MainView: View {
         ZStack {
             if let profile = loginManager.profile {
                 TabView{
-                    FeedView()
+                    FeedView(profile: profile)
                         .tabItem{
                             Label("Feed", systemImage: "book.fill")
                         }

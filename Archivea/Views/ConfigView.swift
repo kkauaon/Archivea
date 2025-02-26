@@ -50,6 +50,9 @@ struct ConfigView: View {
                 }
                 
             }
+            Section(header: Text("Aparência")) {
+                Toggle("Fundo do Feed Animado", isOn: $profile.isFeedBackgroundAnimated)
+            }
             
 //            Section(header: Text("Notificações")) {
 //                ForEach(notificationButtons, id: \.self) { name in

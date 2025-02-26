@@ -13,8 +13,9 @@ class MyProfile {
     var password: String
     var email: String
     var isLogged: Bool
+    var isFeedBackgroundAnimated: Bool
     
-    init(name: String, handle: String, bio: String = "Hey there! I am using Archivea.", isWhatsappPublic: Bool, createdAt: Date, avatar: Data? = nil, phone: String, password: String, email: String, isLogged: Bool) {
+    init(name: String, handle: String, bio: String = "Hey there! I am using Archivea.", isWhatsappPublic: Bool, createdAt: Date, avatar: Data? = nil, phone: String, password: String, email: String, isLogged: Bool, isFeedBackgroundAnimated: Bool = true) {
         self.name = name
         self.handle = handle
         self.bio = bio
@@ -25,5 +26,6 @@ class MyProfile {
         self.password = password
         self.email = email
         self.isLogged = isLogged
+        self.isFeedBackgroundAnimated = isFeedBackgroundAnimated
     }
 }

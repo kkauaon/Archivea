@@ -14,46 +14,53 @@ struct FeedView: View {
     
     @State var posts: [Post] = []
     
+    @State var profile: MyProfile
+    
     var body: some View {
         NavigationStack {
-            ScrollView {
-                HStack(alignment: .top, spacing: 25) {
-                    LazyVStack {
-                        ForEach (posts) { post in
-                            if let position = posts.firstIndex(where: { $0.id == post.id }), position % 2 == 0 {
-                                NavigationLink { PostExtendedView(post: post)
-                                        .navigationTransition(.zoom(sourceID: "zoom-\(post.id)", in: animation))
-                                } label: {
-                                    PostView(post: post)
-                                        .matchedTransitionSource(id: "zoom-\(post.id)", in: animation)
+            ZStack{
+                if profile.isFeedBackgroundAnimated{
+                    BouncyBackground()
+                }
+                ScrollView {
+                    HStack(alignment: .top, spacing: 25) {
+                        LazyVStack {
+                            ForEach (posts) { post in
+                                if let position = posts.firstIndex(where: { $0.id == post.id }), position % 2 == 0 {
+                                    NavigationLink { PostExtendedView(post: post)
+                                            .navigationTransition(.zoom(sourceID: "zoom-\(post.id)", in: animation))
+                                    } label: {
+                                        PostView(post: post)
+                                            .matchedTransitionSource(id: "zoom-\(post.id)", in: animation)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
-                    }
-                    LazyVStack {
-                        ForEach (posts) { post in
-                            if let position = posts.firstIndex(where: { $0.id == post.id }), position % 2 != 0 {
-                                NavigationLink { PostExtendedView(post: post)
-                                        .navigationTransition(.zoom(sourceID: "zoom-\(post.id)", in: animation))
-                                } label: {
-                                    PostView(post: post)
-                                        .matchedTransitionSource(id: "zoom-\(post.id)", in: animation)
+                        LazyVStack {
+                            ForEach (posts) { post in
+                                if let position = posts.firstIndex(where: { $0.id == post.id }), position % 2 != 0 {
+                                    NavigationLink { PostExtendedView(post: post)
+                                            .navigationTransition(.zoom(sourceID: "zoom-\(post.id)", in: animation))
+                                    } label: {
+                                        PostView(post: post)
+                                            .matchedTransitionSource(id: "zoom-\(post.id)", in: animation)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                     }
                 }
+                .scrollIndicators(.never)
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .top
+                )
+                .padding(.horizontal, 16)
+                .navigationTitle("Feed")
             }
-            .scrollIndicators(.never)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity,
-                alignment: .top
-            )
-            .padding(.horizontal, 16)
-            .navigationTitle("Feed")
             
         }
         .onAppear {
@@ -82,5 +89,5 @@ struct FeedView: View {
 }
 
 #Preview {
-    FeedView()
+    FeedView(profile: previewMyProfile)
 }
