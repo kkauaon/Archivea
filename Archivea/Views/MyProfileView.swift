@@ -29,8 +29,10 @@ struct MyProfileView: View {
                             Spacer()
                             Text("\(profile.name)")
                                 .font(.system(size: 24))
+                                .lineLimit(1)
                             Text("@\(profile.handle)")
                                 .font(.system(size: 16))
+                                .lineLimit(1)
                             Spacer()
                         }
                         Spacer()

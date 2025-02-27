@@ -22,6 +22,7 @@ struct AvatarView: View {
                     Image(systemName: "person.circle")
                         .resizable()
                         .frame(width: 48, height: 48)
+                        .foregroundStyle(Color(hex: 0x3C3C43, alpha: 0.29))
                 }
         }
     }

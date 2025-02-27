@@ -11,17 +11,17 @@ let updateButtons = ["Atualizar Aplicativo", "Verificar Atualizações"]
 let supportButtons = ["Feedback", "Ajuda e Suporte", "Sobre o Aplicativo"]
 
 var fakeUser: [User] = [
-    User(name: "Kauã Sousa", handle: "kkauabr", bio: "entusiasta", isWhatsappPublic: false, createdAt: .now, avatar: "user1", phone: "85992076620"),
-    User(name: "João Gabriel", handle: "jotagezim", bio: "meu nome  joao grabiel tenho 17 anos e amo Jesus", isWhatsappPublic: false, createdAt: .now, avatar: "user2", phone: "85991422296"),
+    User(name: "Ana Beatriz Carvalho de Meneses", handle: "lirio", bio: "Do Ps2 ao Ps4, colecionadora fervorosa.", isWhatsappPublic: true, createdAt: .now, avatar: "user1", phone: "85997684672"),
+    User(name: "João Gabriel Aguiar de Senna", handle: "jotagezim", bio: "Oiii, meu n", isWhatsappPublic: false, createdAt: .now, avatar: "user2", phone: "85991422296"),
     User(name: "Ana Paula Sena", handle: "anacena", bio: "oii, sou a ana paula e gosto de psicologar", isWhatsappPublic: true, createdAt: .now, avatar: "user3", phone: "85994247927"),
     User(name: "Ismael Lira Nascimento", handle: "maelkk", bio: "oie, sou o mael developer", isWhatsappPublic: true, createdAt: .now, avatar: "user4", phone: "85991651334")
 ]
 
 var fakeCollections: [FakeCollection] = [
-    FakeCollection(id: 1, name: "Jogos e Consoles", isPrivate: false, image: "gameboy", author: fakeUser[0]),
+    FakeCollection(id: 1, name: "Jogos e Consoles", isPrivate: false, image: "gameboy", author: fakeUser[3]),
     FakeCollection(id: 2, name: "Música e Áudio", isPrivate: false, image: "walkman", author: fakeUser[1]),
     FakeCollection(id: 3, name: "Fotografia", isPrivate: true, image: "cybershot", author: fakeUser[2]),
-    FakeCollection(id: 4, name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150", author: fakeUser[3]),
+    FakeCollection(id: 4, name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150", author: fakeUser[0]),
     FakeCollection(id: 5, name: "Brinquedos", isPrivate: false, image: "tamagotchi", author: fakeUser[0]),
     FakeCollection(id: 6, name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs", author: fakeUser[1])
 ]
@@ -41,7 +41,6 @@ var fakePosts: [Post] {
         // Corrected existing posts
         .init(
             id: 1,
-            author: fakeUser[2],
             name: "Câmera Cybershot DSC-W620",
             desc: "Eu ganhei essa câmera de aniversário de 17 anos da minha tia Cláudia. Amei!",
             photo: "cybershot",
@@ -54,7 +53,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 2,
-            author: fakeUser[1],
             name: "Disco de Vinil - Beatles Abbey Road",
             desc: "Disco original de 1969, encontrado em um sebo em Londres. Estado de conservação excepcional.",
             photo: "disco",
@@ -67,7 +65,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 3,
-            author: fakeUser[1],
             name: "Mangá Haikyuu!! Volume 01",
             desc: "Primeira edição japonesa do mangá Haikyuu!!, comprada em Akihabara durante minha viagem ao Japão.",
             photo: "manga",
@@ -80,7 +77,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 4,
-            author: fakeUser[0],
             name: "Carta Pokémon Mewtwo EX #282 Genetic Apex",
             desc: "Carta ultra rara da coleção Breakthrough, em perfeito estado. Guardada em sleeve desde a compra.",
             photo: "carta",
@@ -95,7 +91,6 @@ var fakePosts: [Post] {
         // New posts
         .init(
             id: 5,
-            author: fakeUser[0],
             name: "Console Nintendo 64 Pikachu Edition",
             desc: "Edição especial do N64 em perfeito estado. Veio com caixa original e todos os cabos.",
             photo: "n64_pikachu",
@@ -108,7 +103,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 6,
-            author: fakeUser[1],
             name: "Walkman Sony WM-F2015",
             desc: "Walkman azul em ótimo estado. Funciona perfeitamente e vem com fones originais.",
             photo: "walkman",
@@ -121,7 +115,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 7,
-            author: fakeUser[0],
             name: "Tamagotchi Original 1996",
             desc: "Primeiro modelo de Tamagotchi lançado. Ainda funciona com a bateria original!",
             photo: "tamagotchi",
@@ -134,7 +127,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 8,
-            author: fakeUser[1],
             name: "Álbum de Figurinhas Copa 1994 Completo",
             desc: "Álbum da Copa do Mundo de 1994 completamente preenchido, incluindo figurinhas raras.",
             photo: "album_copa",
@@ -147,7 +139,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 9,
-            author: fakeUser[0],
             name: "Game Boy Color Transparente",
             desc: "Console portátil em edição transparente, com todos os botões originais funcionando.",
             photo: "gameboy",
@@ -160,7 +151,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 10,
-            author: fakeUser[0],
             name: "Bichinho Virtual Gigapets",
             desc: "Versão dinossauro do Gigapets, popular nos anos 90. Com embalagem original.",
             photo: "gigapet",
@@ -173,7 +163,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 11,
-            author: fakeUser[1],
             name: "Discman Sony D-EJ01",
             desc: "Discman anti-shock com design slim. Acompanha case original e fones.",
             photo: "discman",
@@ -186,7 +175,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 12,
-            author: fakeUser[0],
             name: "Cartucho Street Fighter II SNES",
             desc: "Cartucho original japonês, funcionando perfeitamente. Label em ótimo estado.",
             photo: "streetfighter",
@@ -199,7 +187,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 13,
-            author: fakeUser[0],
             name: "Furby Original 1998",
             desc: "Furby da primeira geração, ainda falando e respondendo normalmente.",
             photo: "furby",
@@ -212,7 +199,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 14,
-            author: fakeUser[0],
             name: "Mini Game Brick Game 9999 in 1",
             desc: "Console portátil com jogos básicos como Tetris e Snake. Funciona com pilhas.",
             photo: "brickgame",
@@ -225,7 +211,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 15,
-            author: fakeUser[3],
             name: "Pager Motorola Advisor",
             desc: "Bip em perfeito estado de conservação, com clip e display funcionando.",
             photo: "pager",
@@ -238,7 +223,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 16,
-            author: fakeUser[2],
             name: "Máquina Fotográfica Polaroid OneStep",
             desc: "Câmera instantânea vintage, testada e funcionando. Inclui manual original.",
             photo: "polaroid",
@@ -251,7 +235,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 17,
-            author: fakeUser[3],
             name: "Genius Paint Pad",
             desc: "Mesa digitalizadora antiga da Genius, com caneta original e software.",
             photo: "paintpad",
@@ -264,7 +247,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 18,
-            author: fakeUser[1],
             name: "Fita VHS E.T. O Extraterrestre",
             desc: "Filme em VHS original, primeira edição brasileira. Capa em ótimo estado.",
             photo: "et_vhs",
@@ -277,7 +259,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 19,
-            author: fakeUser[3],
             name: "Palm Pilot Professional",
             desc: "PDA clássico em excelente estado. Com dock de sincronização original.",
             photo: "palm",
@@ -290,7 +271,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 20,
-            author: fakeUser[0],
             name: "Boneco Action Man Extremo",
             desc: "Boneco articulado com todos acessórios originais e roupas da época.",
             photo: "actionman",
@@ -303,7 +283,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 21,
-            author: fakeUser[3],
             name: "PC IBM 5150",
             desc: "Primeiro PC IBM lançado, funcionando perfeitamente. Com monitor original.",
             photo: "ibm5150",
@@ -316,7 +295,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 22,
-            author: fakeUser[1],
             name: "Tazos Coleção Completa Looney Tunes",
             desc: "Coleção completa de tazos dos Looney Tunes, incluindo os holográficos.",
             photo: "tazos",
@@ -329,7 +307,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 23,
-            author: fakeUser[3],
             name: "Agenda Eletrônica Sharp Zaurus",
             desc: "Agenda eletrônica japonesa com teclado QWERTY e tela touch.",
             photo: "zaurus",
@@ -342,7 +319,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 24,
-            author: fakeUser[0],
             name: "Atari 2600 Jr.",
             desc: "Console em perfeito estado com dois controles e cinco cartuchos originais.",
             photo: "atari",
@@ -355,7 +331,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 25,
-            author: fakeUser[3],
             name: "Relógio Calculator Casio",
             desc: "Relógio calculadora vintage, todas funções funcionando perfeitamente.",
             photo: "casio",
@@ -368,7 +343,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 26,
-            author: fakeUser[3],
             name: "Mini TV Seiko TV Watch",
             desc: "Relógio com TV em miniatura, peça raríssima dos anos 80.",
             photo: "tvwatch",
@@ -381,7 +355,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 27,
-            author: fakeUser[0],
             name: "Master System III Compact",
             desc: "Console com 40 jogos na memória, em perfeito estado de conservação.",
             photo: "mastersystem",
@@ -394,7 +367,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 28,
-            author: fakeUser[3],
             name: "Nokia 5110",
             desc: "Celular clássico funcionando, com jogo da cobrinha e toques polifônicos.",
             photo: "nokia",
@@ -407,7 +379,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 29,
-            author: fakeUser[0],
             name: "Brinquedo Simon",
             desc: "Jogo eletrônico de memória Simon, todas as luzes e sons funcionando.",
             photo: "simon",
@@ -420,7 +391,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 30,
-            author: fakeUser[1],
             name: "Micro System CCE",
             desc: "Som portátil com rádio AM/FM, toca-fitas e CD player funcionando.",
             photo: "microsystem",
@@ -433,7 +403,6 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 31,
-            author: fakeUser[1],
             name: "Álbum Candy Cards She-Ra",
             desc: "Álbum completo de cards da She-Ra, com todos os 180 cards originais.",
             photo: "shera",

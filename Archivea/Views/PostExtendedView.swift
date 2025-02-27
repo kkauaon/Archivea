@@ -64,8 +64,10 @@ struct PostExtendedView: View {
                         Spacer()
                         Text("\(post.author.name)")
                             .font(.system(size: 20))
+                            .lineLimit(1)
                         Text("@\(post.author.handle)")
                             .font(.system(size: 16))
+                            .lineLimit(1)
                         Spacer()
                     }
                     

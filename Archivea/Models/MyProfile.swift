@@ -15,7 +15,7 @@ class MyProfile {
     var isLogged: Bool
     var isFeedBackgroundAnimated: Bool
     
-    init(name: String, handle: String, bio: String = "Hey there! I am using Archivea.", isWhatsappPublic: Bool, createdAt: Date, avatar: Data? = nil, phone: String, password: String, email: String, isLogged: Bool, isFeedBackgroundAnimated: Bool = true) {
+    init(name: String, handle: String, bio: String = "Hey there! I am using Archivea.", isWhatsappPublic: Bool, createdAt: Date, avatar: Data? = nil, phone: String, password: String, email: String, isLogged: Bool, isFeedBackgroundAnimated: Bool = false) {
         self.name = name
         self.handle = handle
         self.bio = bio

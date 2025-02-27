@@ -13,9 +13,9 @@ class Post {
     
     var collection: FakeCollection
     
-    init(id: Int = Int.random(in: 1...9999999999), author: User, name: String, desc: String, photo: String, preservation: Int, fields: [CustomField], collection: FakeCollection) {
+    init(id: Int = Int.random(in: 1...9999999999), name: String, desc: String, photo: String, preservation: Int, fields: [CustomField], collection: FakeCollection) {
         self.id = id
-        self.author = author
+        self.author = collection.author
         self.name = name
         self.desc = desc
         self.photo = photo

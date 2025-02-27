@@ -65,16 +65,23 @@ struct CollectionView: View {
                 }
             }
             .task(id: items) {
-                itemsFromCollection.removeAll()
-                
-                for item in items {
-                    if item.collection.id == collection.id {
-                        itemsFromCollection.append(item)
+                if editable {
+                    itemsFromCollection.removeAll()
+                    
+                    for item in items {
+                        if item.collection.id == collection.id {
+                            itemsFromCollection.append(item)
+                        }
                     }
+                } else {
+                    itemsFromCollection = fakePosts.filter { $0.collection.name == collection.name }.map { postToItemCollection(post: $0) }
                 }
             }
             .sheet(isPresented: $isSheetPresented) {
                 EditCollectionView(collection: collection)
+            }
+            .onLongPressGesture {
+                isSheetPresented = true
             }
             //frame(maxWidth: 400)
     }

@@ -96,6 +96,11 @@ struct ItemCollectionView: View {
         .sheet(isPresented: $isSheetPresented) {
             EditItemCollectionView(itemCollection: itemCollection)
         }
+        .onLongPressGesture {
+            if editable{
+                isSheetPresented = true
+            }
+        }
         .frame(maxWidth: 400)
     }
 }

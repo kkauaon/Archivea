@@ -70,6 +70,9 @@ struct FavoriteFolderView: View {
             .sheet(isPresented: $isSheetPresented) {
                 EditFavoriteFolderView(folder: folder)
             }
+            .onLongPressGesture {
+                isSheetPresented = true
+            }
     }
 }
 #Preview {
