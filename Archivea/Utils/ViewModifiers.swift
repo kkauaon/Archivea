@@ -14,7 +14,7 @@ struct LittleSheet: ViewModifier {
                     maxHeight: .infinity,
                     alignment: .top
                 )
-                .padding(.horizontal, padding)
+                .padding([.horizontal, .bottom], padding)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle(title)
                 .toolbar {
@@ -30,7 +30,7 @@ struct LittleSheet: ViewModifier {
                 .scrollIndicators(.hidden)
             }
             //.padding(.horizontal, 32)
-            //.presentationDragIndicator(.visible)
+            
             //.presentationBackground(Color(hex: 0xE9E9E9, alpha: 0.97))
             
         
@@ -45,6 +45,7 @@ extension View {
         }
         .presentationDetents([.height(height), .large])
         .presentationCornerRadius(20)
+        .presentationDragIndicator(.visible)
     }
     
     func littleSheet(height: PresentationDetent, title: String, toolbarText: String = "Salvar", padding: CGFloat = 40, saveAction: @escaping () -> Void) -> some View {
@@ -53,6 +54,7 @@ extension View {
         }
         .presentationDetents([height, .large])
         .presentationCornerRadius(20)
+        .presentationDragIndicator(.visible)
     }
     
     // Alerta simplificado, vem com botão "Ok" com ação já feita. Basta usar .simpleAlert(isPresented, title: "Alerta", text: "Mensagem")

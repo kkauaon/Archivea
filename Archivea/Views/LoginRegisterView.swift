@@ -126,6 +126,7 @@ struct LoginRegisterView: View {
                     password = ""
                 }
             }
+            .frame(maxWidth: 500)
             .simpleAlert(isPresented: $fieldsEmpty, title: "Erro", text: "Preencha todos os campos corretamente.")
             .simpleAlert(isPresented: $wrongPassword, title: "Erro", text: "Senha incorreta.")
             .simpleAlert(isPresented: $takenEmail, title: "Erro", text: "Este e-mail já está associado a uma conta.")

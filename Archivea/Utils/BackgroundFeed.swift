@@ -36,8 +36,8 @@ struct BouncyBackground: View {
                 color: Color(
                     red: Double.random(in: 0.1...0.2),
                     green: Double.random(in: 0.3...0.9),
-                    blue: Double.random(in: 0.7...1.0),
-                    opacity: Double.random(in: 0.2...0.5)
+                    blue: Double.random(in: 0.6...0.8),
+                    opacity: Double.random(in: 0.2...0.3)
                 )
             )
         })
@@ -59,7 +59,7 @@ struct BouncyBackground: View {
                     .fill(circles[index].color)
                     .frame(width: circles[index].size, height: circles[index].size)
                     .position(circles[index].position)
-                    .blur(radius: circles[index].size / 8)
+                    .blur(radius: circles[index].size / 6)
             }
         }
         .onReceive(timer) { _ in
