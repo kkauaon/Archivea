@@ -14,22 +14,55 @@ struct MainView: View {
     
     @EnvironmentObject private var loginManager: LoginManager
     
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @State private var selectedItem: String? = "Feed"
+    
     var body: some View {
         ZStack {
             if let profile = loginManager.profile {
-                TabView{
-                    FeedView(profile: profile)
-                        .tabItem{
-                            Label("Feed", systemImage: "book.fill")
+                if horizontalSizeClass == .regular {
+                    // iPad layout with NavigationSplitView
+                    NavigationSplitView {
+                        List(selection: $selectedItem) {
+                            NavigationLink(value: "Feed") {
+                                Label("Feed", systemImage: "book.fill")
+                            }
+                            NavigationLink(value: "Favoritos") {
+                                Label("Favoritos", systemImage: "star")
+                            }
+                            NavigationLink(value: "Perfil") {
+                                Label("Perfil", systemImage: "person.crop.circle")
+                            }
                         }
-                    FavoritesView(profile: profile)
-                        .tabItem{
-                            Label("Favoritos", systemImage: "star")
+                        .navigationTitle("Menu")
+                    } detail: {
+                        switch selectedItem {
+                        case "Feed":
+                            FeedView(profile: profile)
+                        case "Favoritos":
+                            FavoritesView(profile: profile)
+                        case "Perfil":
+                            MyProfileView(profile: profile)
+                        default:
+                            FeedView(profile: profile) // Fallback para o feed
                         }
-                    MyProfileView(profile: profile)
-                        .tabItem{
-                            Label("Perfil", systemImage: "person.crop.circle")
-                        }
+                    }
+                } else {
+                    // iPhone layout with TabView
+                    TabView {
+                        FeedView(profile: profile)
+                            .tabItem {
+                                Label("Feed", systemImage: "book.fill")
+                            }
+                        FavoritesView(profile: profile)
+                            .tabItem {
+                                Label("Favoritos", systemImage: "star")
+                            }
+                        MyProfileView(profile: profile)
+                            .tabItem {
+                                Label("Perfil", systemImage: "person.crop.circle")
+                            }
+                    }
                 }
             } else {
                 LoginRegisterView()

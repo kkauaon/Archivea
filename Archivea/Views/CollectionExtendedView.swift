@@ -20,7 +20,7 @@ struct CollectionExtendedView: View {
     var body: some View {
         ScrollView {
             HStack{
-                Text("Adicionar novo item")
+                Text("Itens de coleção")
                     .font(.system(size: 20))
                 Spacer()
                 Button {
@@ -40,7 +40,7 @@ struct CollectionExtendedView: View {
             }
         }
         .scrollIndicators(.never)
-        .padding(.horizontal, 16)
+        .padding(16)
         .frame(
             maxWidth: .infinity,
             maxHeight: .infinity,

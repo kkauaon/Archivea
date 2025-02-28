@@ -10,6 +10,7 @@ import SwiftData
 
 struct MyProfileView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     @State var profile : MyProfile
     
@@ -99,7 +100,7 @@ struct MyProfileView: View {
                 }
             }
             .navigationTitle("Seu Perfil")
-            .navigationBarHidden(true)
+            .navigationBarHidden(horizontalSizeClass == .regular ? false : true)
             .scrollIndicators(.never)
             .frame(
                 maxWidth: .infinity,
