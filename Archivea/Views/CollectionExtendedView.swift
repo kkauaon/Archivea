@@ -34,8 +34,12 @@ struct CollectionExtendedView: View {
             }
             
             VStack(spacing: 20) {
-                ForEach(itemsFromCollection, id: \.self.id) { item in
-                    ItemCollectionView(itemCollection: item)
+                if items.isEmpty{
+                    Image("noItemCollections")
+                } else{
+                    ForEach(itemsFromCollection, id: \.self.id) { item in
+                        ItemCollectionView(itemCollection: item)
+                    }
                 }
             }
         }

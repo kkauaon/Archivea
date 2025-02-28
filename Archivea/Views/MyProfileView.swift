@@ -88,15 +88,20 @@ struct MyProfileView: View {
                     
                 }
                 
+                if !collections.isEmpty{
                 LazyVGrid(columns: columns){
-                    ForEach(collections) { collection in
-                        NavigationLink(destination: CollectionExtendedView(collection: collection)){
-                            CollectionView(collection: collection)
+                
+                        ForEach(collections) { collection in
+                            NavigationLink(destination: CollectionExtendedView(collection: collection)){
+                                CollectionView(collection: collection)
+                            }
+                            //Isso aqui foi necessário para os textos relativos à essa Navigation não ficarem azuis!
+                            .buttonStyle(.plain)
+                            .frame(maxWidth: .infinity)
                         }
-                        //Isso aqui foi necessário para os textos relativos à essa Navigation não ficarem azuis!
-                        .buttonStyle(.plain)
-                        .frame(maxWidth: .infinity)
                     }
+                } else {
+                    Image("noCollections")
                 }
             }
             .navigationTitle("Seu Perfil")

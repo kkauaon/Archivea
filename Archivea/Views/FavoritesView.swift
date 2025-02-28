@@ -15,14 +15,18 @@ struct FavoritesView: View {
         NavigationStack{
             ScrollView {
                 VStack(spacing: 20) {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())] ){
-                        ForEach (folders){ folder in
-                            NavigationLink {
-                                FavoriteFolderExtendedView(folder: folder)
-                            } label: {
-                                FavoriteFolderView(folder: folder)
+                    if folders.isEmpty{
+                        Image("noFavoriteFolders")
+                    } else{
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())] ){
+                            ForEach (folders){ folder in
+                                NavigationLink {
+                                    FavoriteFolderExtendedView(folder: folder)
+                                } label: {
+                                    FavoriteFolderView(folder: folder)
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
                     }
                 }
