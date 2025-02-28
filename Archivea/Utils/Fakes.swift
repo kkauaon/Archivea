@@ -12,18 +12,19 @@ let supportButtons = ["Feedback", "Ajuda e Suporte", "Sobre o Aplicativo"]
 
 var fakeUser: [User] = [
     User(name: "Ana Beatriz Carvalho de Meneses", handle: "lirio", bio: "Do Ps2 ao Ps4, colecionadora fervorosa.", isWhatsappPublic: true, createdAt: .now, avatar: "user1", phone: "85997684672"),
-    User(name: "João Gabriel Aguiar de Senna", handle: "jotagezim", bio: "Oiii, meu n", isWhatsappPublic: false, createdAt: .now, avatar: "user2", phone: "85991422296"),
-    User(name: "Ana Paula Sena", handle: "anacena", bio: "oii, sou a ana paula e gosto de psicologar", isWhatsappPublic: true, createdAt: .now, avatar: "user3", phone: "85994247927"),
-    User(name: "Ismael Lira Nascimento", handle: "maelkk", bio: "oie, sou o mael developer", isWhatsappPublic: true, createdAt: .now, avatar: "user4", phone: "85991651334")
+    User(name: "João Gabriel Aguiar de Senna", handle: "jotagezim", bio: "Oiii, meu nome João Gabriel.\nAmo Jesus Cristo ✝️\nGosto de programar 👨‍💻\nColeciono algumas coisas!", isWhatsappPublic: false, createdAt: .now, avatar: "user2", phone: "85991422296"),
+    User(name: "Ana Paula Sena Silva", handle: "ana.sena", bio: "Olá, espero que goste das minhas câmeras, um bom apreciador de câmera sabe o amor por elas. Espero que divirta-se vendo as variedades de lentes e acessorios, me chame se quiser trocar algumas.", isWhatsappPublic: true, createdAt: .now, avatar: "user3", phone: "85994247927"),
+    User(name: "Ismael Lira Nascimento", handle: "maelkk", bio: "Olá, amo colecionar itens clássicos, espero que goste desses itens, pode chamar a qualquer momento se tiver interesse!", isWhatsappPublic: true, createdAt: .now, avatar: "user4", phone: "85991651334")
 ]
 
 var fakeCollections: [FakeCollection] = [
     FakeCollection(id: 1, name: "Jogos e Consoles", isPrivate: false, image: "gameboy", author: fakeUser[3]),
     FakeCollection(id: 2, name: "Música e Áudio", isPrivate: false, image: "walkman", author: fakeUser[1]),
-    FakeCollection(id: 3, name: "Fotografia", isPrivate: true, image: "cybershot", author: fakeUser[2]),
+    FakeCollection(id: 3, name: "Fotografia", isPrivate: false, image: "cybershot", author: fakeUser[2]),
     FakeCollection(id: 4, name: "Computadores e Gadgets", isPrivate: false, image: "ibm5150", author: fakeUser[0]),
     FakeCollection(id: 5, name: "Brinquedos", isPrivate: false, image: "tamagotchi", author: fakeUser[0]),
-    FakeCollection(id: 6, name: "Mídia e Entretenimento", isPrivate: true, image: "et_vhs", author: fakeUser[1])
+    FakeCollection(id: 6, name: "Mídia e Entretenimento", isPrivate: false, image: "et_vhs", author: fakeUser[1]),
+    FakeCollection(id: 7, name: "Pokémon TCG", isPrivate: false, image: "carta", author: fakeUser[3])
 ]
 
 var previewMyProfile = MyProfile(name: "João Gabriel", handle: "jotagezim", isWhatsappPublic: true, createdAt: .now, phone: "123", password: "jotage123", email: "jotage@gmail.com", isLogged: true)
@@ -38,7 +39,6 @@ var previewMyProfile = MyProfile(name: "João Gabriel", handle: "jotagezim", isW
 
 var fakePosts: [Post] {
     return [
-        // Corrected existing posts
         .init(
             id: 1,
             name: "Câmera Cybershot DSC-W620",
@@ -77,18 +77,16 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 4,
-            name: "Carta Pokémon Mewtwo EX #282 Genetic Apex",
-            desc: "Carta ultra rara da coleção Breakthrough, em perfeito estado. Guardada em sleeve desde a compra.",
-            photo: "carta",
-            preservation: 5,
+            name: "Álbum de Figurinhas Copa 1994 Completo",
+            desc: "Álbum da Copa do Mundo de 1994 completamente preenchido, incluindo figurinhas raras.",
+            photo: "album_copa",
+            preservation: 4,
             fields: [
-                .init(fieldName: "Raridade", fieldValue: "Ultra Rara"),
-                .init(fieldName: "Ano", fieldValue: "2015")
+                .init(fieldName: "Estado", fieldValue: "Completo"),
+                .init(fieldName: "Editora", fieldValue: "Panini")
             ],
-            collection: fakeCollections[0]
+            collection: fakeCollections[5]
         ),
-        
-        // New posts
         .init(
             id: 5,
             name: "Console Nintendo 64 Pikachu Edition",
@@ -127,15 +125,16 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 8,
-            name: "Álbum de Figurinhas Copa 1994 Completo",
-            desc: "Álbum da Copa do Mundo de 1994 completamente preenchido, incluindo figurinhas raras.",
-            photo: "album_copa",
-            preservation: 4,
+            name: "Carta Mewtwo EX 058/182 Pokémon TCG",
+            desc: "Mewtwo EX Tera 058/182\nCarta ultra rara da coleção Fenda Paradoxal, comprada direto dos Estados Unidos, em perfeito estado. Guardada em sleeve (plástico protetor) desde a compra.",
+            photo: "carta",
+            preservation: 5,
             fields: [
-                .init(fieldName: "Estado", fieldValue: "Completo"),
-                .init(fieldName: "Editora", fieldValue: "Panini")
+                .init(fieldName: "Idioma", fieldValue: "Inglês"),
+                .init(fieldName: "Coleção", fieldValue: "Fenda Paradoxal"),
+                .init(fieldName: "Ano", fieldValue: "2023")
             ],
-            collection: fakeCollections[5]
+            collection: fakeCollections[6]
         ),
         .init(
             id: 9,
@@ -319,6 +318,19 @@ var fakePosts: [Post] {
         ),
         .init(
             id: 24,
+            name: "Carta Absol 113/182 Pokémon TCG",
+            desc: "Absol 113/182\nCarta da coleção Fenda Paradoxal, comprada na Dominaria C&G, em perfeito estado. Guardada em sleeve (plástico protetor) desde a compra.",
+            photo: "carta2",
+            preservation: 5,
+            fields: [
+                .init(fieldName: "Idioma", fieldValue: "Português"),
+                .init(fieldName: "Coleção", fieldValue: "Fenda Paradoxal"),
+                .init(fieldName: "Ano", fieldValue: "2023")
+            ],
+            collection: fakeCollections[6]
+        ),
+        .init(
+            id: 25,
             name: "Atari 2600 Jr.",
             desc: "Console em perfeito estado com dois controles e cinco cartuchos originais.",
             photo: "atari",
@@ -330,7 +342,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
-            id: 25,
+            id: 26,
             name: "Relógio Calculator Casio",
             desc: "Relógio calculadora vintage, todas funções funcionando perfeitamente.",
             photo: "casio",
@@ -342,7 +354,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[3]
         ),
         .init(
-            id: 26,
+            id: 27,
             name: "Mini TV Seiko TV Watch",
             desc: "Relógio com TV em miniatura, peça raríssima dos anos 80.",
             photo: "tvwatch",
@@ -354,7 +366,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[3]
         ),
         .init(
-            id: 27,
+            id: 28,
             name: "Master System III Compact",
             desc: "Console com 40 jogos na memória, em perfeito estado de conservação.",
             photo: "mastersystem",
@@ -366,7 +378,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[0]
         ),
         .init(
-            id: 28,
+            id: 29,
             name: "Nokia 5110",
             desc: "Celular clássico funcionando, com jogo da cobrinha e toques polifônicos.",
             photo: "nokia",
@@ -378,7 +390,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[3]
         ),
         .init(
-            id: 29,
+            id: 30,
             name: "Brinquedo Simon",
             desc: "Jogo eletrônico de memória Simon, todas as luzes e sons funcionando.",
             photo: "simon",
@@ -390,7 +402,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[4]
         ),
         .init(
-            id: 30,
+            id: 31,
             name: "Micro System CCE",
             desc: "Som portátil com rádio AM/FM, toca-fitas e CD player funcionando.",
             photo: "microsystem",
@@ -402,7 +414,7 @@ var fakePosts: [Post] {
             collection: fakeCollections[1]
         ),
         .init(
-            id: 31,
+            id: 32,
             name: "Álbum Candy Cards She-Ra",
             desc: "Álbum completo de cards da She-Ra, com todos os 180 cards originais.",
             photo: "shera",
@@ -412,6 +424,19 @@ var fakePosts: [Post] {
                 .init(fieldName: "Ano", fieldValue: "1985")
             ],
             collection: fakeCollections[5]
-        )
+        ),
+        .init(
+            id: 33,
+            name: "Carta Asa Rasteira 107/182 Pokémon TCG",
+            desc: "Asa Rasteira Ancestral 107/182\nCarta da coleção Fenda Paradoxal, comprada na Dominaria C&G, em perfeito estado. Guardada em sleeve (plástico protetor) desde a compra.",
+            photo: "carta3",
+            preservation: 5,
+            fields: [
+                .init(fieldName: "Idioma", fieldValue: "Português"),
+                .init(fieldName: "Coleção", fieldValue: "Fenda Paradoxal"),
+                .init(fieldName: "Ano", fieldValue: "2023")
+            ],
+            collection: fakeCollections[6]
+        ),
     ]
 }

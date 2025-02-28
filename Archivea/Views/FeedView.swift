@@ -84,7 +84,6 @@ struct FeedView: View {
             }
         }
         .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "Pesquise por um item...")
-        .background(Color("backgroundFeedColor"))
     }
 }
 

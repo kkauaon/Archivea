@@ -12,7 +12,7 @@ struct SplashView: View {
     
     @StateObject var loginManager =  LoginManager()
     
-    let splashTime = 0.1;
+    let splashTime = 1.0;
     // tempo em segundos do splash
     
     var body: some View {
@@ -20,18 +20,16 @@ struct SplashView: View {
             if isActive {
                 Text("Archivea")
                     .font(.largeTitle)
-                    .foregroundColor(.mint)
+                    .foregroundColor(Color(hex: 0x25A36C))
                 Image("archivealogo2")
-                    .frame(width: 500, height: 500, alignment: .center)
-                    .cornerRadius(10)
-                    .scaledToFit()
+                    .resizable()
+                    .frame(width: 200, height: 200, alignment: .center)
             } else {
                 MainView()
                     .environmentObject(loginManager)
             }
         }
         .onAppear {
-            // https://medium.com/@liyicky/how-to-make-a-splash-screen-in-swift-ui-83b02984a6ab
             DispatchQueue.main.asyncAfter(deadline: .now() + splashTime) {
                 withAnimation {
                     isActive = false
